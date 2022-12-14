@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		287605F72949FAED00406FB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605F62949FAED00406FB5 /* LoginView.swift */; };
+		287605FA2949FB5900406FB5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605F92949FB5900406FB5 /* HomeView.swift */; };
+		287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605FB2949FB6800406FB5 /* QuestionView.swift */; };
+		287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605FD2949FB7300406FB5 /* SignUpView.swift */; };
+		287606012949FBA200406FB5 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606002949FBA200406FB5 /* CalendarView.swift */; };
+		287606032949FBC200406FB5 /* HistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606022949FBC200406FB5 /* HistoryListView.swift */; };
+		287606062949FC1500406FB5 /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606052949FC1500406FB5 /* AnalysisView.swift */; };
+		287606082949FC4F00406FB5 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606072949FC4F00406FB5 /* AuthStore.swift */; };
+		2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606092949FC5C00406FB5 /* QuestionStore.swift */; };
+		2876060C2949FC7300406FB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060B2949FC7300406FB5 /* User.swift */; };
+		2876060E2949FC7E00406FB5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060D2949FC7E00406FB5 /* Question.swift */; };
 		28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F677122949EB3F00935959 /* GhostDiaryApp.swift */; };
 		28F677152949EB3F00935959 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F677142949EB3F00935959 /* ContentView.swift */; };
 		28F677172949EB4000935959 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28F677162949EB4000935959 /* Assets.xcassets */; };
@@ -22,6 +33,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		287605F62949FAED00406FB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		287605F92949FB5900406FB5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		287605FB2949FB6800406FB5 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		287605FD2949FB7300406FB5 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		287606002949FBA200406FB5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		287606022949FBC200406FB5 /* HistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListView.swift; sourceTree = "<group>"; };
+		287606052949FC1500406FB5 /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
+		287606072949FC4F00406FB5 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		287606092949FC5C00406FB5 /* QuestionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStore.swift; sourceTree = "<group>"; };
+		2876060B2949FC7300406FB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2876060D2949FC7E00406FB5 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		28F6770F2949EB3F00935959 /* GhostDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhostDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F677122949EB3F00935959 /* GhostDiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDiaryApp.swift; sourceTree = "<group>"; };
 		28F677142949EB3F00935959 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +71,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		287605F12949FA3500406FB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				287606042949FBE600406FB5 /* Analysis */,
+				287605FF2949FB7700406FB5 /* TimeLine */,
+				287605F82949FAF700406FB5 /* Question */,
+				287605F52949FAD900406FB5 /* Login */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		287605F22949FA4200406FB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2876060B2949FC7300406FB5 /* User.swift */,
+				2876060D2949FC7E00406FB5 /* Question.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		287605F42949FAA400406FB5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				287606072949FC4F00406FB5 /* AuthStore.swift */,
+				287606092949FC5C00406FB5 /* QuestionStore.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		287605F52949FAD900406FB5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				287605F62949FAED00406FB5 /* LoginView.swift */,
+				287605FD2949FB7300406FB5 /* SignUpView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		287605F82949FAF700406FB5 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				287605F92949FB5900406FB5 /* HomeView.swift */,
+				287605FB2949FB6800406FB5 /* QuestionView.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
+		287605FF2949FB7700406FB5 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				287606002949FBA200406FB5 /* CalendarView.swift */,
+				287606022949FBC200406FB5 /* HistoryListView.swift */,
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		287606042949FBE600406FB5 /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				287606052949FC1500406FB5 /* AnalysisView.swift */,
+			);
+			path = Analysis;
+			sourceTree = "<group>";
+		};
 		28F677062949EB3F00935959 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +154,9 @@
 		28F677112949EB3F00935959 /* GhostDiary */ = {
 			isa = PBXGroup;
 			children = (
+				287605F42949FAA400406FB5 /* ViewModel */,
+				287605F22949FA4200406FB5 /* Model */,
+				287605F12949FA3500406FB5 /* View */,
 				28F6772D2949EDA900935959 /* Info.plist */,
 				28F677122949EB3F00935959 /* GhostDiaryApp.swift */,
 				28F677142949EB3F00935959 /* ContentView.swift */,
@@ -170,7 +259,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */,
+				287606032949FBC200406FB5 /* HistoryListView.swift in Sources */,
+				287606012949FBA200406FB5 /* CalendarView.swift in Sources */,
+				287605F72949FAED00406FB5 /* LoginView.swift in Sources */,
+				287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */,
+				2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */,
+				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
+				2876060E2949FC7E00406FB5 /* Question.swift in Sources */,
+				2876060C2949FC7300406FB5 /* User.swift in Sources */,
+				287606082949FC4F00406FB5 /* AuthStore.swift in Sources */,
+				287606062949FC1500406FB5 /* AnalysisView.swift in Sources */,
 				28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
