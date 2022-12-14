@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>351621316944-2qtrheiudo3ifr3d9cj9to54n2rg4r4h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.351621316944-2qtrheiudo3ifr3d9cj9to54n2rg4r4h</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDr78NjRNI_J3BL4vh-CDCi2qX6ElXOTTE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>351621316944</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kr.lhj.GhostDiary</string>
+	<key>PROJECT_ID</key>
+	<string>ghostdiary-d58d4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ghostdiary-d58d4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:351621316944:ios:c0d19a15f64d51c0dd2c55</string>
+</dict>
+</plist>
