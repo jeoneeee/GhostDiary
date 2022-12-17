@@ -43,7 +43,7 @@ struct LoginView: View {
         }
         .padding()
         .fullScreenCover(isPresented: $isSingUp) {
-            SignUpView()
+            SignUpView(isSignUp: $isSingUp)
         }
     }
 }
