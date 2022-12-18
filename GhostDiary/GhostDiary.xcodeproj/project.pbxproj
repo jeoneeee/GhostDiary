@@ -20,6 +20,8 @@
 		2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606092949FC5C00406FB5 /* QuestionStore.swift */; };
 		2876060C2949FC7300406FB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060B2949FC7300406FB5 /* User.swift */; };
 		2876060E2949FC7E00406FB5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060D2949FC7E00406FB5 /* Question.swift */; };
+		28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A81AB0294E16DF00E0FEE1 /* Authorization.swift */; };
+		28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C051C6294F4C1E00DB1213 /* TimeData.swift */; };
 		28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F677122949EB3F00935959 /* GhostDiaryApp.swift */; };
 		28F677152949EB3F00935959 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F677142949EB3F00935959 /* ContentView.swift */; };
 		28F677172949EB4000935959 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28F677162949EB4000935959 /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		287606092949FC5C00406FB5 /* QuestionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStore.swift; sourceTree = "<group>"; };
 		2876060B2949FC7300406FB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2876060D2949FC7E00406FB5 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		28A81AB0294E16DF00E0FEE1 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
+		28C051C6294F4C1E00DB1213 /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		28F6770F2949EB3F00935959 /* GhostDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhostDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F677122949EB3F00935959 /* GhostDiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDiaryApp.swift; sourceTree = "<group>"; };
 		28F677142949EB3F00935959 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,15 @@
 			path = Analysis;
 			sourceTree = "<group>";
 		};
+		28A81AAF294E165E00E0FEE1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				28A81AB0294E16DF00E0FEE1 /* Authorization.swift */,
+				28C051C6294F4C1E00DB1213 /* TimeData.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		28F677062949EB3F00935959 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +173,7 @@
 		28F677112949EB3F00935959 /* GhostDiary */ = {
 			isa = PBXGroup;
 			children = (
+				28A81AAF294E165E00E0FEE1 /* Utilities */,
 				287605F42949FAA400406FB5 /* ViewModel */,
 				287605F22949FA4200406FB5 /* Model */,
 				287605F12949FA3500406FB5 /* View */,
@@ -270,6 +284,7 @@
 				287606012949FBA200406FB5 /* CalendarView.swift in Sources */,
 				287605F72949FAED00406FB5 /* LoginView.swift in Sources */,
 				287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */,
+				28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */,
 				2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */,
 				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
@@ -278,6 +293,7 @@
 				2876060C2949FC7300406FB5 /* User.swift in Sources */,
 				287606082949FC4F00406FB5 /* AuthStore.swift in Sources */,
 				287606062949FC1500406FB5 /* AnalysisView.swift in Sources */,
+				28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */,
 				1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */,
 				28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */,
 			);
