@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @EnvironmentObject var authStores: AuthStore
+    
     @Binding var isSignUp: Bool
     @State private var email: String = ""
     @State private var password: String = ""
@@ -26,13 +28,13 @@ struct SignUpView: View {
         return true
     }
     
-    
     var body: some View {
         //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
         NavigationStack {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     TextField("이메일을 입력하세요. ", text: $email)
+                        .textContentType(.emailAddress)
                         .modifier(LoginTextFieldModifier())
                         .onChange(of: email) { email in
                             isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
@@ -43,7 +45,7 @@ struct SignUpView: View {
                         Text("올바른 형식의 이메일 입니다")
                             .modifier(ValidateText())
                     } else if !email.isEmpty {
-                        Text("올바르지 않은 형식의 비밀번호 입니다.")
+                        Text("올바르지 않은 형식의 이메일 입니다.")
                             .modifier(NotValidateText())
                     }
                 }
@@ -51,6 +53,7 @@ struct SignUpView: View {
                 
                 VStack(alignment: .leading) {
                     TextField("비밀번호를 입력하세요. ", text: $password)
+                        .textContentType(.password)
                         .modifier(LoginTextFieldModifier())
                         .onChange(of: password) { password in
                             isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
@@ -83,8 +86,11 @@ struct SignUpView: View {
                 Spacer()
                 
                 Button(action: {
-                    //                        guard viewModel.validate() else { return }
-                    //                        viewModel.login()
+                    Task {
+                        guard await authStores.register(email: email, password: password) else {
+                            return
+                        }
+                    }
                 },label: {
                     Text("등록 완료")
                         .padding()
@@ -148,5 +154,6 @@ struct SignUpView_Previews: PreviewProvider {
     @State static var isSignUp: Bool = false
     static var previews: some View {
         SignUpView(isSignUp: $isSignUp)
+            .environmentObject(AuthStore())
     }
 }
