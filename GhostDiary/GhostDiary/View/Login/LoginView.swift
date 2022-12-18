@@ -14,36 +14,47 @@ struct LoginView: View {
     @State var password: String = ""
     @State var isSingUp: Bool = false
     
+    @State var isPasswordHidden: Bool = false
+    
     var body: some View {
         VStack {
+            Spacer()
             TextField("이메일을 입력하세요. ", text: $email)
-                .textContentType(.emailAddress)
-                .padding()
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(Color(UIColor.systemGray4), lineWidth: 2)
-                }
-                .padding()
-            //FIXME: - TextField -> SecureField로 수정 예정
-            TextField("비밀번호를 입력하세요. ", text: $password)
-                .textContentType(.password)
-                .padding()
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(Color(UIColor.systemGray4), lineWidth: 2)
-                }
-                .padding()
+                .modifier(LoginTextFieldModifier())
+                .padding([.bottom])
             
+            HStack {
+                ZStack {
+                    if isPasswordHidden {
+                        //FIXME: - TextField -> SecureField로 수정 예정
+                        TextField("비밀번호를 입력하세요. ", text: $password)
+                            .modifier(LoginTextFieldModifier())
+                            .padding([.bottom])
+                    } else {
+                        SecureField("비밀번호를 입력하세요. ", text: $password)
+                            .modifier(LoginTextFieldModifier())
+                            .padding([.bottom])
+                    }
+                }
+                .overlay(alignment: .topTrailing) {
+                    Button(action: {
+                        isPasswordHidden.toggle()
+                    }, label: {
+                        Image(systemName: isPasswordHidden ? "eye.fill" : "eye.slash.fill")
+                            .foregroundColor(.secondary)
+                    })
+                    .offset(x: -20, y: 20)
+                }
+            }
+            
+            Spacer()
             Button(action: {
                 
             }, label: {
                 Text("로그인")
                     .padding()
             })
-            .frame(maxWidth: UIScreen.main.bounds.width)
-            .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(40)
+            .modifier(LoginButton())
             
             //FIXME: - Color 수정 예정
             Button(action: {
@@ -52,12 +63,10 @@ struct LoginView: View {
                 Text("회원가입")
                     .padding()
             })
-            .frame(maxWidth: UIScreen.main.bounds.width)
-            .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(40)
+            .modifier(LoginButton())
         }
         .padding()
+        
         .fullScreenCover(isPresented: $isSingUp) {
             SignUpView(isSignUp: $isSingUp)
                 .environmentObject(authStores)
@@ -68,6 +77,16 @@ struct LoginView: View {
         .onDisappear {
             authStores.disConnectListeners()
         }
+    }
+}
+
+struct LoginButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: UIScreen.main.bounds.width)
+            .foregroundColor(.white)
+            .background(Color.red)
+            .cornerRadius(40)
     }
 }
 

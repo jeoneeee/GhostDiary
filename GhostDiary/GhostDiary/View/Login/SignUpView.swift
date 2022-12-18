@@ -34,36 +34,35 @@ struct SignUpView: View {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     TextField("이메일을 입력하세요. ", text: $email)
-                        .textContentType(.emailAddress)
                         .modifier(LoginTextFieldModifier())
                         .onChange(of: email) { email in
                             isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
                         }
-                    
-                    
-                    if isValidatedEmail {
+                    ZStack {
                         Text("올바른 형식의 이메일 입니다")
+                            .offset(x: -15)
                             .modifier(ValidateText())
-                    } else if !email.isEmpty {
+                            .opacity(isValidatedEmail ? 1 : 0)
                         Text("올바르지 않은 형식의 이메일 입니다.")
                             .modifier(NotValidateText())
+                            .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
                     }
                 }
-                //.frame(maxHeight: 100)
                 
                 VStack(alignment: .leading) {
                     TextField("비밀번호를 입력하세요. ", text: $password)
-                        .textContentType(.password)
                         .modifier(LoginTextFieldModifier())
                         .onChange(of: password) { password in
                             isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
                         }
-                    if isValidatedPassword {
-                        Text("올바른 형식의 비밀번호 입니다.")
+                    ZStack {
+                        Text("올바른 형식의 비밀번호 입니다")
+                            .offset(x: -15)
                             .modifier(ValidateText())
-                    } else if !password.isEmpty {
+                            .opacity(isValidatedPassword ? 1 : 0)
                         Text("올바르지 않은 형식의 비밀번호 입니다.")
                             .modifier(NotValidateText())
+                            .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
                     }
                 }
                 .frame(maxHeight: 100)
@@ -75,14 +74,15 @@ struct SignUpView: View {
                             isEqulPassword = (password == checkPassword) ? true : false
                         }
                 }
-                if isEqulPassword {
+                
+                if isEqulPassword && !checkPassword.isEmpty{
                     Text("비밀번호가 일치합니다.")
                         .modifier(ValidateText())
                 } else if !checkPassword.isEmpty {
                     Text("비밀번호가 일치하지 않습니다.")
                         .modifier(NotValidateText())
                 }
-                    
+                
                 Spacer()
                 
                 Button(action: {
@@ -95,10 +95,7 @@ struct SignUpView: View {
                     Text("등록 완료")
                         .padding()
                 })
-                .frame(maxWidth: UIScreen.main.bounds.width)
-                .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(40)
+                .modifier(LoginButton())
                 .disabled(disableRegister)
                 .opacity(disableRegister ? 0.5 : 1)
             }
@@ -123,6 +120,7 @@ struct SignUpView: View {
 struct LoginTextFieldModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
+            .textInputAutocapitalization(.never)
             .padding()
             .overlay {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
