@@ -8,18 +8,19 @@
 import SwiftUI
 
 enum Expression: String {
-    case angry = "angry"
-    case sad = "sad"
-    case proud = "proud"
-    case cute = "cute"
-    case smile = "smile"
-    case umm = "umm"
-    case tired = "tired"
+    case angry
+    case sad
+    case proud
+    case cute
+    case smile
+    case umm
+    case tired
 }
 
 struct Question: Codable, Identifiable {
     var id: String
     var query: String
+    var queryNums: Int
     var answer: String
     var expression: String // sad, angry
     var timestamp: String
