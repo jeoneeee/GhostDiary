@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */; };
+		1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */; };
 		287605F72949FAED00406FB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605F62949FAED00406FB5 /* LoginView.swift */; };
 		287605FA2949FB5900406FB5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605F92949FB5900406FB5 /* HomeView.swift */; };
 		287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605FB2949FB6800406FB5 /* QuestionView.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
+		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
 		287605F62949FAED00406FB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		287605F92949FB5900406FB5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		287605FB2949FB6800406FB5 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				287605F92949FB5900406FB5 /* HomeView.swift */,
+				1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */,
+				1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */,
 				287605FB2949FB6800406FB5 /* QuestionView.swift */,
 			);
 			path = Question;
@@ -267,10 +273,12 @@
 				2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */,
 				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
+				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,
 				2876060E2949FC7E00406FB5 /* Question.swift in Sources */,
 				2876060C2949FC7300406FB5 /* User.swift in Sources */,
 				287606082949FC4F00406FB5 /* AuthStore.swift in Sources */,
 				287606062949FC1500406FB5 /* AnalysisView.swift in Sources */,
+				1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */,
 				28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
