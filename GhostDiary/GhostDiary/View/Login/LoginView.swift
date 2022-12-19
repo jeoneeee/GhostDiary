@@ -15,6 +15,8 @@ struct LoginView: View {
     @State var isSingUp: Bool = false
     
     @State var isPasswordHidden: Bool = false
+    @State var isSuccesLogin: Bool = false
+    @State var loginMessage: String = ""
     
     var body: some View {
         VStack {
@@ -26,7 +28,6 @@ struct LoginView: View {
             HStack {
                 ZStack {
                     if isPasswordHidden {
-                        //FIXME: - TextField -> SecureField로 수정 예정
                         TextField("비밀번호를 입력하세요. ", text: $password)
                             .modifier(LoginTextFieldModifier())
                             .padding([.bottom])
@@ -47,9 +48,19 @@ struct LoginView: View {
                 }
             }
             
+            Text(loginMessage)
+                .foregroundColor(.secondary)
+            
             Spacer()
+            
             Button(action: {
-                
+                Task {
+                    let loginCode = await authStores.signIn(email: email, password: password)
+                    if loginCode == .success {
+                        isSuccesLogin.toggle()
+                    }
+                    loginMessage = getErrorMessage(loginCode: loginCode)
+                }
             }, label: {
                 Text("로그인")
                     .padding()
@@ -71,11 +82,32 @@ struct LoginView: View {
             SignUpView(isSignUp: $isSingUp)
                 .environmentObject(authStores)
         }
+        .fullScreenCover(isPresented: $isSuccesLogin) {
+            HomeView()
+        }
+        
         .onAppear {
             authStores.startListeners()
         }
         .onDisappear {
             authStores.disConnectListeners()
+        }
+    }
+    
+    func getErrorMessage(loginCode: AuthLoginCode) -> String {
+        switch loginCode {
+        case .success:
+            return "로그인 성공"
+        case .inVaildEmail:
+            return "올바르지 않은 이메일 입니다."
+        case .inVaildPassword:
+            return "올바르지 않은 비밀번호 입니다."
+        case .muchRequest:
+            return "현재 서버에 너무 많은 요청이 있습니다."
+        case .notExsitUser:
+            return "존재하지 않는 유저 입니다."
+        case .unkownError:
+            return "알수 없는 오류 입니다."
         }
     }
 }
