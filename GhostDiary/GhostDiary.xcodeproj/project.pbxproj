@@ -20,6 +20,8 @@
 		2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606092949FC5C00406FB5 /* QuestionStore.swift */; };
 		2876060C2949FC7300406FB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060B2949FC7300406FB5 /* User.swift */; };
 		2876060E2949FC7E00406FB5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060D2949FC7E00406FB5 /* Question.swift */; };
+		289272CE295369B400953951 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 289272CD295369B400953951 /* GoogleSignIn */; };
+		289272D0295369B400953951 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 289272CF295369B400953951 /* GoogleSignInSwift */; };
 		28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A81AB0294E16DF00E0FEE1 /* Authorization.swift */; };
 		28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C051C6294F4C1E00DB1213 /* TimeData.swift */; };
 		28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F677122949EB3F00935959 /* GhostDiaryApp.swift */; };
@@ -32,8 +34,6 @@
 		28F677282949ECFF00935959 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677272949ECFF00935959 /* FirebaseFirestore */; };
 		28F6772A2949ECFF00935959 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677292949ECFF00935959 /* FirebaseFirestoreSwift */; };
 		28F6772C2949ED0900935959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28F6772B2949ED0900935959 /* GoogleService-Info.plist */; };
-		28F677302949EE1B00935959 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 28F6772F2949EE1B00935959 /* GoogleSignIn */; };
-		28F677322949EE1B00935959 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677312949EE1B00935959 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,11 +68,11 @@
 			files = (
 				28F6772A2949ECFF00935959 /* FirebaseFirestoreSwift in Frameworks */,
 				28F677262949ECFF00935959 /* FirebaseDatabaseSwift in Frameworks */,
-				28F677322949EE1B00935959 /* GoogleSignInSwift in Frameworks */,
+				289272D0295369B400953951 /* GoogleSignInSwift in Frameworks */,
 				28F677282949ECFF00935959 /* FirebaseFirestore in Frameworks */,
 				28F677242949ECFF00935959 /* FirebaseDatabase in Frameworks */,
 				28F677222949ECFF00935959 /* FirebaseAuth in Frameworks */,
-				28F677302949EE1B00935959 /* GoogleSignIn in Frameworks */,
+				289272CE295369B400953951 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,8 +217,8 @@
 				28F677252949ECFF00935959 /* FirebaseDatabaseSwift */,
 				28F677272949ECFF00935959 /* FirebaseFirestore */,
 				28F677292949ECFF00935959 /* FirebaseFirestoreSwift */,
-				28F6772F2949EE1B00935959 /* GoogleSignIn */,
-				28F677312949EE1B00935959 /* GoogleSignInSwift */,
+				289272CD295369B400953951 /* GoogleSignIn */,
+				289272CF295369B400953951 /* GoogleSignInSwift */,
 			);
 			productName = GhostDiary;
 			productReference = 28F6770F2949EB3F00935959 /* GhostDiary.app */;
@@ -250,7 +250,7 @@
 			mainGroup = 28F677062949EB3F00935959;
 			packageReferences = (
 				28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 28F677102949EB3F00935959 /* Products */;
 			projectDirPath = "";
@@ -500,6 +500,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.4;
+			};
+		};
 		28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -508,17 +516,19 @@
 				kind = branch;
 			};
 		};
-		28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		289272CD295369B400953951 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		289272CF295369B400953951 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		28F677212949ECFF00935959 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -543,16 +553,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
-		};
-		28F6772F2949EE1B00935959 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		28F677312949EE1B00935959 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
