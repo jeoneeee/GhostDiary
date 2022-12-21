@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import GoogleSignInSwift
+import GoogleSignIn
 
 struct LoginView: View {
     @EnvironmentObject var authStores: AuthStore
@@ -79,6 +81,10 @@ struct LoginView: View {
                     .padding()
             })
             .modifier(LoginButton())
+            Spacer()
+            
+            GoogleSignInButton(action: handleSignInButton)
+                .modifier(LoginButton())
         }
         .padding()
         
@@ -93,6 +99,9 @@ struct LoginView: View {
         .onDisappear {
             authStores.disConnectListeners()
         }
+    }
+    func handleSignInButton() {
+        authStores.googleSignIn()
     }
     
     func getErrorMessage(loginCode: AuthLoginCode) -> String {
