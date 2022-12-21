@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject var authStores = AuthStore()
+    @EnvironmentObject var authStores: AuthStore
+    
+    @Binding var isLogin: Bool
+    @Binding var isLoading: Bool
     
     @State var email: String = ""
     @State var password: String = ""
     @State var isSingUp: Bool = false
     
     @State var isPasswordHidden: Bool = false
-    @State var isSuccesLogin: Bool = false
     @State var loginMessage: String = ""
     
     var body: some View {
@@ -55,10 +57,12 @@ struct LoginView: View {
             
             Button(action: {
                 Task {
+                    isLoading.toggle()
                     let loginCode = await authStores.signIn(email: email, password: password)
                     if loginCode == .success {
-                        isSuccesLogin.toggle()
+                        isLogin.toggle()
                     }
+                    isLoading.toggle()
                     loginMessage = getErrorMessage(loginCode: loginCode)
                 }
             }, label: {
@@ -81,9 +85,6 @@ struct LoginView: View {
         .fullScreenCover(isPresented: $isSingUp) {
             SignUpView(isSignUp: $isSingUp)
                 .environmentObject(authStores)
-        }
-        .fullScreenCover(isPresented: $isSuccesLogin) {
-            HomeView()
         }
         
         .onAppear {
@@ -122,8 +123,23 @@ struct LoginButton: ViewModifier {
     }
 }
 
+//TODO: - LoadingView 파일 위치 이동
+struct LoadingView: View {
+    var body: some View {
+        ZStack {
+            Color(.systemBackground)
+                .ignoresSafeArea()
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: Color("Color1")))
+                .scaleEffect(3)
+        }
+    }
+}
+
 struct LoginView_Previews: PreviewProvider {
+    @State static var isLogin: Bool = false
+    @State static var isLoading: Bool = false
     static var previews: some View {
-        LoginView()
+        LoginView(isLogin: $isLogin, isLoading: $isLoading)
     }
 }

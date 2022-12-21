@@ -15,7 +15,7 @@ import AuthenticationServices
 /// 성공, 이메일이 다른경우, 비밀번호가 다른 경우,
 /// 서버 요청이 너무 많은 경우,
 /// 유저가 존재하지 않는 경우
-///
+
 enum AuthLoginCode: Int {
     case success = 200
     case inVaildEmail = 17008
@@ -23,6 +23,12 @@ enum AuthLoginCode: Int {
     case muchRequest = 17000
     case notExsitUser = 17011
     case unkownError = 125124
+}
+
+enum LoginStatus {
+    case defatult
+    case registered
+    case logined
 }
 
 class AuthStore: ObservableObject {
@@ -34,11 +40,15 @@ class AuthStore: ObservableObject {
         return reference
     }()
     
-    // MARK: - 로그인 관련 상태를 관리하는 메소드
+    @Published var loginStatus: LoginStatus = .defatult
+    
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
         self.handel = Auth.auth().addStateDidChangeListener { auth, user in
             if let user {
+                if self.loginStatus == .defatult {
+                    self.loginStatus = .logined
+                }
                 self.user = user
                 //LoginStores. = user.uid
                 print("유저 변화 감지 시작 - startListeners")
@@ -55,9 +65,10 @@ class AuthStore: ObservableObject {
     func register(email: String, password: String) async -> Bool {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            print("회원가입 성공")
             await addUsers(email: email, password: password, createdAt: TimeData.getTimeStrings())
-            print("DB에 추가 성공")
+            DispatchQueue.main.async {
+                self.loginStatus = .registered
+            }
             return true
         } catch {
             print("User Register Error: \(error)")
@@ -70,8 +81,9 @@ class AuthStore: ObservableObject {
         do {
             let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
             self.user = authResult.user
-            
-            print("로그인 성공")
+            DispatchQueue.main.async {
+                self.loginStatus = .logined
+            }
             print("로그인한 유저 이메일: \(String(describing: self.user?.email)), uid: \(String(describing: self.user?.uid))")
             return .success
         }
@@ -85,6 +97,8 @@ class AuthStore: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
+            print("로그 아웃 실행됨")
+            self.user = nil
         } catch {
             print("LogOutError: \(error)")
         }
