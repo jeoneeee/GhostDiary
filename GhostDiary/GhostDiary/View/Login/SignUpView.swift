@@ -46,10 +46,10 @@ struct SignUpView: View {
                     ZStack {
                         Text("올바른 형식의 이메일 입니다")
                             .offset(x: -15)
-                            .modifier(ValidateText())
+                            .modifier(ValidateText(color: .green))
                             .opacity(isValidatedEmail ? 1 : 0)
                         Text("올바르지 않은 형식의 이메일 입니다.")
-                            .modifier(NotValidateText())
+                            .modifier(ValidateText(color: .red))
                             .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
                     }
                 }
@@ -66,11 +66,11 @@ struct SignUpView: View {
                         }
                     ZStack(alignment: .leading) {
                         Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
-                            .modifier(NotValidateText())
+                            .modifier(ValidateText(color: .red))
                             .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
                         Text("올바른 형식의 비밀번호 입니다")
                             //.offset(x: -15)
-                            .modifier(ValidateText())
+                            .modifier(ValidateText(color: .green))
                             .opacity(isValidatedPassword ? 1 : 0)
 //                        Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
 //                            .modifier(NotValidateText())
@@ -92,10 +92,10 @@ struct SignUpView: View {
                 
                 if isEqulPassword && !checkPassword.isEmpty{
                     Text("비밀번호가 일치합니다.")
-                        .modifier(ValidateText())
+                        .modifier(ValidateText(color: .green))
                 } else if !checkPassword.isEmpty {
                     Text("비밀번호가 일치하지 않습니다.")
-                        .modifier(NotValidateText())
+                        .modifier(ValidateText(color: .red))
                 }
                 
                 Spacer()
@@ -145,19 +145,12 @@ struct LoginTextFieldModifier: ViewModifier {
     }
 }
 
-struct NotValidateText: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .foregroundColor(.red)
-            .font(.caption)
-            .padding([.leading])
-    }
-}
-
 struct ValidateText: ViewModifier {
+    var color: Color
+    
     func body(content: Content) -> some View {
         content
-            .foregroundColor(.green)
+            .foregroundColor(color)
             .font(.caption)
             .padding([.leading])
     }
