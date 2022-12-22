@@ -34,6 +34,11 @@ enum LoginStatus {
     case logined
 }
 
+enum DuplicatedEmail {
+    case duplicated
+    case notdupleciated
+}
+
 class AuthStore: ObservableObject {
     var handel: AuthStateDidChangeListenerHandle?
     var user: FirebaseAuth.User?
@@ -77,6 +82,16 @@ class AuthStore: ObservableObject {
             print("User Register Error: \(error)")
             return false
         }
+    }
+    // 반환 값이 비어있으면 이미 가입된 이메일이 아님
+    func checkduplicationEmail(email: String) async -> DuplicatedEmail {
+        do {
+            let emailStrings = try await Auth.auth().fetchSignInMethods(forEmail:  email)
+            return (emailStrings.isEmpty) ? .notdupleciated : .duplicated
+        } catch {
+            print("중복 이메일 확인 에러: \(error.localizedDescription)")
+        }
+        return .duplicated
     }
     
     // MARK: - 반환 하는 Int값은 에러코드

@@ -16,6 +16,7 @@ struct SignUpView: View {
     @State private var checkPassword: String = ""
     
     @State private var isValidatedEmail: Bool = false
+    @State private var isDuplicatedEmail: DuplicatedEmail = .notdupleciated
     @State private var isValidatedPassword: Bool = false
     @State private var isEqulPassword: Bool = false
     
@@ -28,6 +29,15 @@ struct SignUpView: View {
         return true
     }
     
+    var isEmailExsit: Bool {
+        switch isDuplicatedEmail {
+        case .duplicated:
+            return true
+        case .notdupleciated:
+            return false
+        }
+    }
+    
     var body: some View {
         //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
         NavigationStack {
@@ -37,20 +47,42 @@ struct SignUpView: View {
                     Text("이메일")
                         .font(.title3)
                         .padding([.leading])
-                    
-                    TextField("example@naver.com ", text: $email)
-                        .modifier(LoginTextFieldModifier())
-                        .onChange(of: email) { email in
-                            isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
+                    HStack {
+                        TextField("example@naver.com ", text: $email)
+                            .modifier(LoginTextFieldModifier())
+                            .onChange(of: email) { email in
+                                isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
+                            }
+                        Button(action: {
+                            Task {
+                                isDuplicatedEmail = await authStores.checkduplicationEmail(email: email)
+                                // await authStores.checkduplicationEmail(email: email)
+                            }
+                        }, label: {
+                            Text("중복 확인")
+                                .padding(10)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                        .stroke(Color(UIColor.systemGray4), lineWidth: 2)
+                                }
+                                .foregroundColor(.secondary)
+                        })
+                    }
+                    HStack {
+                        ZStack {
+                            
+                            Text("올바른 형식의 이메일 입니다")
+                                .offset(x: -15)
+                                .modifier(ValidateText(color: .green))
+                                .opacity(isValidatedEmail ? 1 : 0)
+                            Text("올바르지 않은 형식의 이메일 입니다.")
+                                .modifier(ValidateText(color: .red))
+                                .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
                         }
-                    ZStack {
-                        Text("올바른 형식의 이메일 입니다")
-                            .offset(x: -15)
-                            .modifier(ValidateText(color: .green))
-                            .opacity(isValidatedEmail ? 1 : 0)
-                        Text("올바르지 않은 형식의 이메일 입니다.")
+                        
+                        Text("이미 가입된 이메일 입니다")
                             .modifier(ValidateText(color: .red))
-                            .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
+                            .opacity(isEmailExsit ? 1 : 0)
                     }
                 }
                 
@@ -64,20 +96,18 @@ struct SignUpView: View {
                         .onChange(of: password) { password in
                             isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
                         }
+                        .disabled(isEmailExsit)
                     ZStack(alignment: .leading) {
                         Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
                             .modifier(ValidateText(color: .red))
                             .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
                         Text("올바른 형식의 비밀번호 입니다")
-                            //.offset(x: -15)
                             .modifier(ValidateText(color: .green))
                             .opacity(isValidatedPassword ? 1 : 0)
-//                        Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
-//                            .modifier(NotValidateText())
-//                            .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
                     }
                 }
-                .frame(maxHeight: 100)
+                //.frame(maxHeight: 100)
+                .opacity(isEmailExsit ? 0.5 : 1)
                 
                 VStack(alignment: .leading) {
                     Text("비밀번호 확인")
@@ -88,7 +118,9 @@ struct SignUpView: View {
                         .onChange(of: checkPassword) { checkPassword in
                             isEqulPassword = (password == checkPassword) ? true : false
                         }
+                        .disabled(isEmailExsit)
                 }
+                .opacity(isEmailExsit ? 0.5 : 1)
                 
                 if isEqulPassword && !checkPassword.isEmpty{
                     Text("비밀번호가 일치합니다.")
