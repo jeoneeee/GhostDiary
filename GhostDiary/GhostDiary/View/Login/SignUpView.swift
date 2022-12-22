@@ -32,8 +32,13 @@ struct SignUpView: View {
         //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
         NavigationStack {
             VStack(alignment: .leading) {
+                //Spacer()
                 VStack(alignment: .leading) {
-                    TextField("이메일을 입력하세요. ", text: $email)
+                    Text("이메일")
+                        .font(.title3)
+                        .padding([.leading])
+                    
+                    TextField("example@naver.com ", text: $email)
                         .modifier(LoginTextFieldModifier())
                         .onChange(of: email) { email in
                             isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
@@ -50,24 +55,34 @@ struct SignUpView: View {
                 }
                 
                 VStack(alignment: .leading) {
+                    Text("비밀번호")
+                        .font(.title3)
+                        .padding([.leading, .top])
+                    
                     TextField("비밀번호를 입력하세요. ", text: $password)
                         .modifier(LoginTextFieldModifier())
                         .onChange(of: password) { password in
                             isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
                         }
-                    ZStack {
-                        Text("올바른 형식의 비밀번호 입니다")
-                            .offset(x: -15)
-                            .modifier(ValidateText())
-                            .opacity(isValidatedPassword ? 1 : 0)
-                        Text("올바르지 않은 형식의 비밀번호 입니다.")
+                    ZStack(alignment: .leading) {
+                        Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
                             .modifier(NotValidateText())
                             .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
+                        Text("올바른 형식의 비밀번호 입니다")
+                            //.offset(x: -15)
+                            .modifier(ValidateText())
+                            .opacity(isValidatedPassword ? 1 : 0)
+//                        Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
+//                            .modifier(NotValidateText())
+//                            .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
                     }
                 }
                 .frame(maxHeight: 100)
                 
                 VStack(alignment: .leading) {
+                    Text("비밀번호 확인")
+                        .font(.title3)
+                        .padding([.leading, .top])
                     TextField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
                         .modifier(LoginTextFieldModifier())
                         .onChange(of: checkPassword) { checkPassword in
@@ -135,7 +150,7 @@ struct NotValidateText: ViewModifier {
         content
             .foregroundColor(.red)
             .font(.caption)
-            .padding([.leading], 20)
+            .padding([.leading])
     }
 }
 
@@ -144,7 +159,7 @@ struct ValidateText: ViewModifier {
         content
             .foregroundColor(.green)
             .font(.caption)
-            .padding([.leading], 20)
+            .padding([.leading])
     }
 }
 
