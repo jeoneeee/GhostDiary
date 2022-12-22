@@ -38,97 +38,104 @@ struct SignUpView: View {
         }
     }
     
+    private var emailView: some View {
+        VStack(alignment: .leading) {
+            Text("이메일")
+                .font(.title3)
+                .padding([.leading])
+            HStack {
+                TextField("example@naver.com ", text: $email)
+                    .modifier(LoginTextFieldModifier())
+                    .onChange(of: email) { email in
+                        isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
+                    }
+                Button(action: {
+                    Task {
+                        isDuplicatedEmail = await authStores.checkduplicationEmail(email: email)
+                    }
+                }, label: {
+                    Text("중복 확인")
+                        .padding(10)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                .stroke(Color(UIColor.systemGray4), lineWidth: 2)
+                        }
+                        .foregroundColor(.secondary)
+                })
+            }
+            
+            HStack {
+                ZStack {
+                    Text("올바른 형식의 이메일 입니다")
+                        .offset(x: -15)
+                        .modifier(ValidateText(color: .green))
+                        .opacity(isValidatedEmail ? 1 : 0)
+                    Text("올바르지 않은 형식의 이메일 입니다.")
+                        .modifier(ValidateText(color: .red))
+                        .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
+                }
+                Spacer()
+                Text("이미 가입된 이메일 입니다")
+                    .modifier(ValidateText(color: .red))
+                    .opacity(isEmailExsit ? 1 : 0)
+            }
+        }
+    }
+    
+    private var passwordView: some View {
+        VStack(alignment: .leading) {
+            Text("비밀번호")
+                .font(.title3)
+                .padding([.leading, .top])
+            
+            TextField("비밀번호를 입력하세요. ", text: $password)
+                .modifier(LoginTextFieldModifier())
+                .onChange(of: password) { password in
+                    isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
+                }
+                .disabled(isEmailExsit)
+            ZStack(alignment: .leading) {
+                Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
+                    .modifier(ValidateText(color: .red))
+                    .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
+                Text("올바른 형식의 비밀번호 입니다")
+                    .modifier(ValidateText(color: .green))
+                    .opacity(isValidatedPassword ? 1 : 0)
+            }
+        }
+        .opacity(isEmailExsit ? 0.5 : 1)
+    }
+    
+    private var psswordCheckView: some View {
+        VStack(alignment: .leading) {
+            Text("비밀번호 확인")
+                .font(.title3)
+                .padding([.leading, .top])
+            TextField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
+                .modifier(LoginTextFieldModifier())
+                .onChange(of: checkPassword) { checkPassword in
+                    isEqulPassword = (password == checkPassword) ? true : false
+                }
+                .disabled(isEmailExsit)
+            if isEqulPassword && !checkPassword.isEmpty{
+                Text("비밀번호가 일치합니다.")
+                    .modifier(ValidateText(color: .green))
+            } else if !checkPassword.isEmpty {
+                Text("비밀번호가 일치하지 않습니다.")
+                    .modifier(ValidateText(color: .red))
+            }
+        }
+        .opacity(isEmailExsit ? 0.5 : 1)
+    }
+    
     var body: some View {
         //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
         NavigationStack {
             VStack(alignment: .leading) {
                 //Spacer()
-                VStack(alignment: .leading) {
-                    Text("이메일")
-                        .font(.title3)
-                        .padding([.leading])
-                    HStack {
-                        TextField("example@naver.com ", text: $email)
-                            .modifier(LoginTextFieldModifier())
-                            .onChange(of: email) { email in
-                                isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
-                            }
-                        Button(action: {
-                            Task {
-                                isDuplicatedEmail = await authStores.checkduplicationEmail(email: email)
-                                // await authStores.checkduplicationEmail(email: email)
-                            }
-                        }, label: {
-                            Text("중복 확인")
-                                .padding(10)
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                        .stroke(Color(UIColor.systemGray4), lineWidth: 2)
-                                }
-                                .foregroundColor(.secondary)
-                        })
-                    }
-                    HStack {
-                        ZStack {
-                            
-                            Text("올바른 형식의 이메일 입니다")
-                                .offset(x: -15)
-                                .modifier(ValidateText(color: .green))
-                                .opacity(isValidatedEmail ? 1 : 0)
-                            Text("올바르지 않은 형식의 이메일 입니다.")
-                                .modifier(ValidateText(color: .red))
-                                .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
-                        }
-                        
-                        Text("이미 가입된 이메일 입니다")
-                            .modifier(ValidateText(color: .red))
-                            .opacity(isEmailExsit ? 1 : 0)
-                    }
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("비밀번호")
-                        .font(.title3)
-                        .padding([.leading, .top])
-                    
-                    TextField("비밀번호를 입력하세요. ", text: $password)
-                        .modifier(LoginTextFieldModifier())
-                        .onChange(of: password) { password in
-                            isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
-                        }
-                        .disabled(isEmailExsit)
-                    ZStack(alignment: .leading) {
-                        Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
-                            .modifier(ValidateText(color: .red))
-                            .opacity((!password.isEmpty && !isValidatedPassword) ? 1 : 0)
-                        Text("올바른 형식의 비밀번호 입니다")
-                            .modifier(ValidateText(color: .green))
-                            .opacity(isValidatedPassword ? 1 : 0)
-                    }
-                }
-                //.frame(maxHeight: 100)
-                .opacity(isEmailExsit ? 0.5 : 1)
-                
-                VStack(alignment: .leading) {
-                    Text("비밀번호 확인")
-                        .font(.title3)
-                        .padding([.leading, .top])
-                    TextField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
-                        .modifier(LoginTextFieldModifier())
-                        .onChange(of: checkPassword) { checkPassword in
-                            isEqulPassword = (password == checkPassword) ? true : false
-                        }
-                        .disabled(isEmailExsit)
-                }
-                .opacity(isEmailExsit ? 0.5 : 1)
-                
-                if isEqulPassword && !checkPassword.isEmpty{
-                    Text("비밀번호가 일치합니다.")
-                        .modifier(ValidateText(color: .green))
-                } else if !checkPassword.isEmpty {
-                    Text("비밀번호가 일치하지 않습니다.")
-                        .modifier(ValidateText(color: .red))
-                }
+                emailView
+                passwordView
+                psswordCheckView
                 
                 Spacer()
                 
