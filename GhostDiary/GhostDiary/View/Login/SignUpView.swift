@@ -157,13 +157,12 @@ struct SignUpView: View {
             .textInputAutocapitalization(.never)
             .formStyle(.automatic)
             
-            
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: {
                         isSignUp.toggle()
                     }, label: {
-                        Text("Cancel")
+                        Text("취소")
                     })
                 }
             }

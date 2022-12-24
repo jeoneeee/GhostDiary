@@ -121,6 +121,23 @@ class AuthStore: ObservableObject {
             print("LogOutError: \(error)")
         }
     }
+    
+    func getErrorMessage(loginCode: AuthLoginCode) -> String {
+        switch loginCode {
+        case .success:
+            return "로그인 성공"
+        case .inVaildEmail:
+            return "올바르지 않은 이메일 입니다."
+        case .inVaildPassword:
+            return "올바르지 않은 비밀번호 입니다."
+        case .muchRequest:
+            return "현재 서버에 너무 많은 요청이 있습니다."
+        case .notExsitUser:
+            return "존재하지 않는 유저 입니다."
+        case .unkownError:
+            return "알수 없는 오류 입니다."
+        }
+    }
 }
 
 // MARK: - 회원가입 한 유저 DB에 등록
@@ -144,51 +161,51 @@ extension AuthStore {
 
 // MARK: - Google로 로그인 
 extension AuthStore {
-     func googleSignIn() {
-       if GIDSignIn.sharedInstance.hasPreviousSignIn() {
-         GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
-             authenticateUser(for: user, with: error)
-         }
-       } else {
-         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-         let configuration = GIDConfiguration(clientID: clientID)
-
-         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-         guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
-
-         GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
-           authenticateUser(for: user, with: error)
-         }
-       }
-     }
-
-     private func authenticateUser(for user: GIDGoogleUser?, with error: Error?) {
-       if let error = error {
-         print(error.localizedDescription)
-         return
-       }
-
-       guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
-
-       let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-
-       Auth.auth().signIn(with: credential) { [unowned self] (user, error) in
-         if let error = error {
-           print(error.localizedDescription)
-         } else {
-             print("Login한 유저의 uid: \(user?.user.uid)")
-         }
-       }
-     }
-
-     func googleSignOut() {
-       GIDSignIn.sharedInstance.signOut()
-
-       do {
-         try Auth.auth().signOut()
-
-       } catch {
-         print(error.localizedDescription)
-       }
-     }
- }
+    func googleSignIn() {
+        if GIDSignIn.sharedInstance.hasPreviousSignIn() {
+            GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
+                authenticateUser(for: user, with: error)
+            }
+        } else {
+            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+            let configuration = GIDConfiguration(clientID: clientID)
+            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
+            
+            GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
+                authenticateUser(for: user, with: error)
+            }
+        }
+    }
+    
+    private func authenticateUser(for user: GIDGoogleUser?, with error: Error?) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
+        
+        Auth.auth().signIn(with: credential) { [unowned self] (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Login한 유저의 uid: \(user?.user.uid)")
+            }
+        }
+    }
+    
+    func googleSignOut() {
+        GIDSignIn.sharedInstance.signOut()
+        
+        do {
+            try Auth.auth().signOut()
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+}

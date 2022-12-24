@@ -65,7 +65,7 @@ struct LoginView: View {
                         isLogin.toggle()
                     }
                     isLoading.toggle()
-                    loginMessage = getErrorMessage(loginCode: loginCode)
+                    loginMessage = authStores.getErrorMessage(loginCode: loginCode)
                 }
             }, label: {
                 Text("로그인")
@@ -102,23 +102,6 @@ struct LoginView: View {
     }
     func handleSignInButton() {
         authStores.googleSignIn()
-    }
-    
-    func getErrorMessage(loginCode: AuthLoginCode) -> String {
-        switch loginCode {
-        case .success:
-            return "로그인 성공"
-        case .inVaildEmail:
-            return "올바르지 않은 이메일 입니다."
-        case .inVaildPassword:
-            return "올바르지 않은 비밀번호 입니다."
-        case .muchRequest:
-            return "현재 서버에 너무 많은 요청이 있습니다."
-        case .notExsitUser:
-            return "존재하지 않는 유저 입니다."
-        case .unkownError:
-            return "알수 없는 오류 입니다."
-        }
     }
 }
 
