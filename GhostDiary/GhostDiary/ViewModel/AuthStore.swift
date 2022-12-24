@@ -73,7 +73,7 @@ class AuthStore: ObservableObject {
     func register(email: String, password: String) async -> Bool {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            await addUsers(email: email, password: password, createdAt: TimeData.getTimeStrings())
+            await addUsers(email: email, createdAt: TimeData.getTimeStrings())
             DispatchQueue.main.async {
                 self.loginStatus = .registered
             }
@@ -142,14 +142,13 @@ class AuthStore: ObservableObject {
 
 // MARK: - 회원가입 한 유저 DB에 등록
 extension AuthStore {
-    func addUsers(email: String, password: String, createdAt: String) async {
+    func addUsers(email: String, createdAt: String) async {
         do {
             if let user = self.user {
                 print("self user가 nil이 아님")
                 try await databaseReference?.document(user.uid).setData([
                     "id": user.uid,
                     "email": email,
-                    "password": password,
                     "timestamp": createdAt
                 ])
             }

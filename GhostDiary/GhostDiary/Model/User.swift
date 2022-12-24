@@ -10,7 +10,6 @@ import Foundation
 struct User: Codable, Identifiable {
     var id: String
     var email: String
-    var password: String
     var timestamp: String // 회원 가입한 시간
 }
 
