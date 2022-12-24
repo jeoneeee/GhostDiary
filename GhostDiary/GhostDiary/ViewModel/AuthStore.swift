@@ -192,7 +192,20 @@ extension AuthStore {
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                print("Login한 유저의 uid: \(user?.user.uid)")
+                if let currentUser = user {
+                    Task {
+                        let querySnapshot = try await databaseReference?.document(currentUser.user.uid).getDocument()
+                        guard let querySnapshot else {
+                            return
+                        }
+                        
+                        if querySnapshot.exists {
+                            return
+                        }
+                        await addUsers(email: currentUser.user.email ?? "error", createdAt: TimeData.getTimeStrings())
+                        return
+                    }
+                }
             }
         }
     }
