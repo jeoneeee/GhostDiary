@@ -8,17 +8,28 @@
 import SwiftUI
 
 struct QuestionBoxView: View {
+    @StateObject var questionStore: QuestionStore = QuestionStore()
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Q.123")
-                .bold()
-                .font(.title3)
-            Text("내가 소중하게 생각하는 것 1가지")
-                .font(.title2)
+            ForEach(questionStore.questions) { idx in
+                Text("Q. \(idx.queryNums)")
+                    .bold()
+                    .font(.title3)
+                    .foregroundColor(.black)
+                Text(idx.query)
+                    .font(.title2)
+                    .foregroundColor(.black)
+            }
         }
-        .padding(25)
-        .background(Color("Color1"))
-        .cornerRadius(10)
+        .onAppear {
+            questionStore.fetchQuestions()
+        }
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color("Color1"))
+                .frame(width: 320, height: 130)
+        }
     }
 }
 
