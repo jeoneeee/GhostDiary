@@ -25,9 +25,11 @@ struct LoginView: View {
     var body: some View {
         VStack {
             Spacer()
-            TextField("이메일을 입력하세요. ", text: $email)
-                .modifier(LoginTextFieldModifier())
-                .padding([.bottom])
+            HStack {
+                TextField("이메일을 입력하세요. ", text: $email)
+                    .modifier(LoginTextFieldModifier())
+                    .padding([.bottom])
+            }
             
             HStack {
                 ZStack {

@@ -8,12 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var authStores = AuthStore()
+    @State private var isLogin: Bool = false
+    @State private var isLoading: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            VStack {
+                if isLogin || authStores.loginStatus == .logined {
+                    HomeView(isLogin: $isLogin)
+                        .environmentObject(authStores)
+                } else {
+                    LoginView(isLogin: $isLogin, isLoading: $isLoading)
+                        .environmentObject(authStores)
+                }
+            }
+            if isLoading {
+                LoadingView()
+            }
+        }
+        .onAppear {
+            print("authStores.loginStatus: \(authStores.loginStatus)")
         }
         .padding()
     }
