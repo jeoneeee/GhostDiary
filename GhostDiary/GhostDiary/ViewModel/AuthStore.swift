@@ -48,7 +48,7 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
-    @Published var user: User? = User(id: "1", email: "", timestamp: "") // default 
+    @Published var user: User? = User(id: "1", email: "", timestamp: "") // default
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
@@ -78,7 +78,7 @@ class AuthStore: ObservableObject {
     func register(email: String, password: String) async -> Bool {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            await addUsers(email: email, createdAt: TimeData.getTimeStrings())
+            await addUsers(email: email)
             DispatchQueue.main.async {
                 self.loginStatus = .registered
             }
@@ -156,14 +156,14 @@ extension AuthStore {
 
 // MARK: - 회원가입 한 유저 DB에 등록
 extension AuthStore {
-    func addUsers(email: String, createdAt: String) async {
+    func addUsers(email: String) async {
         do {
             if let user = self.user {
                 print("self user가 nil이 아님")
                 try await databaseReference?.document(user.id).setData([
                     "id": user.id,
                     "email": email,
-                    "timestamp": createdAt
+                    "timestamp": user.timestamp
                 ])
             }
         } catch {
@@ -216,7 +216,7 @@ extension AuthStore {
                         if querySnapshot.exists {
                             return
                         }
-                        await addUsers(email: currentUser.user.email ?? "error", createdAt: TimeData.getTimeStrings())
+                        await addUsers(email: currentUser.user.email ?? "error")
                         return
                     }
                 }
