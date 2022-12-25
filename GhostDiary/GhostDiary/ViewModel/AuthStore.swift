@@ -41,7 +41,6 @@ enum DuplicatedEmail {
 
 class AuthStore: ObservableObject {
     var handel: AuthStateDidChangeListenerHandle?
-    var user: FirebaseAuth.User?
     
     private lazy var databaseReference: CollectionReference? = {
         let reference = Firestore.firestore().collection("users")
@@ -49,6 +48,7 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
+    @Published var user: User? = User(id: "1", email: "", timestamp: "") // default 
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
@@ -57,10 +57,15 @@ class AuthStore: ObservableObject {
                 if self.loginStatus == .defatult {
                     self.loginStatus = .logined
                 }
-                self.user = user
+                self.setUser(user.uid, email: user.email!, createdAt: user.metadata.creationDate!)
+                
+                //self.user = user
                 //LoginStores. = user.uid
                 print("유저 변화 감지 시작 - startListeners")
-                print("uid: \(user.uid), email: \(user.email ?? "UnKnown")")
+                print("uid: \(user.uid), email: \(user.email ?? "UnKnown"), date: \(user.metadata.creationDate)")
+                let test = TimeData.getTimeStrings(user.metadata.creationDate!)
+                print("test: \(test)")
+                
             }
         }
     }
@@ -98,11 +103,13 @@ class AuthStore: ObservableObject {
     func signIn(email: String, password: String) async -> AuthLoginCode {
         do {
             let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
-            self.user = authResult.user
+            //self.user = authResult.user
+            let user = authResult.user
+            self.setUser(user.uid, email: user.email!, createdAt: user.metadata.creationDate!)
             DispatchQueue.main.async {
                 self.loginStatus = .logined
             }
-            print("로그인한 유저 이메일: \(String(describing: self.user?.email)), uid: \(String(describing: self.user?.uid))")
+            print("로그인한 유저 이메일: \(String(describing: self.user?.email)), uid: \(String(describing: self.user?.id))")
             return .success
         }
         catch {
@@ -139,6 +146,13 @@ class AuthStore: ObservableObject {
         }
     }
 }
+//MARK: - user 추가
+extension AuthStore {
+    func setUser(_ uid: String, email: String, createdAt: Date) {
+        let timestamp = TimeData.getTimeStrings(createdAt)
+        self.user = User(id: uid, email: email, timestamp: timestamp)
+    }
+}
 
 // MARK: - 회원가입 한 유저 DB에 등록
 extension AuthStore {
@@ -146,8 +160,8 @@ extension AuthStore {
         do {
             if let user = self.user {
                 print("self user가 nil이 아님")
-                try await databaseReference?.document(user.uid).setData([
-                    "id": user.uid,
+                try await databaseReference?.document(user.id).setData([
+                    "id": user.id,
                     "email": email,
                     "timestamp": createdAt
                 ])
