@@ -84,7 +84,8 @@ struct LoginView: View {
             Spacer()
             
             GoogleSignInButton(action: handleSignInButton)
-                .modifier(LoginButton())
+                .frame(width: 280, height: 60)
+                //.modifier(LoginButton())
         }
         .padding()
         
@@ -110,7 +111,7 @@ struct LoginButton: ViewModifier {
         content
             .frame(maxWidth: UIScreen.main.bounds.width)
             .foregroundColor(.white)
-            .background(Color.red)
+            .background(Color("Color3"))
             .cornerRadius(40)
     }
 }

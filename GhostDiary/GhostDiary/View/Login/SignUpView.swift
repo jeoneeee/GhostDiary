@@ -177,7 +177,7 @@ struct LoginTextFieldModifier: ViewModifier {
             .padding()
             .overlay {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(Color(UIColor.systemGray4), lineWidth: 2)
+                    .stroke(Color("Color5"), lineWidth: 3)
             }
             .padding([.leading,.trailing])
     }
