@@ -25,23 +25,30 @@ struct LoginView: View {
     var body: some View {
         VStack {
             Spacer()
+            
             HStack {
-                TextField("이메일을 입력하세요. ", text: $email)
-                    .modifier(LoginTextFieldModifier())
-                    .padding([.bottom])
+                Image(systemName: "person.fill")
+                    .foregroundColor(.secondary)
+                
+                TextField(text: $email) {
+                    Label("이메일", systemImage: "lock.fill")
+                }
             }
+            .modifier(LoginTextFieldModifier())
+            .padding(.bottom)
             
             HStack {
                 ZStack {
-                    if isPasswordHidden {
-                        TextField("비밀번호를 입력하세요. ", text: $password)
-                            .modifier(LoginTextFieldModifier())
-                            .padding([.bottom])
-                    } else {
-                        SecureField("비밀번호를 입력하세요. ", text: $password)
-                            .modifier(LoginTextFieldModifier())
-                            .padding([.bottom])
+                    HStack {
+                        Image(systemName: "lock.fill")
+                            .foregroundColor(.secondary)
+                        if isPasswordHidden {
+                            TextField("비밀번호", text: $password)
+                        } else {
+                            SecureField("비밀번호", text: $password)
+                        }
                     }
+                    .modifier(LoginTextFieldModifier())
                 }
                 .overlay(alignment: .topTrailing) {
                     Button(action: {
@@ -75,7 +82,6 @@ struct LoginView: View {
             })
             .modifier(LoginButton())
             
-            //FIXME: - Color 수정 예정
             Button(action: {
                 isSingUp.toggle()
             }, label: {
@@ -87,7 +93,7 @@ struct LoginView: View {
             
             GoogleSignInButton(action: handleSignInButton)
                 .frame(width: 280, height: 60)
-                //.modifier(LoginButton())
+            //.modifier(LoginButton())
         }
         .padding()
         
