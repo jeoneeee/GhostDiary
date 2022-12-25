@@ -12,24 +12,6 @@ struct HomeView: View {
     @Binding var isLogin: Bool
     
     var body: some View {
-//        VStack {
-//            Button("logOut") {
-//                authStores.signOut()
-//                isLogin = false
-//                authStores.loginStatus = .defatult
-//                authStores.googleSignOut()
-//            }
-//
-//            Spacer()
-//            GhostImageView()
-//            Spacer()
-//            QuestionBoxView()
-//                .padding(.bottom, 30)
-//            //offset이였는데 학진님 아이디어 굳..
-//        }
-//        .onAppear {
-//            isLogin = true
-//        }
         NavigationStack {
             TabView {
                 QuestionView()
