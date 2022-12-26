@@ -15,7 +15,7 @@ struct GhostImageView: View {
     var body: some View {
         VStack {
             HStack {
-                Image("1")
+                Image("ghost1")
                     .resizable()
                     .frame(width: 100, height: 110)
                     .offset(x: rotation1)
@@ -31,7 +31,7 @@ struct GhostImageView: View {
             
             HStack {
                 Spacer()
-                Image("2")
+                Image("ghost2")
                     .resizable()
                     .frame(width: 110, height: 110)
                     .offset(x: rotation2)
@@ -47,7 +47,7 @@ struct GhostImageView: View {
             }
             .padding(.trailing, 50)
             HStack {
-                Image("3")
+                Image("ghost3")
                     .resizable()
                     .frame(width: 90, height: 110)
                     .offset(x: rotation1)
