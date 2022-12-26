@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A396FA7295889E1007C1423 /* CheckEmojiView.swift */; };
 		1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */; };
 		1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */; };
 		28158CE52958703B002C832F /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28158CE42958703B002C832F /* AnswerView.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A396FA7295889E1007C1423 /* CheckEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmojiView.swift; sourceTree = "<group>"; };
 		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
 		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
 		28158CE42958703B002C832F /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
@@ -122,11 +124,12 @@
 		287605F82949FAF700406FB5 /* Question */ = {
 			isa = PBXGroup;
 			children = (
+				28158CE42958703B002C832F /* AnswerView.swift */,
+				1A396FA7295889E1007C1423 /* CheckEmojiView.swift */,
+				1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */,
 				287605F92949FB5900406FB5 /* HomeView.swift */,
 				1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */,
-				1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */,
 				287605FB2949FB6800406FB5 /* QuestionView.swift */,
-				28158CE42958703B002C832F /* AnswerView.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
 				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,
 				2876060E2949FC7E00406FB5 /* Question.swift in Sources */,
+				1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */,
 				2876060C2949FC7300406FB5 /* User.swift in Sources */,
 				287606082949FC4F00406FB5 /* AuthStore.swift in Sources */,
 				287606062949FC1500406FB5 /* AnalysisView.swift in Sources */,
