@@ -14,6 +14,7 @@ struct CheckEmojiView: View {
     
     
     var body: some View {
+        
         VStack(spacing: 20) {
             Text("먼저 오늘의 기분을 선택해주세요!")
                 .font(.title3)
@@ -66,14 +67,17 @@ struct CheckEmojiView: View {
             }
             
             Button {
-                isShowingEmojiSheet.toggle()
-                isShowingQuestionSheet.toggle()
+                isShowingEmojiSheet = false
+//                isShowingQuestionSheet = true
+                
             } label: {
                 Text("확인")
             }
-
+            
         }
 
+        
+        
     }
 }
 

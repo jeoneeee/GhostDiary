@@ -19,6 +19,7 @@ struct GhostImageView: View {
                     .resizable()
                     .frame(width: 100, height: 110)
                     .offset(x: rotation1)
+//                    .scaleEffect(x: rotation1 == -100 ? 1:-1, y: 1, anchor: .center)
                     .onAppear {
                         withAnimation(.linear(duration: 1)
                             .speed(0.2).repeatForever(autoreverses: true)) {
@@ -49,7 +50,7 @@ struct GhostImageView: View {
             HStack {
                 Image("ghost3")
                     .resizable()
-                    .frame(width: 90, height: 110)
+                    .frame(width: 110, height: 110)
                     .offset(x: rotation1)
                     .onAppear {
                         withAnimation(.linear(duration: 1)

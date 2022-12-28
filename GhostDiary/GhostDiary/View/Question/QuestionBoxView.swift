@@ -18,7 +18,7 @@ struct QuestionBoxView: View {
                     .font(.title3)
                     .foregroundColor(.black)
                 Text(idx.query)
-                    .font(.title2)
+                    .font(.title3)
                     .foregroundColor(.black)
             }
         }

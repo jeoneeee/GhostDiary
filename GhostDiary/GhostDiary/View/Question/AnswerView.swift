@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct AnswerView: View {
-    
+    @Environment(\.dismiss) var dismiss
+ 
     var body: some View {
         VStack {
-            Text("ge")
+            Button {
+                dismiss()
+            } label: {
+                Text("취소")
+            }
+
         }
     }
 }
