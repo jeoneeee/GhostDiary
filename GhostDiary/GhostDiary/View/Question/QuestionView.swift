@@ -9,13 +9,7 @@ import SwiftUI
 
 struct QuestionView: View {
     var body: some View {
-        VStack {
-            Spacer()
-            GhostImageView()
-            Spacer()
-            QuestionBoxView()
-        }
-        .padding([.bottom], 20)
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 

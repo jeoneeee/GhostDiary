@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */; };
 		1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */; };
-		28158CE52958703B002C832F /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28158CE42958703B002C832F /* AnswerView.swift */; };
 		287605F72949FAED00406FB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605F62949FAED00406FB5 /* LoginView.swift */; };
 		287605FA2949FB5900406FB5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605F92949FB5900406FB5 /* HomeView.swift */; };
 		287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605FB2949FB6800406FB5 /* QuestionView.swift */; };
@@ -21,8 +20,6 @@
 		2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606092949FC5C00406FB5 /* QuestionStore.swift */; };
 		2876060C2949FC7300406FB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060B2949FC7300406FB5 /* User.swift */; };
 		2876060E2949FC7E00406FB5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060D2949FC7E00406FB5 /* Question.swift */; };
-		289272CE295369B400953951 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 289272CD295369B400953951 /* GoogleSignIn */; };
-		289272D0295369B400953951 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 289272CF295369B400953951 /* GoogleSignInSwift */; };
 		28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A81AB0294E16DF00E0FEE1 /* Authorization.swift */; };
 		28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C051C6294F4C1E00DB1213 /* TimeData.swift */; };
 		28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F677122949EB3F00935959 /* GhostDiaryApp.swift */; };
@@ -35,12 +32,13 @@
 		28F677282949ECFF00935959 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677272949ECFF00935959 /* FirebaseFirestore */; };
 		28F6772A2949ECFF00935959 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677292949ECFF00935959 /* FirebaseFirestoreSwift */; };
 		28F6772C2949ED0900935959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28F6772B2949ED0900935959 /* GoogleService-Info.plist */; };
+		28F677302949EE1B00935959 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 28F6772F2949EE1B00935959 /* GoogleSignIn */; };
+		28F677322949EE1B00935959 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677312949EE1B00935959 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
 		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
-		28158CE42958703B002C832F /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		287605F62949FAED00406FB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		287605F92949FB5900406FB5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		287605FB2949FB6800406FB5 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
@@ -70,11 +68,11 @@
 			files = (
 				28F6772A2949ECFF00935959 /* FirebaseFirestoreSwift in Frameworks */,
 				28F677262949ECFF00935959 /* FirebaseDatabaseSwift in Frameworks */,
-				289272D0295369B400953951 /* GoogleSignInSwift in Frameworks */,
+				28F677322949EE1B00935959 /* GoogleSignInSwift in Frameworks */,
 				28F677282949ECFF00935959 /* FirebaseFirestore in Frameworks */,
 				28F677242949ECFF00935959 /* FirebaseDatabase in Frameworks */,
 				28F677222949ECFF00935959 /* FirebaseAuth in Frameworks */,
-				289272CE295369B400953951 /* GoogleSignIn in Frameworks */,
+				28F677302949EE1B00935959 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,7 +124,6 @@
 				1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */,
 				1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */,
 				287605FB2949FB6800406FB5 /* QuestionView.swift */,
-				28158CE42958703B002C832F /* AnswerView.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -220,8 +217,8 @@
 				28F677252949ECFF00935959 /* FirebaseDatabaseSwift */,
 				28F677272949ECFF00935959 /* FirebaseFirestore */,
 				28F677292949ECFF00935959 /* FirebaseFirestoreSwift */,
-				289272CD295369B400953951 /* GoogleSignIn */,
-				289272CF295369B400953951 /* GoogleSignInSwift */,
+				28F6772F2949EE1B00935959 /* GoogleSignIn */,
+				28F677312949EE1B00935959 /* GoogleSignInSwift */,
 			);
 			productName = GhostDiary;
 			productReference = 28F6770F2949EB3F00935959 /* GhostDiary.app */;
@@ -253,7 +250,7 @@
 			mainGroup = 28F677062949EB3F00935959;
 			packageReferences = (
 				28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 28F677102949EB3F00935959 /* Products */;
 			projectDirPath = "";
@@ -296,7 +293,6 @@
 				2876060C2949FC7300406FB5 /* User.swift in Sources */,
 				287606082949FC4F00406FB5 /* AuthStore.swift in Sources */,
 				287606062949FC1500406FB5 /* AnalysisView.swift in Sources */,
-				28158CE52958703B002C832F /* AnswerView.swift in Sources */,
 				28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */,
 				1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */,
 				28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */,
@@ -504,14 +500,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.4;
-			};
-		};
 		28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -520,19 +508,17 @@
 				kind = branch;
 			};
 		};
+		28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		289272CD295369B400953951 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		289272CF295369B400953951 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 289272CC295369B300953951 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
-		};
 		28F677212949ECFF00935959 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -557,6 +543,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 28F677202949ECFF00935959 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		28F6772F2949EE1B00935959 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		28F677312949EE1B00935959 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28F6772E2949EE1B00935959 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

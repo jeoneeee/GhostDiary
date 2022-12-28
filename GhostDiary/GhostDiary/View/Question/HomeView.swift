@@ -8,48 +8,20 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var authStores: AuthStore
-    @Binding var isLogin: Bool
-    
     var body: some View {
-        NavigationStack {
-            TabView {
-                QuestionView()
-                    .tabItem {
-                        Label("글쓰기", systemImage: "square.and.pencil")
-                    }
-                CalendarView()
-                    .tabItem {
-                        Label("타임라인", systemImage: "calendar")
-                    }
-                AnalysisView()
-                    .tabItem {
-                        Label("분석보고서", systemImage: "chart.bar.fill")
-                    }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        authStores.signOut()
-                        isLogin = false
-                        authStores.loginStatus = .defatult
-                        authStores.googleSignOut()
-                    }, label: {
-                        Text("로그 아웃")
-                    })
-                }
-            }
-        }
-        .onAppear {
-            isLogin = true
+        VStack {
+            Spacer()
+            GhostImageView()
+            Spacer()
+            QuestionBoxView()
+                .padding(.bottom, 30)
+            //offset이였는데 학진님 아이디어 굳..
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
-    @State static var isLogin: Bool = false
     static var previews: some View {
-        HomeView(isLogin: $isLogin)
-            .environmentObject(AuthStore())
+        HomeView()
     }
 }
