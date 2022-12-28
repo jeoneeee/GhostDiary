@@ -21,7 +21,6 @@ struct Question: Codable, Identifiable {
     var id: String
     var query: String
     var queryNums: Int
-    var answer: String
     var expression: String // sad, angry
     var timestamp: String
     

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "white-watercolor-papar-texture-background-for-cover-card-design-or-overlay-aon-paint-art-background_1962-2255.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
