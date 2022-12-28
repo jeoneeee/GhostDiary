@@ -7,25 +7,9 @@
 
 import SwiftUI
 
-enum Expression: String {
-    case angry
-    case sad
-    case proud
-    case cute
-    case smile
-    case umm
-    case tired
-}
+
 
 struct Question: Codable, Identifiable {
-    var id: String
+    var id: String // 질문 번호
     var query: String
-    var queryNums: Int
-    var expression: String // sad, angry
-    var timestamp: String
-    
-    var image: Image {
-        let name = Expression(rawValue: expression) ?? .smile
-        return Image(name.rawValue)
-    }
 }

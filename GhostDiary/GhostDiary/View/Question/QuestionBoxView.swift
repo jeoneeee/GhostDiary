@@ -13,7 +13,7 @@ struct QuestionBoxView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             ForEach(questionStore.questions) { idx in
-                Text("Q. \(idx.queryNums)")
+                Text("Q. \(idx.id)")
                     .bold()
                     .font(.title3)
                     .foregroundColor(.black)

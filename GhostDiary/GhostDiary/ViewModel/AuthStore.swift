@@ -48,7 +48,7 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
-    var user: User? = User(id: "1", email: "", timestamp: "") // default
+    var user: User? = User(id: "", email: "", currentQuestionNum: "", loginTime: "", timestamp: "") // default
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
@@ -150,7 +150,7 @@ class AuthStore: ObservableObject {
 extension AuthStore {
     func setUser(_ uid: String, email: String, createdAt: Date) {
         let timestamp = TimeData.getTimeStrings(createdAt)
-        self.user = User(id: uid, email: email, timestamp: timestamp)
+//        self.user = User(id: uid, email: email, timestamp: timestamp)
     }
 }
 

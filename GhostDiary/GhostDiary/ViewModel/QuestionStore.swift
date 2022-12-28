@@ -49,7 +49,7 @@ class QuestionStore: ObservableObject {
                         let timestamp: String = docData["timestamp"] as? String ?? ""
                         
                         
-                        let question: Question = Question(id: id, query: query, queryNums: queryNums, expression: expression, timestamp: timestamp)
+                        let question: Question = Question(id: id, query: query)
                         
                         self.questions.append(question)
                     }
