@@ -10,6 +10,8 @@ import Foundation
 struct User: Codable, Identifiable {
     var id: String
     var email: String
+    var currentQuestionNum: String //어디까지 대답을 했는지 나타내는 숫자
+    var loginTime: String
     var timestamp: String // 회원 가입한 시간
 }
 

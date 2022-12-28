@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A30D86D295C8BF1002F5E73 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A30D86C295C8BF1002F5E73 /* Answer.swift */; };
 		1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A396FA7295889E1007C1423 /* CheckEmojiView.swift */; };
 		1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */; };
 		1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A30D86C295C8BF1002F5E73 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		1A396FA7295889E1007C1423 /* CheckEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmojiView.swift; sourceTree = "<group>"; };
 		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
 		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				2876060B2949FC7300406FB5 /* User.swift */,
 				2876060D2949FC7E00406FB5 /* Question.swift */,
+				1A30D86C295C8BF1002F5E73 /* Answer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */,
 				28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */,
 				2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */,
+				1A30D86D295C8BF1002F5E73 /* Answer.swift in Sources */,
 				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
 				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,
