@@ -18,7 +18,7 @@ struct HomeView: View {
                     .tabItem {
                         Label("글쓰기", systemImage: "square.and.pencil")
                     }
-                CalendarView()
+                TimeLineView()
                     .tabItem {
                         Label("타임라인", systemImage: "calendar")
                     }

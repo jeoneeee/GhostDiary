@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("기록 리스트 입니다")
     }
 }
 
