@@ -13,15 +13,13 @@ struct CustomDatePicker: View {
     // Month update on arrow button
     @State var currentMonth: Int = 0
     
+    let days: [String] = ["일", "월", "화", "수", "목", "금", "토"]
+    
     var body: some View {
-        VStack(spacing: 35) {
+        VStack(spacing: 30) {
             // Days...
-            let days: [String] = ["일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
-            
             HStack(spacing: 20) {
-                
                 VStack(alignment: .leading, spacing: 10) {
-                    
                     Text(extraData()[0])
                         .font(.caption)
                         .fontWeight(.semibold)
@@ -33,47 +31,42 @@ struct CustomDatePicker: View {
                 
                 Button {
                     currentMonth -= 1
-                    
                 } label: {
                     Image(systemName: "chevron.left")
                         .font(.title2)
                 }
-                
                 Button {
                     currentMonth += 1
-                    
                 } label: {
                     Image(systemName: "chevron.right")
                         .font(.title2)
                 }
-                
             }
             .padding(.horizontal)
             
             // 요일 뷰
-            HStack(spacing: 0) {
-                ForEach(days, id: \.self) { day in
-                    Text(day)
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
+            VStack {
+                HStack(spacing: 10) {
+                    ForEach(days, id: \.self) { day in
+                        Text(day)
+                            .font(.callout)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
-            }
-            
-            // 날짜 뷰
-            let columns = Array(repeating: GridItem(.flexible()), count: 7)
-            
-            LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(extractDate()) { value in
-                    CardView(value: value)
-                        .padding(.bottom)
-                }
+                // 날짜 뷰
+                let columns = Array(repeating: GridItem(.flexible()), count: 7)
                 
+                LazyVGrid(columns: columns, spacing: 15) {
+                    ForEach(extractDate()) { value in
+                        CardView(value: value)
+                            .padding(.bottom)
+                    }
+                }
             }
         }
+        // 날짜 변경
         .onChange(of: currentMonth) { newValue in
-            // Updating Month..
-            
             currentDate = getCurrentMonth()
         }
     }
