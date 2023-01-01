@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct CalendarView: View {
+    @State private var currentDate: Date = Date()
+    
     var body: some View {
-        Text("달력뷰입니다!")
+        ScrollView(.vertical, showsIndicators: false) {
+            CustomDatePicker(currentDate: $currentDate)
+        }
+        //.padding(20)
     }
 }
 
