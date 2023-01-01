@@ -27,18 +27,18 @@ struct HomeView: View {
                         Label("분석보고서", systemImage: "chart.bar.fill")
                     }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        authStores.signOut()
-                        isLogin = false
-                        authStores.loginStatus = .defatult
-                        authStores.googleSignOut()
-                    }, label: {
-                        Text("로그 아웃")
-                    })
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button(action: {
+//                        authStores.signOut()
+//                        isLogin = false
+//                        authStores.loginStatus = .defatult
+//                        authStores.googleSignOut()
+//                    }, label: {
+//                        Text("로그 아웃")
+//                    })
+//                }
+//            }
         }
         .onAppear {
             isLogin = true
