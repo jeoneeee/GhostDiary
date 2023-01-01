@@ -16,7 +16,7 @@ struct CustomDatePicker: View {
     var body: some View {
         VStack(spacing: 35) {
             // Days...
-            let days: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
+            let days: [String] = ["일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
             
             HStack(spacing: 20) {
                 
@@ -50,7 +50,7 @@ struct CustomDatePicker: View {
             }
             .padding(.horizontal)
             
-            // Day View
+            // 요일 뷰
             HStack(spacing: 0) {
                 ForEach(days, id: \.self) { day in
                     Text(day)
@@ -60,19 +60,16 @@ struct CustomDatePicker: View {
                 }
             }
             
-            // Dates
-            // LazyVgrid
-            
+            // 날짜 뷰
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(extractDate()) { value in
                     CardView(value: value)
+                        .padding(.bottom)
                 }
                 
             }
-            
-            
         }
         .onChange(of: currentMonth) { newValue in
             // Updating Month..
@@ -85,17 +82,23 @@ struct CustomDatePicker: View {
     func CardView(value: CalendarDate) -> some View {
         VStack {
             if value.day != -1 {
-                Text("\(value.day)")
-                    .font(.title3.bold())
+                VStack {
+                    Text("\(value.day)")
+                        .font(.caption.bold())
+                    Image("smile")
+                        .resizable()
+                        .scaledToFill()
+                }
             }
         }
-        .padding(.vertical, 8)
+        //.padding(.vertical, 8)
         .frame(height: 60, alignment: .top)
     }
     
     // extracting year and month for display
     func extraData() -> [String] {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko")
         formatter.dateFormat = "YYYY MMMM"
         
         let date = formatter.string(from: currentDate)
