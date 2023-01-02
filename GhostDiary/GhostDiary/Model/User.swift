@@ -16,3 +16,5 @@ struct User: Codable, Identifiable {
 }
 
 
+
+//currentQuestionNum AnswerView -> 질문 제출 currentQuestionNum+1 / fetchData를 하루 지나면 하기로...

@@ -12,15 +12,13 @@ struct QuestionBoxView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            ForEach(questionStore.questions) { idx in
-                Text("Q. \(idx.id)")
-                    .bold()
-                    .font(.title3)
-                    .foregroundColor(.black)
-                Text(idx.query)
-                    .font(.title3)
-                    .foregroundColor(.black)
-            }
+            Text("Q. \(questionStore.questions.id)")
+                .bold()
+                .font(.title3)
+                .foregroundColor(.black)
+            Text(questionStore.questions.query)
+                .font(.title3)
+                .foregroundColor(.black)
         }
         .onAppear {
             questionStore.fetchQuestions()
