@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomDatePicker: View {
     @EnvironmentObject var authStores: AuthStore
+    @StateObject var timelineStores = TimeLineStore()
     @Binding var currentDate: Date
     
     // Month update on arrow button
@@ -17,11 +18,9 @@ struct CustomDatePicker: View {
     let days: [String] = ["일", "월", "화", "수", "목", "금", "토"]
     
     var today: Int {
-        var formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "dd"
-        var currentToday = formatter.string(from: Date())
-        
-        print(currentToday)
+        let currentToday = formatter.string(from: Date())
         return Int(currentToday) ?? -1
     }
     
@@ -79,6 +78,16 @@ struct CustomDatePicker: View {
         // 날짜 변경
         .onChange(of: currentMonth) { newValue in
             currentDate = getCurrentMonth()
+        }
+        .onAppear {
+            if let user = authStores.user {
+                print("user: \(user)")
+                Task {
+                    await
+                    //timelineStores.requestAnswersData(user.currentQuestionNum)
+                    timelineStores.requestAnswersData(user.id, answerNumber: user.currentQuestionNum)
+                }
+            }
         }
     }
     
