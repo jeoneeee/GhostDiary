@@ -58,18 +58,12 @@ class AuthStore: ObservableObject {
                     self.loginStatus = .logined
                 }
                 self.setUser(user.uid, email: user.email!, createdAt: user.metadata.creationDate!)
-                
-                //self.user = user
-                //LoginStores. = user.uid
                 print("유저 변화 감지 시작 - startListeners")
                 print("uid: \(user.uid), email: \(user.email ?? "UnKnown"), date: \(user.metadata.creationDate)")
                 let test = TimeData.getTimeStrings(user.metadata.creationDate!)
-                print("test: \(test)")
-                
             }
         }
     }
-    
     
     func disConnectListeners() {
         Auth.auth().removeStateDidChangeListener(self.handel!)
@@ -146,11 +140,20 @@ class AuthStore: ObservableObject {
         }
     }
 }
-//MARK: - user 추가
+//MARK: - 로그인한 유저의 정보를 저장하는 메소드
+/// 로그인한 유저의 정보를 관리하는 객체를 저장하는 역할을 수행합니다.
+/// - Parameter uid: 로그인한 유저의 uid
+/// - Parameter email: 로그인한 유저의 email
+/// - Parameter 로그인한 유저의 회원가입 날짜
 extension AuthStore {
     func setUser(_ uid: String, email: String, createdAt: Date) {
         let timestamp = TimeData.getTimeStrings(createdAt)
-//        self.user = User(id: uid, email: email, timestamp: timestamp)
+        self.user = User(id: uid,
+                         email: email,
+                         currentQuestionNum: "1",
+                         loginTime: TimeData.getTimeStrings(Date()),
+                         timestamp: timestamp)
+        //self.user = User(id: uid, email: email, timestamp: timestamp)
     }
 }
 

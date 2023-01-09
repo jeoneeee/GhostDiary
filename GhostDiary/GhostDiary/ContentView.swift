@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var authStores = AuthStore()
+    @EnvironmentObject var authStores: AuthStore
     @State private var isLogin: Bool = false
     @State private var isLoading: Bool = false
     
@@ -37,5 +37,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AuthStore())
     }
 }
