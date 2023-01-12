@@ -33,7 +33,7 @@ struct QuestionView: View {
                         isShowingQuestionSheet = true
                     }
                 } // 실행하고나서 이 코드를 실행해라!, 화면이 닫힐 때
-                .presentationDetents([.fraction(0.55)])
+                .presentationDetents([.fraction(0.54)])
         } // 이모지 선택
         .fullScreenCover(isPresented: $isShowingQuestionSheet) {
             AnswerView(todayEmoji: $todayEmoji)

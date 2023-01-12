@@ -20,8 +20,9 @@ struct CheckEmojiView: View {
         
         VStack(spacing: 20) {
             Text("오늘은 어떤 하루였나요?")
-                .font(.title2)
-                .padding(.bottom)
+                .modifier(TitleTextModifier())
+                .padding(.vertical)
+                .padding(.top, 20)
             
             LazyVGrid(columns: columns){
                 ForEach(emojiarr, id: \.self) { index in
@@ -53,11 +54,11 @@ struct CheckEmojiView: View {
             isShowingEmojiSheet = false
         } label: {
             Text("확인")
-                .font(.title3)
-                .padding(.vertical, 13)
-                .padding(.horizontal, 50)
+                .modifier(TitleTextModifier())
+                .padding(.vertical, 10)
+                .padding(.horizontal, 55)
                 .background(Color("Color3"))
-                .cornerRadius(15)
+                .cornerRadius(17)
                 .foregroundColor(.black)
         }
         .padding(.vertical, 30)

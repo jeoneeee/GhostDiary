@@ -14,10 +14,10 @@ struct QuestionBoxView: View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Q. \(questionStore.questions.id)")
                 .bold()
-                .font(.title3)
+                .modifier(TitleTextModifier())
                 .foregroundColor(.black)
             Text(questionStore.questions.query)
-                .font(.title3)
+                .modifier(TitleTextModifier())
                 .foregroundColor(.black)
         }
         .onAppear {
