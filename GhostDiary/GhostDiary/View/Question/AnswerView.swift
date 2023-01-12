@@ -12,43 +12,64 @@ struct AnswerView: View {
     @Binding var todayEmoji: String
     @State private var text: String = ""
     @FocusState private var isInFocusText: Bool
+    @StateObject var questionStore: QuestionStore = QuestionStore()
+
+
  
     var body: some View {
         NavigationStack {
             VStack {
-                Image("\(todayEmoji)")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 70, height: 70)
-                    .padding(.vertical, 20)
-                    .shadow(radius: 2)
+                HStack {
+                    Text(questionStore.questions.createdDate)
+                        .modifier(BodyTextModifier())
+                        .foregroundColor(.gray)
+                    Image("\(todayEmoji)")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 70)
+                        .shadow(radius: 2)
+                        .padding(.leading, 10)
+                }
+                
+                Text(questionStore.questions.query)
+                    .modifier(TitleTextModifier())
+                
+                Rectangle()
+                    .foregroundColor(.gray)
+                    .frame(height: 1)
+                    .padding(.horizontal, 20)
                 
                 ZStack {
                     if text.isEmpty {
                         TextEditor(text: .constant("내용을 입력해주세요"))
+                            .modifier(BodyTextModifier())
                             .foregroundColor(.secondary)
                             .disabled(true)
                     }
                     TextEditor(text: $text)
+                        .modifier(BodyTextModifier())
                         .focused($isInFocusText)
                         .opacity(text.isEmpty ? 0.25 : 1)
                 }
                 .padding([.leading, .trailing])
                 
                 Button {
-                    
+                    dismiss()
                 } label: {
                     Text("확인")
-                        .font(.title3)
-                        .padding(.vertical, 18)
-                        .padding(.horizontal, 100)
+                        .modifier(BodyTextModifier())
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 55)
                         .background(Color("Color5"))
-                        .cornerRadius(20)
+                        .cornerRadius(17)
                         .foregroundColor(.black)
                 }
                 .padding(.vertical, 30)
 
                 
+            }
+            .onAppear {
+                questionStore.fetchQuestions()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
@@ -56,6 +77,7 @@ struct AnswerView: View {
                         dismiss()
                     } label: {
                         Text("취소")
+                            .modifier(BodyTextModifier())
                     }
                 }
             }
