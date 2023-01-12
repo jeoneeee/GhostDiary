@@ -26,11 +26,12 @@ struct AnswerView: View {
                     Image("\(todayEmoji)")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30, height: 70)
+                        .frame(width: 34, height: 34)
                         .shadow(radius: 2)
                         .padding(.leading, 10)
                 }
                 
+                .padding(.bottom, 20)
                 Text(questionStore.questions.query)
                     .modifier(TitleTextModifier())
                 
