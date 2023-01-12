@@ -45,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		1A30D86C295C8BF1002F5E73 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		1A364BE9297049AE0099C1D2 /* 나눔손글씨 느릿느릿체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "나눔손글씨 느릿느릿체.ttf"; sourceTree = "<group>"; };
 		1A396FA7295889E1007C1423 /* CheckEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmojiView.swift; sourceTree = "<group>"; };
 		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
 		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
@@ -93,6 +94,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A364BE52970488D0099C1D2 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1A364BE7297048B50099C1D2 /* Fonts */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		1A364BE7297048B50099C1D2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1A364BE9297049AE0099C1D2 /* 나눔손글씨 느릿느릿체.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		287605F12949FA3500406FB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +211,7 @@
 		28F677112949EB3F00935959 /* GhostDiary */ = {
 			isa = PBXGroup;
 			children = (
+				1A364BE52970488D0099C1D2 /* Configuration */,
 				28A81AAF294E165E00E0FEE1 /* Utilities */,
 				287605F42949FAA400406FB5 /* ViewModel */,
 				287605F22949FA4200406FB5 /* Model */,
