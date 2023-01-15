@@ -12,7 +12,9 @@ struct AnswerView: View {
     @Binding var todayEmoji: String
     @State private var text: String = ""
     @FocusState private var isInFocusText: Bool
-    @StateObject var questionStore: QuestionStore = QuestionStore()
+    @EnvironmentObject var answerStore: AnswerStore
+    @EnvironmentObject var authStore: AuthStore
+    var question: Question
 
 
  
@@ -20,7 +22,7 @@ struct AnswerView: View {
         NavigationStack {
             VStack {
                 HStack {
-                    Text(questionStore.questions.createdDate)
+                    Text(question.createdDate)
                         .modifier(BodyTextModifier())
                         .foregroundColor(.gray)
                     Image("\(todayEmoji)")
@@ -32,7 +34,7 @@ struct AnswerView: View {
                 }
                 
                 .padding(.bottom, 20)
-                Text(questionStore.questions.query)
+                Text(question.query)
                     .modifier(TitleTextModifier())
                 
                 Rectangle()
@@ -56,6 +58,10 @@ struct AnswerView: View {
                 
                 Button {
                     dismiss()
+                    Task {
+                        let answer = Answer(id: UUID().uuidString, uid: authStore.user?.id ?? "", expression: todayEmoji, content: text, timestamp: Date())
+                        await answerStore.createAnswer(question.id, answer: answer)
+                    }
                 } label: {
                     Text("확인")
                         .modifier(BodyTextModifier())
@@ -68,9 +74,6 @@ struct AnswerView: View {
                 .padding(.vertical, 30)
 
                 
-            }
-            .onAppear {
-                questionStore.fetchQuestions()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
@@ -88,7 +91,9 @@ struct AnswerView: View {
 
 struct AnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerView(todayEmoji: .constant("umm"))
+        AnswerView(todayEmoji: .constant("umm"), question: Question(id: "123", number: "1", query: "gd"))
+            .environmentObject(AnswerStore())
+            .environmentObject(QuestionStore())
  
     }
 }

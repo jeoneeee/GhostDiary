@@ -10,7 +10,8 @@ import SwiftUI
 
 
 struct Question: Codable, Identifiable {
-    var id: String // 질문 번호
+    var id: String
+    var number: String // 질문 번호
     var query: String
     
     var createdDate: String { // 현재 시간 받아오기

@@ -19,6 +19,7 @@
 		1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A396FA7295889E1007C1423 /* CheckEmojiView.swift */; };
 		1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */; };
 		1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */; };
+		1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97F209297428EC0033C7E7 /* AnswerStore.swift */; };
 		28158CE52958703B002C832F /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28158CE42958703B002C832F /* AnswerView.swift */; };
 		283BE9D6295FE6E600D4C6B1 /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */; };
 		283BE9D8295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BE9D7295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift */; };
@@ -65,6 +66,7 @@
 		1A396FA7295889E1007C1423 /* CheckEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmojiView.swift; sourceTree = "<group>"; };
 		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
 		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
+		1A97F209297428EC0033C7E7 /* AnswerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStore.swift; sourceTree = "<group>"; };
 		28158CE42958703B002C832F /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		283BE9D7295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCustomTabBar.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				287606072949FC4F00406FB5 /* AuthStore.swift */,
+				1A97F209297428EC0033C7E7 /* AnswerStore.swift */,
 				287606092949FC5C00406FB5 /* QuestionStore.swift */,
 				28F89175296C4ABA00D79C42 /* TimeLineStore.swift */,
 			);
@@ -374,6 +377,7 @@
 				1A30D86D295C8BF1002F5E73 /* Answer.swift in Sources */,
 				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
+				1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */,
 				1A364BF0297053A90099C1D2 /* Ex+String.swift in Sources */,
 				1A364BF829706BC20099C1D2 /* Heatmap.swift in Sources */,
 				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,

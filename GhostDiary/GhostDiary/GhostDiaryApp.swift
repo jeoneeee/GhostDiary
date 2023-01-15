@@ -26,6 +26,8 @@ struct GhostDiaryApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(AuthStore())
+                .environmentObject(AnswerStore())
+                .environmentObject(QuestionStore())
         }
     }
 }
