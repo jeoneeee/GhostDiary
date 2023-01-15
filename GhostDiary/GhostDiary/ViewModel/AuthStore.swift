@@ -48,19 +48,24 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
-    var user: User? = User(id: "", email: "", currentQuestionNum: "", loginTime: "", timestamp: "") // default
+    var user: User? = User(id: "", email: "", questionNum: "", lastLoginTime: Date(), timestamp: Date()) // default
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
         self.handel = Auth.auth().addStateDidChangeListener { auth, user in
             if let user {
-                if self.loginStatus == .defatult {
-                    self.loginStatus = .logined
-                }
-                self.setUser(user.uid, email: user.email!, createdAt: user.metadata.creationDate!)
                 print("유저 변화 감지 시작 - startListeners")
                 print("uid: \(user.uid), email: \(user.email ?? "UnKnown"), date: \(user.metadata.creationDate)")
-                let test = TimeData.getTimeStrings(user.metadata.creationDate!)
+                
+                switch self.loginStatus {
+                case .registered:
+                    return
+                default:
+                    Task {
+                        await self.readUser(user.uid)
+                    }
+                    self.loginStatus = .logined
+                }
             }
         }
     }
@@ -72,10 +77,10 @@ class AuthStore: ObservableObject {
     func register(email: String, password: String) async -> Bool {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            await addUsers(email: email)
-            DispatchQueue.main.async {
-                self.loginStatus = .registered
-            }
+            self.loginStatus = .registered
+            await setUser(authResult.user.uid, email: email, questionNum: "1",createdAt: authResult.user.metadata.creationDate ?? Date(), lastloginTime: Date())
+            
+            await addUsers()
             return true
         } catch {
             print("User Register Error: \(error)")
@@ -97,13 +102,13 @@ class AuthStore: ObservableObject {
     func signIn(email: String, password: String) async -> AuthLoginCode {
         do {
             let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
-            //self.user = authResult.user
-            let user = authResult.user
-            self.setUser(user.uid, email: user.email!, createdAt: user.metadata.creationDate!)
+
+            await readUser(authResult.user.uid)
+            
             DispatchQueue.main.async {
                 self.loginStatus = .logined
             }
-            print("로그인한 유저 이메일: \(String(describing: self.user?.email)), uid: \(String(describing: self.user?.id))")
+            
             return .success
         }
         catch {
@@ -145,32 +150,67 @@ class AuthStore: ObservableObject {
 /// - Parameter uid: 로그인한 유저의 uid
 /// - Parameter email: 로그인한 유저의 email
 /// - Parameter 로그인한 유저의 회원가입 날짜
+///
+/// 수정해야 함 -> loginTime을 이전에 로그인한 시간으로 authResult.user.metadata.lastSignInDate
 extension AuthStore {
-    func setUser(_ uid: String, email: String, createdAt: Date) {
-        let timestamp = TimeData.getTimeStrings(createdAt)
+    func setUser(_ uid: String, email: String, questionNum: String ,createdAt: Date, lastloginTime: Date) async {
         self.user = User(id: uid,
                          email: email,
-                         currentQuestionNum: "1",
-                         loginTime: TimeData.getTimeStrings(Date()),
-                         timestamp: timestamp)
-        //self.user = User(id: uid, email: email, timestamp: timestamp)
+                         questionNum: questionNum,
+                         lastLoginTime: lastloginTime,
+                         timestamp: createdAt)
+        
+        print("set User: \(self.user)")
     }
 }
 
 // MARK: - 회원가입 한 유저 DB에 등록
 extension AuthStore {
-    func addUsers(email: String) async {
+    func addUsers() async {
         do {
-            if let user = self.user {
+            if let db = databaseReference, let user = self.user {
                 print("self user가 nil이 아님")
-                try await databaseReference?.document(user.id).setData([
+                try await db.document(user.id).setData([
                     "id": user.id,
-                    "email": email,
+                    "email": user.email,
+                    "questionNum": "1",
+                    "lastLoginTime": user.lastLoginTime,
                     "timestamp": user.timestamp
                 ])
             }
         } catch {
             print("DB Add User Error: \(error)")
+        }
+    }
+    
+    func readUser(_ uid: String) async {
+        if let db = databaseReference {
+            do {
+                let document = try await db.document(uid).getDocument()
+
+                if document.exists {
+                    guard let data = document.data() else { return }
+                    
+                    let id = data["id"] as? String ?? ""
+                    let email = data["email"] as? String ?? ""
+                    let questionNum = data["questionNum"] as? String ?? "1"
+                    
+                    let lastLoginTime = data["lastLoginTime"] as? Timestamp ?? Timestamp()
+                    let loginTimedate = lastLoginTime.dateValue()
+                    
+                    let timestamp = data["timestamp"] as? Timestamp ?? Timestamp()
+                    let timestampDate = timestamp.dateValue()
+                    
+                    await setUser(id,
+                                  email: email,
+                                  questionNum: questionNum,
+                                  createdAt: loginTimedate,
+                                  lastloginTime: timestampDate)
+                }
+                
+            } catch {
+                print("Read user error in firestore \(error.localizedDescription)")
+            }
         }
     }
 }
@@ -219,7 +259,12 @@ extension AuthStore {
                         if querySnapshot.exists {
                             return
                         }
-                        await addUsers(email: currentUser.user.email ?? "error")
+                        await setUser(currentUser.user.uid,
+                                      email: currentUser.user.email ?? "",
+                                      questionNum: "1",
+                                      createdAt: currentUser.user.metadata.creationDate ?? Date(),
+                                      lastloginTime: Date())
+                        await addUsers()
                         return
                     }
                 }
