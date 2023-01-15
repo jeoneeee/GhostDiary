@@ -11,7 +11,6 @@ struct User: Codable, Identifiable {
     var id: String
     var email: String
     var questionNum: String //어디까지 대답을 했는지 나타내는 숫자
-    var lastLoginTime: Date
     var timestamp: Date // 회원 가입한 시간
 }
 

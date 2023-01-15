@@ -48,7 +48,7 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
-    var user: User? = User(id: "", email: "", questionNum: "", lastLoginTime: Date(), timestamp: Date()) // default
+    var user: User? = User(id: "", email: "", questionNum: "", timestamp: Date()) // default
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
@@ -78,7 +78,7 @@ class AuthStore: ObservableObject {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             self.loginStatus = .registered
-            await setUser(authResult.user.uid, email: email, questionNum: "1",createdAt: authResult.user.metadata.creationDate ?? Date(), lastloginTime: Date())
+            await setUser(authResult.user.uid, email: email, questionNum: "1",createdAt: authResult.user.metadata.creationDate ?? Date())
             
             await addUsers()
             return true
@@ -153,11 +153,10 @@ class AuthStore: ObservableObject {
 ///
 /// 수정해야 함 -> loginTime을 이전에 로그인한 시간으로 authResult.user.metadata.lastSignInDate
 extension AuthStore {
-    func setUser(_ uid: String, email: String, questionNum: String ,createdAt: Date, lastloginTime: Date) async {
+    func setUser(_ uid: String, email: String, questionNum: String ,createdAt: Date) async {
         self.user = User(id: uid,
                          email: email,
                          questionNum: questionNum,
-                         lastLoginTime: lastloginTime,
                          timestamp: createdAt)
         
         print("set User: \(self.user)")
@@ -174,13 +173,28 @@ extension AuthStore {
                     "id": user.id,
                     "email": user.email,
                     "questionNum": "1",
-                    "lastLoginTime": user.lastLoginTime,
                     "timestamp": user.timestamp
                 ])
             }
         } catch {
             print("DB Add User Error: \(error)")
         }
+    }
+    
+    // MARK: - 유저가 앱을 종료할 때 마지막 로그인 시간을 저장하는 메소드
+    func updateLastLoginTime() async {
+        print("updateLastLoginTime 호출")
+        guard let db = databaseReference else { return }
+        guard let user = self.user else { return }
+        
+        do {
+            try await db.document(user.id).updateData([
+                "lastLoginTime": Date()
+            ])
+        } catch {
+            print("유저의 마지막 앱 사용 시간 db에 저장 실패")
+        }
+        
     }
     
     func readUser(_ uid: String) async {
@@ -204,8 +218,7 @@ extension AuthStore {
                     await setUser(id,
                                   email: email,
                                   questionNum: questionNum,
-                                  createdAt: loginTimedate,
-                                  lastloginTime: timestampDate)
+                                  createdAt: loginTimedate)
                 }
                 
             } catch {
@@ -262,8 +275,7 @@ extension AuthStore {
                         await setUser(currentUser.user.uid,
                                       email: currentUser.user.email ?? "",
                                       questionNum: "1",
-                                      createdAt: currentUser.user.metadata.creationDate ?? Date(),
-                                      lastloginTime: Date())
+                                      createdAt: currentUser.user.metadata.creationDate ?? Date())
                         await addUsers()
                         return
                     }
