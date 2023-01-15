@@ -12,7 +12,7 @@ struct QuestionBoxView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Q. \(questionStore.questions.id)")
+            Text("Q. \(questionStore.questions.number)")
                 .bold()
                 .modifier(TitleTextModifier())
                 .foregroundColor(.black)

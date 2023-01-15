@@ -39,6 +39,7 @@ enum DuplicatedEmail {
     case notdupleciated
 }
 
+@MainActor
 class AuthStore: ObservableObject {
     var handel: AuthStateDidChangeListenerHandle?
     
@@ -48,7 +49,7 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
-    var user: User? = User(id: "", email: "", questionNum: "", timestamp: Date()) // default
+    @Published var user: User? = User(id: "", email: "", questionNum: "", timestamp: Date()) // default
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
@@ -63,8 +64,8 @@ class AuthStore: ObservableObject {
                 default:
                     Task {
                         await self.readUser(user.uid)
+                        self.loginStatus = .logined
                     }
-                    self.loginStatus = .logined
                 }
             }
         }
