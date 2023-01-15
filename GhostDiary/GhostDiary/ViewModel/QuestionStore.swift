@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 class QuestionStore: ObservableObject {
-    @Published var questions: Question = Question(id: "", query: "")
+    @Published var questions: Question = Question(id: "", number: "", query: "")
     @Published var matrix: [DailyUsageState] = DailyUsageState.initialMatrix
     
     let database = Firestore.firestore()
@@ -29,8 +29,9 @@ class QuestionStore: ObservableObject {
                 
                 let id: String = document.documentID
                 let query: String = docData?["query"] as? String ?? ""
+                let number: String = docData?["number"] as? String ?? ""
                 
-                self.questions = Question(id: id, query: query)
+                self.questions = Question(id: id, number: number, query: query)
 
             }
         }

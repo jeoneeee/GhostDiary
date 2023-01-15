@@ -11,6 +11,7 @@ struct QuestionView: View {
     @State var isShowingEmojiSheet: Bool = false
     @State var isShowingQuestionSheet: Bool = false
     @State var todayEmoji: String = ""
+    @EnvironmentObject var questionStore: QuestionStore
     
     var body: some View {
         VStack {
@@ -26,6 +27,9 @@ struct QuestionView: View {
             
         }
         .padding([.bottom], 60)
+        .onAppear {
+            questionStore.fetchQuestions()
+        }
         .sheet(isPresented: $isShowingEmojiSheet) {
             CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet)
                 .onDisappear {
@@ -36,7 +40,7 @@ struct QuestionView: View {
                 .presentationDetents([.fraction(0.54)])
         } // 이모지 선택
         .fullScreenCover(isPresented: $isShowingQuestionSheet) {
-            AnswerView(todayEmoji: $todayEmoji)
+            AnswerView(todayEmoji: $todayEmoji, question: Question(id: "4NaHZRvAel0DFgJQWHv0", number: "1", query: "오늘 점심은 어떤걸 드셨나요"))
         }
         
     }

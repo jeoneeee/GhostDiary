@@ -19,10 +19,11 @@ enum Expression: String {
 }
 
 struct Answer: Identifiable, Hashable, Codable {
-    var id: String // user의 uid
+    var id: String
+    var uid: String // user의 uid
     var expression: String // sad, angry
     var content: String // 대답 텍스트필드 값
-    var timestamp: String
+    var timestamp: Date
     
     var image: Image {
         let name = Expression(rawValue: expression) ?? .smile

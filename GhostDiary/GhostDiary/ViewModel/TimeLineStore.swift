@@ -70,10 +70,10 @@ class TimeLineStore: ObservableObject {
                     let content: String = data["content"] as? String ?? ""
                     let timestamp: String = data["timestamp"] as? String ?? ""
                     
-                    let answer = Answer(id: id,
-                                        expression: expression,
-                                        content: content,
-                                        timestamp: timestamp)
+//                    let answer = Answer(id: id,
+//                                        expression: expression,
+//                                        content: content,
+//                                        timestamp: timestamp)
                     // return answer
                 }
 
