@@ -85,7 +85,7 @@ struct CustomDatePicker: View {
                 Task {
                     await
                     //timelineStores.requestAnswersData(user.currentQuestionNum)
-                    timelineStores.requestAnswersData(user.id, answerNumber: user.currentQuestionNum)
+                    timelineStores.requestAnswersData(user.id, answerNumber: user.questionNum)
                 }
             }
         }
