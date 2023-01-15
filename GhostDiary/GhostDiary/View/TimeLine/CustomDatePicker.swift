@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct CustomDatePicker: View {
+    @EnvironmentObject var authStores: AuthStore
+    @StateObject var timelineStores = TimeLineStore()
     @Binding var currentDate: Date
     
     // Month update on arrow button
     @State var currentMonth: Int = 0
     
     let days: [String] = ["일", "월", "화", "수", "목", "금", "토"]
+    
+    var today: Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        let currentToday = formatter.string(from: Date())
+        return Int(currentToday) ?? -1
+    }
     
     var body: some View {
         VStack(spacing: 30) {
@@ -61,6 +70,7 @@ struct CustomDatePicker: View {
                     ForEach(extractDate()) { value in
                         CardView(value: value)
                             .padding(.bottom)
+                        
                     }
                 }
             }
@@ -69,6 +79,16 @@ struct CustomDatePicker: View {
         .onChange(of: currentMonth) { newValue in
             currentDate = getCurrentMonth()
         }
+        .onAppear {
+            if let user = authStores.user {
+                print("user: \(user)")
+                Task {
+                    await
+                    //timelineStores.requestAnswersData(user.currentQuestionNum)
+                    timelineStores.requestAnswersData(user.id, answerNumber: user.questionNum)
+                }
+            }
+        }
     }
     
     @ViewBuilder
@@ -76,16 +96,34 @@ struct CustomDatePicker: View {
         VStack {
             if value.day != -1 {
                 VStack {
-                    Text("\(value.day)")
-                        .font(.caption.bold())
-                    Image("smile")
-                        .resizable()
-                        .scaledToFill()
+                    if value.day == today { // 오늘 날짜인 경우
+                        Text("\(value.day)")
+                            .font(.caption.bold())
+                            .background {
+                                Circle()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.pink)
+                            }
+                        
+                    } else {
+                        Text("\(value.day)")
+                            .font(.caption.bold())
+                    }
+                    // FIXME: - 해당 날짜에 질문을 한 경우로 조건을 변경해야 함x
+                    if value.day % 3 == 0 {
+                        Image("smile")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 30, height: 30)
+                    } else {
+                        Circle()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(Color(UIColor.systemGray6))
+                    }
                 }
             }
         }
-        //.padding(.vertical, 8)
-        .frame(height: 60, alignment: .top)
+        //.frame(height: 60, alignment: .top)
     }
     
     // extracting year and month for display
@@ -119,8 +157,6 @@ struct CustomDatePicker: View {
         
         let currentMonth = getCurrentMonth()
         
-        
-        
         var days =  currentMonth.getAllDates().compactMap { date -> CalendarDate in
             let day = calendar.component(.day, from: date)
             
@@ -141,6 +177,7 @@ struct CustomDatePicker: View {
 struct CustomDatePicker_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
+            .environmentObject(AuthStore())
     }
 }
 

@@ -25,6 +25,7 @@ struct GhostDiaryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(AuthStore())
         }
     }
 }
