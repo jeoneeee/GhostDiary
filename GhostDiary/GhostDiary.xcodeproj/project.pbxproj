@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1A30D86D295C8BF1002F5E73 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A30D86C295C8BF1002F5E73 /* Answer.swift */; };
+		1A364BEA29704A980099C1D2 /* 나눔손글씨 느릿느릿체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A364BE9297049AE0099C1D2 /* 나눔손글씨 느릿느릿체.ttf */; };
+		1A364BED29704B460099C1D2 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BEC29704B460099C1D2 /* TextModifiers.swift */; };
+		1A364BF0297053A90099C1D2 /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BEF297053A90099C1D2 /* Ex+String.swift */; };
+		1A364BF229705B1F0099C1D2 /* AnswerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BF129705B1F0099C1D2 /* AnswerDetailView.swift */; };
+		1A364BF829706BC20099C1D2 /* Heatmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BF729706BC20099C1D2 /* Heatmap.swift */; };
+		1A364BFA29706BED0099C1D2 /* HeatmapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BF929706BED0099C1D2 /* HeatmapState.swift */; };
+		1A364BFC29706CD60099C1D2 /* DailyUsageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BFB29706CD60099C1D2 /* DailyUsageState.swift */; };
+		1A364BFE29706D8A0099C1D2 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BFD29706D8A0099C1D2 /* Ex+Color.swift */; };
 		1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A396FA7295889E1007C1423 /* CheckEmojiView.swift */; };
 		1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */; };
 		1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */; };
@@ -45,6 +53,14 @@
 
 /* Begin PBXFileReference section */
 		1A30D86C295C8BF1002F5E73 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		1A364BE9297049AE0099C1D2 /* 나눔손글씨 느릿느릿체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "나눔손글씨 느릿느릿체.ttf"; sourceTree = "<group>"; };
+		1A364BEC29704B460099C1D2 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
+		1A364BEF297053A90099C1D2 /* Ex+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+String.swift"; sourceTree = "<group>"; };
+		1A364BF129705B1F0099C1D2 /* AnswerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerDetailView.swift; sourceTree = "<group>"; };
+		1A364BF729706BC20099C1D2 /* Heatmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heatmap.swift; sourceTree = "<group>"; };
+		1A364BF929706BED0099C1D2 /* HeatmapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatmapState.swift; sourceTree = "<group>"; };
+		1A364BFB29706CD60099C1D2 /* DailyUsageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageState.swift; sourceTree = "<group>"; };
+		1A364BFD29706D8A0099C1D2 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		1A396FA7295889E1007C1423 /* CheckEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmojiView.swift; sourceTree = "<group>"; };
 		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
 		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
@@ -93,6 +109,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A364BE52970488D0099C1D2 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1A364BEE2970535E0099C1D2 /* Extensions */,
+				1A364BE7297048B50099C1D2 /* Fonts */,
+				1A364BEB29704AFA0099C1D2 /* Modifiers */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		1A364BE7297048B50099C1D2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1A364BE9297049AE0099C1D2 /* 나눔손글씨 느릿느릿체.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		1A364BEB29704AFA0099C1D2 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1A364BEC29704B460099C1D2 /* TextModifiers.swift */,
+			);
+			name = Modifiers;
+			sourceTree = "<group>";
+		};
+		1A364BEE2970535E0099C1D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1A364BFD29706D8A0099C1D2 /* Ex+Color.swift */,
+				1A364BEF297053A90099C1D2 /* Ex+String.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		287605F12949FA3500406FB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				28158CE42958703B002C832F /* AnswerView.swift */,
+				1A364BF129705B1F0099C1D2 /* AnswerDetailView.swift */,
 				1A396FA7295889E1007C1423 /* CheckEmojiView.swift */,
 				1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */,
 				287605F92949FB5900406FB5 /* HomeView.swift */,
@@ -162,6 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				287606052949FC1500406FB5 /* AnalysisView.swift */,
+				1A364BF729706BC20099C1D2 /* Heatmap.swift */,
+				1A364BF929706BED0099C1D2 /* HeatmapState.swift */,
+				1A364BFB29706CD60099C1D2 /* DailyUsageState.swift */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -194,6 +249,7 @@
 		28F677112949EB3F00935959 /* GhostDiary */ = {
 			isa = PBXGroup;
 			children = (
+				1A364BE52970488D0099C1D2 /* Configuration */,
 				28A81AAF294E165E00E0FEE1 /* Utilities */,
 				287605F42949FAA400406FB5 /* ViewModel */,
 				287605F22949FA4200406FB5 /* Model */,
@@ -287,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A364BEA29704A980099C1D2 /* 나눔손글씨 느릿느릿체.ttf in Resources */,
 				28F6771A2949EB4000935959 /* Preview Assets.xcassets in Resources */,
 				28F677172949EB4000935959 /* Assets.xcassets in Resources */,
 				28F6772C2949ED0900935959 /* GoogleService-Info.plist in Resources */,
@@ -303,14 +360,20 @@
 				287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */,
 				287606032949FBC200406FB5 /* HistoryListView.swift in Sources */,
 				287606012949FBA200406FB5 /* CalendarView.swift in Sources */,
+				1A364BED29704B460099C1D2 /* TextModifiers.swift in Sources */,
 				287605F72949FAED00406FB5 /* LoginView.swift in Sources */,
+				1A364BFA29706BED0099C1D2 /* HeatmapState.swift in Sources */,
 				287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */,
 				28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */,
 				2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */,
+				1A364BFE29706D8A0099C1D2 /* Ex+Color.swift in Sources */,
 				1A30D86D295C8BF1002F5E73 /* Answer.swift in Sources */,
 				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
+				1A364BF0297053A90099C1D2 /* Ex+String.swift in Sources */,
+				1A364BF829706BC20099C1D2 /* Heatmap.swift in Sources */,
 				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,
+				1A364BFC29706CD60099C1D2 /* DailyUsageState.swift in Sources */,
 				2876060E2949FC7E00406FB5 /* Question.swift in Sources */,
 				1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */,
 				285EAE7B2961792900A24E18 /* CalendarDate.swift in Sources */,
@@ -324,6 +387,7 @@
 				28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */,
 				1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */,
 				28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */,
+				1A364BF229705B1F0099C1D2 /* AnswerDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,81 +8,70 @@
 import SwiftUI
 
 struct CheckEmojiView: View {
-    @State var todayEmoji: String = ""
+    @Binding var todayEmoji: String
     @Binding var isShowingEmojiSheet: Bool
     @Binding var isShowingQuestionSheet: Bool
+    
+    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    let emojiarr = ["angry", "cute", "proud", "sad", "tired", "umm"]
     
     
     var body: some View {
         
         VStack(spacing: 20) {
-            Text("먼저 오늘의 기분을 선택해주세요!")
-                .font(.title3)
-                .padding(.bottom)
-            HStack(spacing: 20) {
-                Button {
-                    todayEmoji = "angry"
-                } label: {
-                    Image("angry")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                }
-                Button {
-                    todayEmoji = "cute"
-                } label: {
-                    Image("cute")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                }
-                Button {
-                    todayEmoji = "proud"
-                } label: {
-                    Image("proud")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                }
-            }
-            HStack(spacing: 20) {
-                Button {
-                    todayEmoji = "sad"
-                } label: {
-                    Image("sad")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                }
-                Button {
-                    todayEmoji = "tired"
-                } label: {
-                    Image("tired")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                }
-                Button {
-                    todayEmoji = "umm"
-                } label: {
-                    Image("umm")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                }
-            }
+            Text("오늘은 어떤 하루였나요?")
+                .modifier(TitleTextModifier())
+                .padding(.vertical)
+                .padding(.top, 20)
             
-            Button {
-                isShowingEmojiSheet = false
-//                isShowingQuestionSheet = true
-                
-            } label: {
-                Text("확인")
+            LazyVGrid(columns: columns){
+                ForEach(emojiarr, id: \.self) { index in
+                    Button {
+                        todayEmoji = index
+                    } label: {
+                        
+                        if index == todayEmoji{
+                            Image("\(index)")
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .shadow(radius: 5)
+                        }else{
+                            Image("\(index)")
+                                .resizable()
+                                .frame(width: 65, height: 65)
+                                .padding(15)
+                        }
+                        
+                    }
+                }
             }
-            
+            .padding(.horizontal, 20)
         }
-
+            
         
+        
+        Button {
+            isShowingEmojiSheet = false
+        } label: {
+            Text("확인")
+                .modifier(TitleTextModifier())
+                .padding(.vertical, 10)
+                .padding(.horizontal, 55)
+                .background(Color("Color3"))
+                .cornerRadius(17)
+                .foregroundColor(.black)
+        }
+        .padding(.vertical, 30)
         
     }
+    
+    
+    
 }
 
-//struct CheckEmoji_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CheckEmojiView()
-//    }
-//}
+
+struct CheckEmoji_Previews: PreviewProvider {
+    static var previews: some View {
+        QuestionView()
+    }
+}
