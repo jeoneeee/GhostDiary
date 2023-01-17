@@ -100,24 +100,40 @@ struct CustomDatePicker: View {
                             .font(.caption.bold())
                     }
                     
-                    let answers = answerStores.answers
+                    let answer = answerStores.answers
                         .filter {$0.timestamp.getDay() == value.date.getDay() }
-                        
-                    if answers.count > 0 {
-                        let answer = answers.first!
-                        Image(answer.expression)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 30, height: 30)
-                    } else {
-                        Circle()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color(UIColor.systemGray6))
-                    }
+                        .first
+                    
+                    answerView(answer: answer)
                 }
             }
         }
-        //.frame(height: 60, alignment: .top)
+    }
+    
+    // MARK: - 자신이 대답한 감정을 보여주는 뷰
+    /// - Parameter answer: 해당일에 자신이 대답한 데이터를 가지고 있으며 타입은 옵셔널이다.
+    ///
+    /// nil일 경우 대답이 존재하지 않으므로 빈 뷰를 보여주며 대답이 담긴 경우
+    /// NavigationLink로 생성되며 해당일에 대답한 질문과 대답 데이터를 AnswerDetailView에 넘긴다.
+    @ViewBuilder
+    func answerView(answer: Answer?) -> some View {
+        if let answer {
+            let index = answerStores.answers.firstIndex {$0.id == answer.id}!
+
+            NavigationLink {
+                AnswerDetailView(question: answerStores.questions[index], answer: answerStores.answers[index])
+            } label: {
+                Image(answer.expression)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 30, height: 30)
+            }
+        } else {
+            Circle()
+                .frame(width: 30, height: 30)
+                .foregroundColor(Color(UIColor.systemGray6))
+        }
+        
     }
     
     // extracting year and month for display
