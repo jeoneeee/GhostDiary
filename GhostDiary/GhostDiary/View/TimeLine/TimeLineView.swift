@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimeLineView: View {
-    @State private var tabSelection: Int = 0
+    @State private var tabSelection: Int = 1
     var body: some View {
         NavigationStack {
             VStack(alignment: .trailing) {

@@ -15,12 +15,21 @@ struct TimeLineCustomTabBar: View {
             Button(action: {
                 selection = 1
             }, label: {
-                Image(systemName: "calendar")
+                VStack(alignment: .center, spacing: 0) {
+                    Image(systemName: "calendar")
+                        .foregroundColor(selection == 1 ? .black : .secondary)
+                        .fontWeight(selection == 1 ? .bold : .regular)
+                }
             })
+            
             Button(action: {
                 selection = 2
             }, label: {
-                Image(systemName: "list.bullet")
+                VStack(alignment: .center, spacing: 0) {
+                    Image(systemName: "list.bullet")
+                        .foregroundColor(selection == 2 ? .black : .secondary)
+                        .fontWeight(selection == 2 ? .bold : .regular)
+                }
             })
         }
         .foregroundColor(.secondary)
