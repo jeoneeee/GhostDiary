@@ -56,6 +56,10 @@ class AnswerStore: ObservableObject {
                 
                 print("question: \(question)")
                 
+                if questions.contains(where: {$0.id == question.id}) {
+                    return
+                }
+                
                 DispatchQueue.main.async {
                     self.questions.append(question)
                 }
