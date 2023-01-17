@@ -21,7 +21,7 @@ struct CalendarView: View {
         .onAppear {
             Task {
                 if let user = authStores.user {
-                    await answerStores.readAnswer(user)
+                    await answerStores.readQuestionAndAnswer(user)
                 }
             }
         }
