@@ -12,7 +12,6 @@ class AnswerStore: ObservableObject {
     @Published var questions: [Question] = [] // 내가 대답한 질문들
     @Published var answers: [Answer] = [] // 내가 대답한 답변들
     
-    
     let database = Firestore.firestore().collection("Questions")
     
     //사용자가 작성한 답변 추가

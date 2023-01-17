@@ -12,6 +12,8 @@ struct CustomDatePicker: View {
     @StateObject var timelineStores = TimeLineStore()
     @Binding var currentDate: Date
     
+    @EnvironmentObject var answerStores: AnswerStore
+    
     // Month update on arrow button
     @State var currentMonth: Int = 0
     
@@ -79,16 +81,6 @@ struct CustomDatePicker: View {
         .onChange(of: currentMonth) { newValue in
             currentDate = getCurrentMonth()
         }
-        .onAppear {
-            if let user = authStores.user {
-                print("user: \(user)")
-                Task {
-                    await
-                    //timelineStores.requestAnswersData(user.currentQuestionNum)
-                    timelineStores.requestAnswersData(user.id, answerNumber: user.questionNum)
-                }
-            }
-        }
     }
     
     @ViewBuilder
@@ -104,14 +96,17 @@ struct CustomDatePicker: View {
                                     .frame(width: 20, height: 20)
                                     .foregroundColor(.pink)
                             }
-                        
                     } else {
                         Text("\(value.day)")
                             .font(.caption.bold())
                     }
-                    // FIXME: - 해당 날짜에 질문을 한 경우로 조건을 변경해야 함x
-                    if value.day % 3 == 0 {
-                        Image("smile")
+                    
+                    let answers = answerStores.answers
+                        .filter {$0.timestamp.getDay() == value.date.getDay() }
+                        
+                    if answers.count > 0 {
+                        let answer = answers.first!
+                        Image(answer.expression)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 30, height: 30)
@@ -178,6 +173,7 @@ struct CustomDatePicker_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
             .environmentObject(AuthStore())
+            .environmentObject(AnswerStore())
     }
 }
 
@@ -202,6 +198,16 @@ extension Date {
             return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
         }
         
+    }
+    
+    
+    // MARK: - 입력받은 date를 일 (11일 or 15일)로 변환하는 메소드
+    func getDay() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(identifier: "ko_KR")
+        
+        return dateFormatter.string(from: self)
     }
     
 }
