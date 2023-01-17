@@ -57,21 +57,22 @@ struct CustomDatePicker: View {
             
             // 요일 뷰
             VStack {
-                HStack(spacing: 10) {
+                HStack(spacing: 5) {
                     ForEach(days, id: \.self) { day in
                         Text(day)
-                            .font(.callout)
-                            .fontWeight(.semibold)
+                            //.font(.callout)
+                            //.fontWeight(.semibold)
                             .frame(maxWidth: .infinity)
+                            .modifier(BodyTextModifier())
                     }
                 }
                 // 날짜 뷰
                 let columns = Array(repeating: GridItem(.flexible()), count: 7)
                 
-                LazyVGrid(columns: columns, spacing: 15) {
+                LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(extractDate()) { value in
                         CardView(value: value)
-                            .padding(.bottom)
+                            //.padding(.bottom)
                     }
                 }
             }
@@ -86,10 +87,11 @@ struct CustomDatePicker: View {
     func CardView(value: CalendarDate) -> some View {
         VStack {
             if value.day != -1 {
-                VStack {
+                VStack(spacing: 3) {
                     if value.day == today { // 오늘 날짜인 경우
                         Text("\(value.day)")
-                            .font(.caption.bold())
+                            //.font(.caption.bold())
+                            .modifier(CaptionTextModifier())
                             .background {
                                 Circle()
                                     .frame(width: 20, height: 20)
@@ -97,7 +99,8 @@ struct CustomDatePicker: View {
                             }
                     } else {
                         Text("\(value.day)")
-                            .font(.caption.bold())
+                            //.font(.caption.bold())
+                            .modifier(CaptionTextModifier())
                     }
                     
                     let answer = answerStores.answers
