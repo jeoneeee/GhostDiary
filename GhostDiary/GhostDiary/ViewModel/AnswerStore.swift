@@ -56,11 +56,11 @@ class AnswerStore: ObservableObject {
                 
                 print("question: \(question)")
                 
-                await readAnswer(user.id, question: question)
-                
                 DispatchQueue.main.async {
                     self.questions.append(question)
                 }
+                
+                await readAnswer(user.id, question: question)
             }
             
         } catch {
