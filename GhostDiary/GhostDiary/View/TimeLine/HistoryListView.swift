@@ -8,13 +8,29 @@
 import SwiftUI
 
 struct HistoryListView: View {
+    @EnvironmentObject var authStores: AuthStore
+    @EnvironmentObject var answerStores: AnswerStore
+    
     var body: some View {
-        Text("기록 리스트 입니다")
+        List {
+            ForEach(answerStores.answers.indices, id: \.self) { idx in
+                NavigationLink {
+                    AnswerDetailView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
+                } label: {
+                    HistoryListCellView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
+                }
+            }
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 50, trailing: 0))
+        }
+        .listStyle(.plain)
     }
 }
 
 struct HistoryListView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryListView()
+            .environmentObject(AuthStore())
+            .environmentObject(AnswerStore())
     }
 }

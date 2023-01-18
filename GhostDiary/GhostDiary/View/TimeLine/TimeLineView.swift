@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct TimeLineView: View {
-    @State private var tabSelection: Int = 0
+    @State private var tabSelection: Int = 1
     var body: some View {
-        VStack(alignment: .trailing) {
-            Spacer()
-            TimeLineCustomTabBar(selection: $tabSelection)
-                .padding()
-            
-            TabView(selection: $tabSelection) {
-                CalendarView()
-                    .tag(1)
-                HistoryListView()
-                    .tag(2)
+        NavigationStack {
+            VStack(alignment: .trailing) {
+                Spacer()
+                TimeLineCustomTabBar(selection: $tabSelection)
+                    .padding()
+                
+                TabView(selection: $tabSelection) {
+                    CalendarView()
+                        .tag(1)
+                    HistoryListView()
+                        .tag(2)
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
         }
     }
 }
