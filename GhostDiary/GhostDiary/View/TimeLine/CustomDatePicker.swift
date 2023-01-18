@@ -85,7 +85,7 @@ struct CustomDatePicker: View {
         VStack {
             if value.day != -1 {
                 VStack(spacing: 3) {
-                    if value.day == today { // 오늘 날짜인 경우
+                    if value.date.getDay() == Date().getDay() { // 오늘 날짜인 경우
                         Text("\(value.day)")
                             .modifier(CaptionTextModifier())
                             .background {
@@ -131,7 +131,6 @@ struct CustomDatePicker: View {
                 .frame(width: 30, height: 30)
                 .foregroundColor(Color(UIColor.systemGray6))
         }
-        
     }
     
     // extracting year and month for display
