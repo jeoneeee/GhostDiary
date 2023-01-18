@@ -14,8 +14,9 @@ struct CustomDatePicker: View {
     
     @EnvironmentObject var answerStores: AnswerStore
     
-    // Month update on arrow button
     @State var currentMonth: Int = 0
+    
+    var calendarStore = CalendarStore()
     
     let days: [String] = ["일", "월", "화", "수", "목", "금", "토"]
     
@@ -38,9 +39,9 @@ struct CustomDatePicker: View {
                         .font(.title2)
                 }
                 
-                Text("\(extraData()[0])년")
+                Text("\(calendarStore.extraData(currentDate)[0])년")
                     .modifier(TitleTextModifier())
-                Text("\(extraData()[1])")
+                Text("\(calendarStore.extraData(currentDate)[1])")
                     .modifier(TitleTextModifier())
                 
                 Button {
@@ -68,7 +69,7 @@ struct CustomDatePicker: View {
                 let columns = Array(repeating: GridItem(.flexible()), count: 7)
                 
                 LazyVGrid(columns: columns, spacing: 5) {
-                    ForEach(extractDate()) { value in
+                    ForEach(calendarStore.extractDate(currentMonth)) { value in
                         CardView(value: value)
                     }
                 }
@@ -76,7 +77,8 @@ struct CustomDatePicker: View {
         }
         // 날짜 변경
         .onChange(of: currentMonth) { newValue in
-            currentDate = getCurrentMonth()
+            currentDate = calendarStore.getCurrentMonth(currentMonth)
+            //currentDate = getCurrentMonth()
         }
     }
     
@@ -131,47 +133,6 @@ struct CustomDatePicker: View {
                 .frame(width: 30, height: 30)
                 .foregroundColor(Color(UIColor.systemGray6))
         }
-    }
-    
-    // MARK: - currentDate을 기준으로 년도와 일을 문자열 배열로 반환하는 메소드
-    /// 반환값: ex) [2023, 4월]
-    func extraData() -> [String] {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko")
-        formatter.dateFormat = "YYYY MMMM"
-        
-        let date = formatter.string(from: currentDate)
-        return date.components(separatedBy: " ")
-    }
-    // MARK: - 월을 변경하는 버튼을 눌렀을때 호출되는 메소드로 현재 화면에 보이는 월을 반환한다.
-    /// 반환값: 현재 2023년 4월을 보고있다면 currentMonth: 2023-04-18 11:46:36 +0000
-    func getCurrentMonth() -> Date {
-        let calendar = Calendar.current
-        
-        guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else { return Date() }
-        return currentMonth
-    }
-    
-    // MARK: - 일 정보를 반환하는 메소드
-    /// 반환값은 CalendarDate 타입의 배열이다.
-    /// 현재 화면에 보고 있는 달력의 날짜들을 CalendarDate 타입으로 반환한다.
-    /// 달력의 첫줄에 비어있는 칸은 day 프로퍼티의 값이 -1이다.
-    func extractDate() -> [CalendarDate] {
-        let calendar = Calendar.current
-        let currentMonth = getCurrentMonth()
-        
-        // 현재 달력의 Date타입의 값들을 custom model인 CalendarDate로 변환하는 작업
-        var days =  currentMonth.getAllDates().compactMap { date -> CalendarDate in
-            let day = calendar.component(.day, from: date)
-            return CalendarDate(day: day, date: date)
-        }
-        
-        // 현재 월의 첫날이 달력의 시작부터 얼마나 떨어져있는지 계산하는 로직
-        let firstWeekday = calendar.component(.weekday, from: days.first?.date ?? Date())
-        for _ in 0..<firstWeekday - 1 {
-            days.insert(CalendarDate(day: -1, date: Date()), at: 0)
-        }
-        return days
     }
 }
 

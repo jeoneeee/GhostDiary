@@ -40,6 +40,7 @@
 		2876060E2949FC7E00406FB5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876060D2949FC7E00406FB5 /* Question.swift */; };
 		289272CE295369B400953951 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 289272CD295369B400953951 /* GoogleSignIn */; };
 		289272D0295369B400953951 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 289272CF295369B400953951 /* GoogleSignInSwift */; };
+		2892CA0B29782224008DBAF8 /* CalendarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2892CA0A29782224008DBAF8 /* CalendarStore.swift */; };
 		28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A81AB0294E16DF00E0FEE1 /* Authorization.swift */; };
 		28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C051C6294F4C1E00DB1213 /* TimeData.swift */; };
 		28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F677122949EB3F00935959 /* GhostDiaryApp.swift */; };
@@ -87,6 +88,7 @@
 		287606092949FC5C00406FB5 /* QuestionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStore.swift; sourceTree = "<group>"; };
 		2876060B2949FC7300406FB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2876060D2949FC7E00406FB5 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		2892CA0A29782224008DBAF8 /* CalendarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarStore.swift; sourceTree = "<group>"; };
 		28A81AB0294E16DF00E0FEE1 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		28C051C6294F4C1E00DB1213 /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		28F6770F2949EB3F00935959 /* GhostDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhostDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				1A97F209297428EC0033C7E7 /* AnswerStore.swift */,
 				287606092949FC5C00406FB5 /* QuestionStore.swift */,
 				28F89175296C4ABA00D79C42 /* TimeLineStore.swift */,
+				2892CA0A29782224008DBAF8 /* CalendarStore.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				287606032949FBC200406FB5 /* HistoryListView.swift in Sources */,
 				287606012949FBA200406FB5 /* CalendarView.swift in Sources */,
 				1A364BED29704B460099C1D2 /* TextModifiers.swift in Sources */,
+				2892CA0B29782224008DBAF8 /* CalendarStore.swift in Sources */,
 				287605F72949FAED00406FB5 /* LoginView.swift in Sources */,
 				1A364BFA29706BED0099C1D2 /* HeatmapState.swift in Sources */,
 				2827C5D92976D70C00185917 /* HistoryListCellView.swift in Sources */,
