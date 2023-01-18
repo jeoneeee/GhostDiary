@@ -10,6 +10,7 @@ import SwiftUI
 struct GhostImageView: View {
     @State private var rotation1: CGFloat = -100
     @State private var rotation2: CGFloat = 20
+    @State private var rotation3: CGFloat = 20
     @State private var isrotating: CGFloat = -1
     
     var body: some View {
@@ -26,6 +27,19 @@ struct GhostImageView: View {
                                 
                                 rotation1 = 90
                                 
+                            }
+                    }
+            }
+            
+            HStack {
+                Image("ghost5")
+                    .resizable()
+                    .frame(width: 100, height: 110)
+                    .offset(x: rotation3, y: rotation3)
+                    .onAppear {
+                        withAnimation(.linear(duration: 1)
+                            .speed(0.5).repeatForever(autoreverses: true)) {
+                                rotation3 = 90
                             }
                     }
             }

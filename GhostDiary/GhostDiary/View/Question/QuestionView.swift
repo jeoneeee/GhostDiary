@@ -11,8 +11,10 @@ struct QuestionView: View {
     @State var isShowingEmojiSheet: Bool = false
     @State var isShowingQuestionSheet: Bool = false
     @State var todayEmoji: String = ""
+    
     @EnvironmentObject var questionStore: QuestionStore
     @EnvironmentObject var authStore: AuthStore
+    @EnvironmentObject var answerStores: AnswerStore
     
     var body: some View {
         VStack {
@@ -30,9 +32,13 @@ struct QuestionView: View {
         .padding([.bottom], 60)
         .onAppear {
             Task {
-                await questionStore.fetchQuestions(user: authStore.user!)
+                if let user = authStore.user {
+                    await questionStore.fetchQuestions(user: user)
+                    await answerStores.readQuestionAndAnswer(user)
+                }
             }
         }
+        
         .sheet(isPresented: $isShowingEmojiSheet) {
             CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet)
                 .onDisappear {
