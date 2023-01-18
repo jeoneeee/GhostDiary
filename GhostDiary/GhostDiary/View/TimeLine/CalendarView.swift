@@ -16,7 +16,6 @@ struct CalendarView: View {
         ScrollView(.vertical, showsIndicators: false) {
             CustomDatePicker(currentDate: $currentDate)
         }
-        //.padding(.horizontal, 20)
         
         .onAppear {
             Task {

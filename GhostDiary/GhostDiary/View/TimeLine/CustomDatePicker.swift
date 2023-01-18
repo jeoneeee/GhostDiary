@@ -60,8 +60,6 @@ struct CustomDatePicker: View {
                 HStack(spacing: 5) {
                     ForEach(days, id: \.self) { day in
                         Text(day)
-                            //.font(.callout)
-                            //.fontWeight(.semibold)
                             .frame(maxWidth: .infinity)
                             .modifier(BodyTextModifier())
                     }
@@ -72,7 +70,6 @@ struct CustomDatePicker: View {
                 LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(extractDate()) { value in
                         CardView(value: value)
-                            //.padding(.bottom)
                     }
                 }
             }
@@ -90,7 +87,6 @@ struct CustomDatePicker: View {
                 VStack(spacing: 3) {
                     if value.day == today { // 오늘 날짜인 경우
                         Text("\(value.day)")
-                            //.font(.caption.bold())
                             .modifier(CaptionTextModifier())
                             .background {
                                 Circle()
@@ -99,7 +95,6 @@ struct CustomDatePicker: View {
                             }
                     } else {
                         Text("\(value.day)")
-                            //.font(.caption.bold())
                             .modifier(CaptionTextModifier())
                     }
                     
