@@ -28,17 +28,8 @@ struct CustomDatePicker: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            // Days...
-            HStack(spacing: 20) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(extraData()[0])
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                    Text(extraData()[1])
-                        .font(.title.bold())
-                }
-                
-                Spacer(minLength: 0)
+            HStack {
+                Spacer()
                 
                 Button {
                     currentMonth -= 1
@@ -46,13 +37,22 @@ struct CustomDatePicker: View {
                     Image(systemName: "chevron.left")
                         .font(.title2)
                 }
+                
+                Text("\(extraData()[0])년")
+                    .modifier(TitleTextModifier())
+                Text("\(extraData()[1])")
+                    .modifier(TitleTextModifier())
+                
                 Button {
                     currentMonth += 1
                 } label: {
                     Image(systemName: "chevron.right")
                         .font(.title2)
                 }
+                
+                Spacer()
             }
+            .foregroundColor(.black)
             .padding(.horizontal)
             
             // 요일 뷰
@@ -91,7 +91,7 @@ struct CustomDatePicker: View {
                             .background {
                                 Circle()
                                     .frame(width: 20, height: 20)
-                                    .foregroundColor(.pink)
+                                    .foregroundColor(Color("Color8"))
                             }
                     } else {
                         Text("\(value.day)")
