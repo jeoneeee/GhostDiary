@@ -13,10 +13,11 @@ struct CalendarView: View {
     @EnvironmentObject var answerStores: AnswerStore
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
+        VStack {
             CustomDatePicker(currentDate: $currentDate)
+            
+            Spacer()
         }
-        
         .onAppear {
             Task {
                 if let user = authStores.user {

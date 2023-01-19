@@ -18,6 +18,11 @@ enum Expression: String {
     case tired
 }
 
+enum AnswerStatus {
+    case notAnswerd
+    case answered
+}
+
 struct Answer: Identifiable, Hashable, Codable {
     var id: String
     var uid: String // user의 uid
