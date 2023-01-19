@@ -142,5 +142,6 @@ struct LoginView_Previews: PreviewProvider {
     @State static var isLoading: Bool = false
     static var previews: some View {
         LoginView(isLogin: $isLogin, isLoading: $isLoading)
+            .environmentObject(AuthStore())
     }
 }
