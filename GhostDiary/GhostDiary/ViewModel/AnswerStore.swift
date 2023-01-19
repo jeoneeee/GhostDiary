@@ -8,6 +8,11 @@
 import Foundation
 import FirebaseFirestore
 
+enum AnswerStatus {
+    case notAnswerd
+    case answered
+}
+
 class AnswerStore: ObservableObject {
     @Published var questions: [Question] = [] // 내가 대답한 질문들
     @Published var answers: [Answer] = [] // 내가 대답한 답변들
@@ -41,6 +46,7 @@ class AnswerStore: ObservableObject {
         do {
             let questionSnapshot = try await database
                 .whereField("number", isLessThanOrEqualTo: user.questionNum)
+                .order(by: "number", descending: true)
                 .getDocuments()
             
             for document in questionSnapshot.documents {
@@ -60,10 +66,15 @@ class AnswerStore: ObservableObject {
                     return
                 }
                 
+                let confirmed = await confirmIsAnswered(user.id, questionId: question.id)
+                if confirmed == .notAnswerd {
+                    continue
+                }
+                
                 DispatchQueue.main.async {
                     self.questions.append(question)
                 }
-                
+ 
                 await readAnswer(user.id, question: question)
             }
             
@@ -113,8 +124,21 @@ class AnswerStore: ObservableObject {
         } catch {
             print("answer get error: \(error.localizedDescription)")
         }
-        
-        
+    }
+    
+    func confirmIsAnswered(_ uid: String, questionId: String) async -> AnswerStatus {
+        do {
+            let answersSnapshot = try await database
+                .document(questionId)
+                .collection("Answers")
+                .whereField("uid", isEqualTo: uid)
+                .getDocuments()
+            return (answersSnapshot.documents.count < 1) ? .notAnswerd : .answered
+            
+        } catch {
+            print("confirmIsAnswered: \(error.localizedDescription)")
+        }
+        return .notAnswerd
     }
 }
 
