@@ -19,7 +19,6 @@ struct HistoryListCellView: View {
                     .frame(width: 20, alignment: .leading)
                 Text(question.query)
                     .foregroundColor(Color("Color5"))
-                
                 Spacer()
             }
             .modifier(BodyTextModifier())

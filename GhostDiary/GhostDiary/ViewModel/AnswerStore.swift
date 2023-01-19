@@ -8,11 +8,6 @@
 import Foundation
 import FirebaseFirestore
 
-enum AnswerStatus {
-    case notAnswerd
-    case answered
-}
-
 class AnswerStore: ObservableObject {
     @Published var questions: [Question] = [] // 내가 대답한 질문들
     @Published var answers: [Answer] = [] // 내가 대답한 답변들

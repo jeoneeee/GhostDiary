@@ -12,18 +12,17 @@ struct HistoryListView: View {
     @EnvironmentObject var answerStores: AnswerStore
     
     var body: some View {
-        List {
+        ScrollView(showsIndicators: true) {
             ForEach(answerStores.answers.indices, id: \.self) { idx in
                 NavigationLink {
                     AnswerDetailView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
                 } label: {
                     HistoryListCellView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
                 }
+                Divider()
+                Spacer(minLength: UIScreen.screenHeight / 20)
             }
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 50, trailing: 0))
         }
-        .listStyle(.plain)
     }
 }
 
