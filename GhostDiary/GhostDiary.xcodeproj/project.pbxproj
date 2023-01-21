@@ -12,14 +12,12 @@
 		1A364BED29704B460099C1D2 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BEC29704B460099C1D2 /* TextModifiers.swift */; };
 		1A364BF0297053A90099C1D2 /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BEF297053A90099C1D2 /* Ex+String.swift */; };
 		1A364BF229705B1F0099C1D2 /* AnswerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BF129705B1F0099C1D2 /* AnswerDetailView.swift */; };
-		1A364BF829706BC20099C1D2 /* Heatmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BF729706BC20099C1D2 /* Heatmap.swift */; };
-		1A364BFA29706BED0099C1D2 /* HeatmapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BF929706BED0099C1D2 /* HeatmapState.swift */; };
-		1A364BFC29706CD60099C1D2 /* DailyUsageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BFB29706CD60099C1D2 /* DailyUsageState.swift */; };
 		1A364BFE29706D8A0099C1D2 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A364BFD29706D8A0099C1D2 /* Ex+Color.swift */; };
 		1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A396FA7295889E1007C1423 /* CheckEmojiView.swift */; };
 		1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */; };
 		1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */; };
 		1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97F209297428EC0033C7E7 /* AnswerStore.swift */; };
+		1AA006E4297C08FD00D5EF67 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA006E3297C08FD00D5EF67 /* ChartView.swift */; };
 		28158CE52958703B002C832F /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28158CE42958703B002C832F /* AnswerView.swift */; };
 		2826CE8629796FF700124147 /* Ex+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826CE8529796FF700124147 /* Ex+UIScreen.swift */; };
 		2827C5D72976CE5B00185917 /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C5D62976CE5B00185917 /* Ex+Date.swift */; };
@@ -63,14 +61,12 @@
 		1A364BEC29704B460099C1D2 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		1A364BEF297053A90099C1D2 /* Ex+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+String.swift"; sourceTree = "<group>"; };
 		1A364BF129705B1F0099C1D2 /* AnswerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerDetailView.swift; sourceTree = "<group>"; };
-		1A364BF729706BC20099C1D2 /* Heatmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heatmap.swift; sourceTree = "<group>"; };
-		1A364BF929706BED0099C1D2 /* HeatmapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatmapState.swift; sourceTree = "<group>"; };
-		1A364BFB29706CD60099C1D2 /* DailyUsageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageState.swift; sourceTree = "<group>"; };
 		1A364BFD29706D8A0099C1D2 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		1A396FA7295889E1007C1423 /* CheckEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmojiView.swift; sourceTree = "<group>"; };
 		1A6BC9AA294F3F1D00D9B84E /* GhostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostImageView.swift; sourceTree = "<group>"; };
 		1A6BC9AC294F401700D9B84E /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
 		1A97F209297428EC0033C7E7 /* AnswerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStore.swift; sourceTree = "<group>"; };
+		1AA006E3297C08FD00D5EF67 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		28158CE42958703B002C832F /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		2826CE8529796FF700124147 /* Ex+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIScreen.swift"; sourceTree = "<group>"; };
 		2827C5D62976CE5B00185917 /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
@@ -232,9 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				287606052949FC1500406FB5 /* AnalysisView.swift */,
-				1A364BF729706BC20099C1D2 /* Heatmap.swift */,
-				1A364BF929706BED0099C1D2 /* HeatmapState.swift */,
-				1A364BFB29706CD60099C1D2 /* DailyUsageState.swift */,
+				1AA006E3297C08FD00D5EF67 /* ChartView.swift */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -378,12 +372,12 @@
 				2827C5D72976CE5B00185917 /* Ex+Date.swift in Sources */,
 				2826CE8629796FF700124147 /* Ex+UIScreen.swift in Sources */,
 				287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */,
+				1AA006E4297C08FD00D5EF67 /* ChartView.swift in Sources */,
 				287606032949FBC200406FB5 /* HistoryListView.swift in Sources */,
 				287606012949FBA200406FB5 /* CalendarView.swift in Sources */,
 				1A364BED29704B460099C1D2 /* TextModifiers.swift in Sources */,
 				2892CA0B29782224008DBAF8 /* CalendarStore.swift in Sources */,
 				287605F72949FAED00406FB5 /* LoginView.swift in Sources */,
-				1A364BFA29706BED0099C1D2 /* HeatmapState.swift in Sources */,
 				2827C5D92976D70C00185917 /* HistoryListCellView.swift in Sources */,
 				287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */,
 				28F89176296C4ABA00D79C42 /* TimeLineStore.swift in Sources */,
@@ -395,9 +389,7 @@
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
 				1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */,
 				1A364BF0297053A90099C1D2 /* Ex+String.swift in Sources */,
-				1A364BF829706BC20099C1D2 /* Heatmap.swift in Sources */,
 				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,
-				1A364BFC29706CD60099C1D2 /* DailyUsageState.swift in Sources */,
 				2876060E2949FC7E00406FB5 /* Question.swift in Sources */,
 				1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */,
 				285EAE7B2961792900A24E18 /* CalendarDate.swift in Sources */,

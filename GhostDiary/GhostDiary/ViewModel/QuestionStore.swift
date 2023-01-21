@@ -13,7 +13,6 @@ import Firebase
 @MainActor
 class QuestionStore: ObservableObject {
     @Published var questions: Question = Question(id: "", number: "", query: "")
-    @Published var matrix: [DailyUsageState] = DailyUsageState.initialMatrix
     
     let database = Firestore.firestore()
     
