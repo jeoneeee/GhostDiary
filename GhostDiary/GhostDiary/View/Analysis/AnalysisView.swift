@@ -10,7 +10,8 @@ import SwiftUI
 struct AnalysisView: View {
     @State private var year = 2023
     @State private var month = 1
-    @StateObject var questionStore: QuestionStore = QuestionStore()
+    @EnvironmentObject var answerStore: AnswerStore
+    @EnvironmentObject var authStore: AuthStore
     
     var body: some View {
         VStack {
@@ -46,9 +47,14 @@ struct AnalysisView: View {
                         .foregroundColor(.black)
                 }
             } // HStack
-            
-            Heatmap(matrix: questionStore.matrix)
-                .frame(width: 150, height: 150)
+            ChartView()
+        }
+        .onAppear {
+            Task {
+                if let user = authStore.user {
+                    await answerStore.readQuestionAndAnswer(user)
+                }
+            }
         }
     }
 }
@@ -56,5 +62,7 @@ struct AnalysisView: View {
 struct AnalysisView_Previews: PreviewProvider {
     static var previews: some View {
         AnalysisView()
+            .environmentObject(AuthStore())
+            .environmentObject(AnswerStore())
     }
 }
