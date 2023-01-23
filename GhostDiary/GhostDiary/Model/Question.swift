@@ -7,25 +7,21 @@
 
 import SwiftUI
 
-enum Expression: String {
-    case angry
-    case sad
-    case proud
-    case cute
-    case smile
-    case umm
-    case tired
-}
+
 
 struct Question: Codable, Identifiable {
     var id: String
+    var number: String // 질문 번호
     var query: String
-    var queryNums: Int
-    var expression: String // sad, angry
-    var timestamp: String
     
-    var image: Image {
-        let name = Expression(rawValue: expression) ?? .smile
-        return Image(name.rawValue)
+    var createdDate: String { // 현재 시간 받아오기
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.timeZone = TimeZone(abbreviation: "KST")
+        dateFormatter.dateFormat = "yyyy-MM-dd" // "yyyy-MM-dd HH:mm:ss"
+        
+        let dateCreatedAt = dateFormatter.string(from: Date())
+        
+        return dateCreatedAt
     }
 }

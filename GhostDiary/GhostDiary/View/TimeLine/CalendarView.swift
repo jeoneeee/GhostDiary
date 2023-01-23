@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct CalendarView: View {
+    @State private var currentDate: Date = Date()
+    @EnvironmentObject var authStores: AuthStore
+    @EnvironmentObject var answerStores: AnswerStore
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            CustomDatePicker(currentDate: $currentDate)
+            
+            Spacer()
+        }
+        .onAppear {
+            Task {
+                if let user = authStores.user {
+                    await answerStores.readQuestionAndAnswer(user)
+                }
+            }
+        }
     }
 }
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
+            .environmentObject(AuthStore())
+            .environmentObject(AnswerStore())
     }
 }

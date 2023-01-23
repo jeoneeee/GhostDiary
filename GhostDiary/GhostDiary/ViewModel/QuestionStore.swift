@@ -7,54 +7,158 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseCore
+import Firebase
 
+@MainActor
 class QuestionStore: ObservableObject {
-    @Published var questions: [Question] = []
+    @Published var questions: Question = Question(id: "", number: "", query: "")
     
     let database = Firestore.firestore()
     
-    init() {
-        /*
-         postits = [
-         Postit(id: UUID().uuidString, user: "ned", memo: "Good morning", colorIndex: 0, createdAt: Date().timeIntervalSince1970),
+    
+    //데이터베이스에 저장된 정보들을 불러옴
+    func fetchQuestions(user: User) async {
+        
+        let result = await isCheckingQuestion(user: user)
          
-         Postit(id: UUID().uuidString, user: "ned", memo: "Good evening", colorIndex: 1, createdAt: Date().timeIntervalSince1970),
-         
-         Postit(id: UUID().uuidString, user: "ned", memo: "Hello World", colorIndex: 2, createdAt: Date().timeIntervalSince1970),
-         
-         Postit(id: UUID().uuidString, user: "ned", memo: "Hello my friend", colorIndex: 3, createdAt: Date().timeIntervalSince1970)
-         ]
-         */
-        questions = []
+        if result {
+            // questionNum + 1
+            do {
+                let querysnapshot = try await database.collection("Questions")
+                    .whereField("number", isEqualTo: String(Int(user.questionNum)! + 1)) // Questions에서 "number" 가 user.questionNom + 1 인 값을 가져온다
+                    .getDocuments()
+                
+                // 내용이 한개지만 배열 값으로 저장되어서 배열 첫번째 값을 불러온다.
+                for document in querysnapshot.documents {
+                    let id: String = document["id"] as? String ?? ""
+                    let number: String = document["number"] as? String ?? ""
+                    let query: String = document["query"] as? String ?? ""
+
+                    self.questions = Question(id: id, number: number, query: query)
+                }
+
+                do { // user애 questionNum 값에 1을 더해 업데이트
+                    try await database.collection("users").document(user.id)
+                        .updateData([
+                            "questionNum": String(Int(user.questionNum)! + 1)
+                        ])
+                } catch {
+                    print("user question number update error : \(error.localizedDescription)")
+                }
+
+            } catch {
+                print("fetchQuestions error : \(error.localizedDescription)")
+            }
+
+        } else {
+            // questionNum
+            do {
+                let querysnapshot = try await database.collection("Questions")
+                    .whereField("number", isEqualTo: user.questionNum)
+                    .getDocuments()
+
+                for document in querysnapshot.documents {
+                    let id: String = document["id"] as? String ?? ""
+                    let number: String = document["number"] as? String ?? ""
+                    let query: String = document["query"] as? String ?? ""
+
+                    self.questions = Question(id: id, number: number, query: query)
+                }
+            } catch {
+                print("fetchQuestions error : \(error.localizedDescription)")
+            }
+        }
+
+    }
+    
+    func isCheckingQuestion(user: User) async -> Bool { // 질문 업데이트 체크 함수, 반환값이 true일 때 user.questionNum + 1
+        do {
+            print("user = \(user)")
+            let querysnapshot = try await database.collection("Questions")
+                .whereField("number", isEqualTo: user.questionNum)
+                .getDocuments()
+
+            var documentId = ""
+            
+            for document in querysnapshot.documents {
+                documentId = document.documentID
+            }
+            print("documentId = \(documentId)")
+            
+            
+           let answerData = try await database.collection("Questions") // ERROR ISSUE -> 변수 선언 까먹음..
+                .document(documentId)
+                .collection("Answers")
+                .whereField("uid", isEqualTo: user.id) // Answers 컬렉션 안에 자신의 아이디 값이 포함된 필드가 있는지 찾는다..
+                .getDocuments()
+            
+            if !answerData.isEmpty {
+                let document = answerData.documents.first! // 내가 대답한 다큐먼트
+                print("documentId = \(document.documentID)")
+                let docData = document.data()
+                let timestamp: Timestamp = docData["timestamp"] as? Timestamp ?? Timestamp()
+                let answerTime = timestamp.dateValue()
+                print("*****answerTime**** = \(answerTime)")
+                print("date = \(Date())")
+                
+                let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: "ko_kr")
+                formatter.timeZone = TimeZone(abbreviation: "KST")
+                formatter.dateFormat = "yyyy-MM-dd"
+                let answerDay = formatter.string(from: answerTime) // 해당 질문에 대답한 날짜
+                let currentDay = formatter.string(from: Date()) // 현재 날짜
+                
+                print("answerDay : \(answerDay)")
+                print("currentDay: \(currentDay)")
+                
+                if answerDay != currentDay {
+                    return true
+                }
+            } else {
+                return false
+            }
+            
+        } catch {
+            print("isCheckingQuestion error : \(error.localizedDescription)")
+            return false
+        }
+        
+        return false
     }
     
     
-    //데이터베이스에 저장된 정보들을 불러옴
-    func fetchQuestions() {
-        database.collection("Questions") // 데이터베이스의 Posts라는 이름의 컬렉션에서
-            .getDocuments { (snapshot, error) in // 문서들을 가져옴
-                self.questions.removeAll()
-                
-                // 비어있지 않다면 그 값들을 [Post]배열에 담음
-                //snapshot: 특정 시점에 사진 처럼 찰칵 찍어서 저장된 파일(collection의 문서)의 상태를 가져옴. -> 가져온 문서들을 반복문으로 사용할수 있음
-                if let snapshot {
-                    for document in snapshot.documents {
-                        //파이어베이스상의 문서 고유아이디
-                        let id: String = document.documentID
-                        
-                        let docData = document.data()
-                        let query: String = docData["query"] as? String ?? ""
-                        let queryNums: Int = docData["queryNums"] as? Int ?? 0
-                        let expression: String = docData["expression"] as? String ?? ""
-                        let timestamp: String = docData["timestamp"] as? String ?? ""
-                        
-                        
-                        let question: Question = Question(id: id, query: query, queryNums: queryNums, expression: expression, timestamp: timestamp)
-                        
-                        self.questions.append(question)
-                    }
-                }
+    func isCheckingAnswer(user: User) async -> Bool { // 질문에 따른 대답의 값이 있을경우 true로 반환
+        do {
+            print("user = \(user)")
+            let querysnapshot = try await database.collection("Questions")
+                .whereField("number", isEqualTo: user.questionNum)
+                .getDocuments()
+
+            var documentId = ""
+            
+            for document in querysnapshot.documents {
+                documentId = document.documentID
             }
+            print("documentId = \(documentId)")
+            
+            
+           let answerData = try await database.collection("Questions") // ERROR ISSUE -> 변수 선언 까먹음..
+                .document(documentId)
+                .collection("Answers")
+                .whereField("uid", isEqualTo: user.id) // Answers 컬렉션 안에 자신의 아이디 값이 포함된 필드가 있는지 찾는다..
+                .getDocuments()
+            
+            if !answerData.isEmpty {
+                return true
+            } else {
+                return false
+            }
+            
+        } catch {
+            print("isCheckingQuestion error : \(error.localizedDescription)")
+            return false
+        }
     }
 }
 
