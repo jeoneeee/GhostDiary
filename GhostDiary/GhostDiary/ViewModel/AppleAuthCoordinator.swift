@@ -7,12 +7,15 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
 import AuthenticationServices
 import CryptoKit
 
 class AppleAuthCoordinator: NSObject {
     var currentNonce: String?
     let window: UIWindow?
+    
+    let database = Firestore.firestore().collection("users")
     
     init(window: UIWindow?) {
         self.window = window
@@ -105,43 +108,31 @@ extension AppleAuthCoordinator: ASAuthorizationControllerDelegate {
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
             
-            print(credential)
-            dump("Credential: \(credential)")
-            
-            //
-            //            //Firebase 작업
-//            do {
-//                let authResult = try await Auth.auth().signIn(with: credential)
-//                print("authResult.user.uid: \(authResult.user.uid)")
-//
-//            } catch {
-//                print("apple login error: \(error.localizedDescription)")
-//            }
-            
-            // Reauthenticate current Apple user with fresh Apple credential.
-//            Auth.auth().currentUser.reauthenticate(with: credential) { (authResult, error) in
-//                guard error != nil else { return }
-//                // Apple user successfully re-authenticated.
-//                // ...
-//            }
-            
-            
             Auth.auth().signIn(with: credential) { (authResult, error) in
-                if error == nil {
-                    print("authResult.user.uid: \(authResult!.user.uid)")
+                guard error == nil else {
+                    print("애플 로그인 오류 발생: \(error?.localizedDescription)")
+                    return
                 }
-                
-                if let error {
-                    // Error. If error.code == .MissingOrInvalidNonce, make sure
-                    // you're sending the SHA256-hashed nonce as a hex string with
-                    // your request to Apple.
-                    print("apple login error: \(error.localizedDescription)")
-                    //return
+                print("애플 로그인 성공: \(authResult?.user.uid)")
+                Task {
+                    await self.addUsers(authResult!.user)
                 }
-//                 User is signed in to Firebase with Apple.
-//                 ...
-                //print("authResult.user.uid: \(authResult!.user.uid)")
+                /// FireBase DB 연동
             }
+        }
+    }
+    
+    // MARK: - FireBase에 User 컬렉션 추가
+    func addUsers(_ user: FirebaseAuth.User) async {
+        do {
+            try await database.document(user.uid).setData([
+                "id": user.uid,
+                "email": user.email ?? "Not Exsit Email",
+                "questionNum": "1",
+                "timestamp": user.metadata.creationDate ?? Date()
+            ])
+        } catch {
+            print("DB Add User Error: \(error)")
         }
     }
 }
