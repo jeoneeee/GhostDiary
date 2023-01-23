@@ -20,6 +20,7 @@
 		1AA006E4297C08FD00D5EF67 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA006E3297C08FD00D5EF67 /* ChartView.swift */; };
 		28158CE52958703B002C832F /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28158CE42958703B002C832F /* AnswerView.swift */; };
 		2826CE8629796FF700124147 /* Ex+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826CE8529796FF700124147 /* Ex+UIScreen.swift */; };
+		2826CEA9297987A400124147 /* AppleAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */; };
 		2827C5D72976CE5B00185917 /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C5D62976CE5B00185917 /* Ex+Date.swift */; };
 		2827C5D92976D70C00185917 /* HistoryListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C5D82976D70C00185917 /* HistoryListCellView.swift */; };
 		283BE9D6295FE6E600D4C6B1 /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */; };
@@ -69,6 +70,8 @@
 		1AA006E3297C08FD00D5EF67 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		28158CE42958703B002C832F /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		2826CE8529796FF700124147 /* Ex+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIScreen.swift"; sourceTree = "<group>"; };
+		2826CEA72979867800124147 /* GhostDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GhostDiary.entitlements; sourceTree = "<group>"; };
+		2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthCoordinator.swift; sourceTree = "<group>"; };
 		2827C5D62976CE5B00185917 /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		2827C5D82976D70C00185917 /* HistoryListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCellView.swift; sourceTree = "<group>"; };
 		283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 				287606092949FC5C00406FB5 /* QuestionStore.swift */,
 				28F89175296C4ABA00D79C42 /* TimeLineStore.swift */,
 				2892CA0A29782224008DBAF8 /* CalendarStore.swift */,
+				2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -261,6 +265,7 @@
 		28F677112949EB3F00935959 /* GhostDiary */ = {
 			isa = PBXGroup;
 			children = (
+				2826CEA72979867800124147 /* GhostDiary.entitlements */,
 				1A364BE52970488D0099C1D2 /* Configuration */,
 				28A81AAF294E165E00E0FEE1 /* Utilities */,
 				287605F42949FAA400406FB5 /* ViewModel */,
@@ -400,6 +405,7 @@
 				283BE9D8295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift in Sources */,
 				285EAE79296178DD00A24E18 /* CustomDatePicker.swift in Sources */,
 				28158CE52958703B002C832F /* AnswerView.swift in Sources */,
+				2826CEA9297987A400124147 /* AppleAuthCoordinator.swift in Sources */,
 				28C051C7294F4C1E00DB1213 /* TimeData.swift in Sources */,
 				1A6BC9AD294F401700D9B84E /* QuestionBoxView.swift in Sources */,
 				28F677132949EB3F00935959 /* GhostDiaryApp.swift in Sources */,
@@ -529,6 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GhostDiary/GhostDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GhostDiary/Preview Content\"";
@@ -559,6 +566,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GhostDiary/GhostDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GhostDiary/Preview Content\"";

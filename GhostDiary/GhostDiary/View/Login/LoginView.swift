@@ -8,9 +8,13 @@
 import SwiftUI
 import GoogleSignInSwift
 import GoogleSignIn
+import AuthenticationServices
 
 struct LoginView: View {
     @EnvironmentObject var authStores: AuthStore
+    
+    @Environment(\.window) var window: UIWindow?
+    @State private var appleLoginCoordinator: AppleAuthCoordinator?
     
     @Binding var isLogin: Bool
     @Binding var isLoading: Bool
@@ -93,7 +97,13 @@ struct LoginView: View {
             
             GoogleSignInButton(action: handleSignInButton)
                 .frame(width: 280, height: 60)
-            //.modifier(LoginButton())
+            
+            // FIXME: - Custom Apple Login Button 작업 필요
+            Button {
+                appleLogin()
+            } label: {
+                Text("애플로 로그인")
+            }
         }
         .padding()
         
@@ -109,8 +119,14 @@ struct LoginView: View {
             authStores.disConnectListeners()
         }
     }
+    
     func handleSignInButton() {
         authStores.googleSignIn()
+    }
+    
+    func appleLogin() {
+        appleLoginCoordinator = AppleAuthCoordinator(window: window)
+        appleLoginCoordinator?.startAppleLogin()
     }
 }
 
@@ -142,5 +158,6 @@ struct LoginView_Previews: PreviewProvider {
     @State static var isLoading: Bool = false
     static var previews: some View {
         LoginView(isLogin: $isLogin, isLoading: $isLoading)
+            .environmentObject(AuthStore())
     }
 }
