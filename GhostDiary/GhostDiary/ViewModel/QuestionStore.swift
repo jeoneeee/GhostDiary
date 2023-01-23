@@ -126,6 +126,40 @@ class QuestionStore: ObservableObject {
         
         return false
     }
+    
+    
+    func isCheckingAnswer(user: User) async -> Bool { // 질문에 따른 대답의 값이 있을경우 true로 반환
+        do {
+            print("user = \(user)")
+            let querysnapshot = try await database.collection("Questions")
+                .whereField("number", isEqualTo: user.questionNum)
+                .getDocuments()
+
+            var documentId = ""
+            
+            for document in querysnapshot.documents {
+                documentId = document.documentID
+            }
+            print("documentId = \(documentId)")
+            
+            
+           let answerData = try await database.collection("Questions") // ERROR ISSUE -> 변수 선언 까먹음..
+                .document(documentId)
+                .collection("Answers")
+                .whereField("uid", isEqualTo: user.id) // Answers 컬렉션 안에 자신의 아이디 값이 포함된 필드가 있는지 찾는다..
+                .getDocuments()
+            
+            if !answerData.isEmpty {
+                return true
+            } else {
+                return false
+            }
+            
+        } catch {
+            print("isCheckingQuestion error : \(error.localizedDescription)")
+            return false
+        }
+    }
 }
 
 
