@@ -15,9 +15,11 @@ struct SignUpView: View {
     @State private var checkPassword: String = ""
     
     @State private var isValidatedEmail: Bool = false
-    @State private var isDuplicatedEmail: DuplicatedEmail = .notdupleciated
+    @State private var isDuplicatedEmail: DuplicatedEmail = .duplicated
     @State private var isValidatedPassword: Bool = false
     @State private var isEqulPassword: Bool = false
+    
+    @State private var isPressEmailButton: Bool = false
     
     var disableRegister: Bool {
         if isValidatedEmail == true,
@@ -28,11 +30,13 @@ struct SignUpView: View {
         return true
     }
     
+    /// 현재 텍스트필드에 입력된 이메일이 가입되어 있는지 확인하는 연산 프로퍼티
+    /// true값을 반환하면 이메일이 중복되었다는 뜻이며, false는 중복되지 않았다는 뜻이다.
     var isEmailExsit: Bool {
         switch isDuplicatedEmail {
         case .duplicated:
             return true
-        case .notdupleciated:
+        case .notduplicated:
             return false
         }
     }
@@ -49,6 +53,7 @@ struct SignUpView: View {
                         isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
                     }
                 Button(action: {
+                    isPressEmailButton = true
                     Task {
                         isDuplicatedEmail = await authStores.checkduplicationEmail(email: email)
                     }
@@ -73,10 +78,12 @@ struct SignUpView: View {
                         .modifier(ValidateText(color: .red))
                         .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
                 }
+                
                 Spacer()
+                
                 Text("이미 가입된 이메일 입니다")
                     .modifier(ValidateText(color: .red))
-                    .opacity(isEmailExsit ? 1 : 0)
+                    .opacity(isEmailExsit && isPressEmailButton ? 1 : 0)
             }
         }
     }
@@ -92,7 +99,6 @@ struct SignUpView: View {
                 .onChange(of: password) { password in
                     isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
                 }
-                .disabled(isEmailExsit)
             ZStack(alignment: .leading) {
                 Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
                     .modifier(ValidateText(color: .red))
@@ -115,7 +121,7 @@ struct SignUpView: View {
                 .onChange(of: checkPassword) { checkPassword in
                     isEqulPassword = (password == checkPassword) ? true : false
                 }
-                .disabled(isEmailExsit)
+            
             if isEqulPassword && !checkPassword.isEmpty{
                 Text("비밀번호가 일치합니다.")
                     .modifier(ValidateText(color: .green))
@@ -131,9 +137,13 @@ struct SignUpView: View {
         //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
         NavigationStack {
             VStack(alignment: .leading) {
+                
                 emailView
-                passwordView
-                psswordCheckView
+                
+                if !isEmailExsit {
+                    passwordView
+                    psswordCheckView
+                }
                 
                 Spacer()
                 
