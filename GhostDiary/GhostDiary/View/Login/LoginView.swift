@@ -84,13 +84,18 @@ struct LoginView: View {
                     .padding(.vertical)
                 
                 HStack {
+                    Spacer()
                     NavigationLink(destination: EmailLoginView(isLogin: $isLogin, isLoading: $isLoading)) {
                         Text("이메일로 로그인")
+                            .font(.caption)
                     }
+                    Spacer()
                     
                     NavigationLink(destination: SignUpView()) {
                         Text("이메일로 회원가입")
+                            .font(.caption)
                     }
+                    Spacer()
                 }
                 
                 .foregroundColor(.black)

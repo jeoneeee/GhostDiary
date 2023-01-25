@@ -30,7 +30,6 @@ struct ContentView: View {
         .onAppear {
             print("authStores.loginStatus: \(authStores.loginStatus)")
         }
-        .padding()
     }
 }
 
