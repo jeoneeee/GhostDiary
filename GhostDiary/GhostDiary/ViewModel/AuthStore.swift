@@ -36,7 +36,7 @@ enum LoginStatus {
 
 enum DuplicatedEmail {
     case duplicated
-    case notdupleciated
+    case notduplicated
 }
 
 @MainActor
@@ -92,7 +92,7 @@ class AuthStore: ObservableObject {
     func checkduplicationEmail(email: String) async -> DuplicatedEmail {
         do {
             let emailStrings = try await Auth.auth().fetchSignInMethods(forEmail:  email)
-            return (emailStrings.isEmpty) ? .notdupleciated : .duplicated
+            return (emailStrings.isEmpty) ? .notduplicated : .duplicated
         } catch {
             print("중복 이메일 확인 에러: \(error.localizedDescription)")
         }

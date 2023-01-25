@@ -89,7 +89,7 @@ struct EmailLoginView: View {
             
             Spacer()
         }
-        .navigationTitle("이메일로 로그인")
+        .navigationTitle("로그인")
         .navigationBarBackButtonHidden(true)
         
         .toolbar {
