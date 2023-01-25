@@ -147,7 +147,7 @@ struct SignUpView: View {
                     Text("등록 완료")
                         .padding()
                 })
-                .modifier(LoginButton())
+                .modifier(LoginButton(backgroudColor: Color("Color5")))
                 .disabled(disableRegister)
                 .opacity(disableRegister ? 0.5 : 1)
             }
