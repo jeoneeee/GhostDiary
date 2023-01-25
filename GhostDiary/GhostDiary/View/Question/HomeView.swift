@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var authStores: AuthStore
+    @EnvironmentObject var answerStores: AnswerStore
+    
     @Binding var isLogin: Bool
     
     var body: some View {
@@ -30,6 +32,9 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
+                        answerStores.questions.removeAll()
+                        answerStores.answers.removeAll()
+                        
                         authStores.signOut()
                         isLogin = false
                         authStores.loginStatus = .defatult
@@ -51,5 +56,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(isLogin: $isLogin)
             .environmentObject(AuthStore())
+            .environmentObject(QuestionStore())
+            .environmentObject(AnswerStore())
     }
 }
