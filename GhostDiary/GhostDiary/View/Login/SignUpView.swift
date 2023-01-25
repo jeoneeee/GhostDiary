@@ -10,7 +10,6 @@ import SwiftUI
 struct SignUpView: View {
     @EnvironmentObject var authStores: AuthStore
     
-    @Binding var isSignUp: Bool
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var checkPassword: String = ""
@@ -132,7 +131,6 @@ struct SignUpView: View {
         //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
         NavigationStack {
             VStack(alignment: .leading) {
-                //Spacer()
                 emailView
                 passwordView
                 psswordCheckView
@@ -156,16 +154,6 @@ struct SignUpView: View {
             .padding()
             .textInputAutocapitalization(.never)
             .formStyle(.automatic)
-            
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        isSignUp.toggle()
-                    }, label: {
-                        Text("취소")
-                    })
-                }
-            }
         }
     }
 }
@@ -197,7 +185,7 @@ struct ValidateText: ViewModifier {
 struct SignUpView_Previews: PreviewProvider {
     @State static var isSignUp: Bool = false
     static var previews: some View {
-        SignUpView(isSignUp: $isSignUp)
+        SignUpView()
             .environmentObject(AuthStore())
     }
 }
