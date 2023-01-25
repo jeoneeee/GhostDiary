@@ -93,10 +93,30 @@ struct LoginView: View {
                     .padding()
             })
             .modifier(LoginButton())
+            
             Spacer()
             
-            GoogleSignInButton(action: handleSignInButton)
-                .frame(width: 280, height: 60)
+            Button {
+                handleSignInButton()
+            } label: {
+                HStack {
+                    Spacer()
+                    Image("googleButton")
+                        .resizable()
+                        .foregroundColor(.white)
+                        .frame(width: 30, height: 30)
+                    Text("Google로 계속하기")
+                        .foregroundColor(.black)
+                        .bold()
+                    Spacer()
+                }
+                .frame(width: UIScreen.screenWidth - 100, height: 44)
+                .background(.white)
+                .overlay {
+                    Capsule()
+                        .stroke(Color.gray, lineWidth: 1)
+                }
+            }
             
             // FIXME: - Custom Apple Login Button 작업 필요
             Button {
