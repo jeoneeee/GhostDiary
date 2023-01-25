@@ -144,12 +144,11 @@ struct SignUpView: View {
                         }
                     }
                 },label: {
-                    Text("등록 완료")
+                    Text("회원가입 완료")
                         .padding()
                 })
-                .modifier(LoginButton(backgroudColor: Color("Color5")))
+                .modifier(disableRegister ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
                 .disabled(disableRegister)
-                .opacity(disableRegister ? 0.5 : 1)
             }
             .padding()
             .textInputAutocapitalization(.never)
