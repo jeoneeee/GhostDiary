@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - Email로 로그인을 하는 뷰
 struct EmailLoginView: View {
     @EnvironmentObject var authStores: AuthStore
+    @Environment(\.dismiss) private var dismiss
     
     @Binding var isLogin: Bool
     @Binding var isLoading: Bool
@@ -31,7 +32,7 @@ struct EmailLoginView: View {
                 }
             }
             .modifier(LoginTextFieldModifier())
-            .padding(.bottom)
+            .padding(.vertical)
             
             HStack {
                 ZStack {
@@ -56,6 +57,7 @@ struct EmailLoginView: View {
                     .offset(x: -20, y: 20)
                 }
             }
+            .padding(.bottom)
             
             Text(loginMessage)
                 .foregroundColor(.secondary)
@@ -74,11 +76,25 @@ struct EmailLoginView: View {
                 Text("로그인")
                     .padding()
             })
+            
             .modifier(LoginButton())
+            .padding(.horizontal)
             
             Spacer()
         }
         .navigationTitle("이메일로 로그인")
+        .navigationBarBackButtonHidden(true)
+        
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.black)
+                }
+            }
+        }
     }
 }
 
