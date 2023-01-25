@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     @EnvironmentObject var authStores: AuthStore
+    @Environment(\.dismiss) private var dismiss
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -135,34 +136,45 @@ struct SignUpView: View {
     
     var body: some View {
         //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
-        NavigationStack {
-            VStack(alignment: .leading) {
-                
-                emailView
-                
-                if !isEmailExsit {
-                    passwordView
-                    psswordCheckView
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    Task {
-                        guard await authStores.register(email: email, password: password) else {
-                            return
-                        }
-                    }
-                },label: {
-                    Text("회원가입 완료")
-                        .padding()
-                })
-                .modifier(disableRegister ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
-                .disabled(disableRegister)
+        VStack(alignment: .leading) {
+            emailView
+            
+            if !isEmailExsit {
+                passwordView
+                psswordCheckView
             }
-            .padding()
-            .textInputAutocapitalization(.never)
-            .formStyle(.automatic)
+            
+            Spacer()
+            
+            Button(action: {
+                Task {
+                    guard await authStores.register(email: email, password: password) else {
+                        return
+                    }
+                }
+            },label: {
+                Text("회원가입 완료")
+                    .padding()
+            })
+            .modifier(disableRegister ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
+            .disabled(disableRegister)
+        }
+        .padding()
+        .textInputAutocapitalization(.never)
+        .formStyle(.automatic)
+        
+        .navigationTitle("이메일로 회원가입")
+        .navigationBarBackButtonHidden(true)
+    
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.black)
+                }
+            }
         }
     }
 }
