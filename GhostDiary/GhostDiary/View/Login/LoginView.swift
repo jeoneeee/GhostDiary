@@ -81,7 +81,7 @@ struct LoginView: View {
                 socialLoginButton
                 
                 Divider()
-                    .padding(.vertical)
+                    .padding()
                 
                 HStack {
                     Spacer()
