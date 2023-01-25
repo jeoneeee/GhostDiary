@@ -20,7 +20,6 @@ struct HistoryListView: View {
                     HistoryListCellView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
                 }
                 Divider()
-                Spacer(minLength: UIScreen.screenHeight / 20)
             }
         }
     }
