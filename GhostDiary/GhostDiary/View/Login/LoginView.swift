@@ -129,12 +129,14 @@ struct LoginView: View {
 }
 
 struct LoginButton: ViewModifier {
+    var backgroudColor: Color
+    
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: UIScreen.main.bounds.width)
             .foregroundColor(.white)
-            .background(Color("Color3"))
-            .cornerRadius(40)
+            .background(backgroudColor)
+            .cornerRadius(12)
     }
 }
 

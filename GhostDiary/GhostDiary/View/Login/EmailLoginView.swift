@@ -21,6 +21,13 @@ struct EmailLoginView: View {
     @State var isPasswordHidden: Bool = false
     @State var loginMessage: String = ""
     
+    /// 로그인 버튼 활성화 여부를 나타내는 Boolean Value
+    /// email이나 password가 empty가 아닌경우 활성화 된다.
+    /// 즉 true를 반환하면 로그인이 가능하며, false를 반환하면 불가능하다.
+    var isPossibleLogin: Bool {
+        return (!email.isEmpty && !password.isEmpty) ? true : false
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -76,8 +83,8 @@ struct EmailLoginView: View {
                 Text("로그인")
                     .padding()
             })
-            
-            .modifier(LoginButton())
+            .disabled(!isPossibleLogin)
+            .modifier(!isPossibleLogin ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
             .padding(.horizontal)
             
             Spacer()
