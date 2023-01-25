@@ -13,6 +13,7 @@ struct HistoryListView: View {
     
     var body: some View {
         ScrollView(showsIndicators: true) {
+            Divider()
             ForEach(answerStores.answers.indices, id: \.self) { idx in
                 NavigationLink {
                     AnswerDetailView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
@@ -21,6 +22,7 @@ struct HistoryListView: View {
                 }
                 Divider()
             }
+            .padding(.horizontal)
         }
     }
 }
