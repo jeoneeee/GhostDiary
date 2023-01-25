@@ -95,7 +95,7 @@ struct SignUpView: View {
                 .font(.title3)
                 .padding([.leading, .top])
             
-            TextField("비밀번호를 입력하세요. ", text: $password)
+            SecureField("비밀번호를 입력하세요. ", text: $password)
                 .modifier(LoginTextFieldModifier())
                 .onChange(of: password) { password in
                     isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
@@ -117,7 +117,7 @@ struct SignUpView: View {
             Text("비밀번호 확인")
                 .font(.title3)
                 .padding([.leading, .top])
-            TextField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
+            SecureField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
                 .modifier(LoginTextFieldModifier())
                 .onChange(of: checkPassword) { checkPassword in
                     isEqulPassword = (password == checkPassword) ? true : false
@@ -163,7 +163,7 @@ struct SignUpView: View {
         .textInputAutocapitalization(.never)
         .formStyle(.automatic)
         
-        .navigationTitle("이메일로 회원가입")
+        .navigationTitle("회원가입")
         .navigationBarBackButtonHidden(true)
     
         .toolbar {

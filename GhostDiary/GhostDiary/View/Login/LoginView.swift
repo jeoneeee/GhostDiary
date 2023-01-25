@@ -73,7 +73,7 @@ struct LoginView: View {
                 Spacer()
                 
                 Text("나를 찾아주는 100개의 질문에 답을 해보세요.")
-                    .font(.title2)
+                    .font(.title)
                     .bold()
                 
                 Spacer()
@@ -87,29 +87,31 @@ struct LoginView: View {
                     Spacer()
                     NavigationLink(destination: EmailLoginView(isLogin: $isLogin, isLoading: $isLoading)) {
                         Text("이메일로 로그인")
-                            .font(.caption)
                     }
                     Spacer()
                     
                     NavigationLink(destination: SignUpView()) {
                         Text("이메일로 회원가입")
-                            .font(.caption)
                     }
                     Spacer()
                 }
+                .font(.caption)
+                .foregroundColor(.secondary)
                 
                 .foregroundColor(.black)
                 
                 Spacer()
             }
+            .navigationTitle("Ghost Diary")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        
         .navigationDestination(isPresented: $isEmailLogin) {
             EmailLoginView(isLogin: $isLogin, isLoading: $isLoading)
         }
         .navigationDestination(isPresented: $isSingUp) {
             SignUpView()
         }
-
         .onAppear {
             authStores.startListeners()
         }
