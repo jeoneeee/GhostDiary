@@ -14,7 +14,7 @@ struct HomeView: View {
     @Binding var isLogin: Bool
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             TabView {
                 QuestionView()
                     .tabItem {
@@ -28,7 +28,7 @@ struct HomeView: View {
                     .tabItem {
                         Label("분석보고서", systemImage: "chart.bar.fill")
                     }
-            }
+            //}
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -44,6 +44,7 @@ struct HomeView: View {
                     })
                 }
             }
+            
         }
         .onAppear {
             isLogin = true

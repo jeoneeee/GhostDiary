@@ -21,10 +21,13 @@ struct TimeLineView: View {
                     CalendarView()
                 case 2:
                     HistoryListView()
+                        .navigationBarBackButtonHidden(true)
                 default:
                     CalendarView()
                 }
             }
+            .navigationTitle("Ghost Diary")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

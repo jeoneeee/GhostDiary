@@ -18,55 +18,57 @@ struct QuestionView: View {
     @EnvironmentObject var answerStores: AnswerStore
     
     var body: some View {
-        VStack {
-            Spacer()
-            GhostImageView()
-            Spacer()
-            
-            Button {
-                var _ = print("1번 = \(showDetailView)")
+        NavigationStack {
+            VStack {
+                Spacer()
+                GhostImageView()
+                Spacer()
+                
+                Button {
+                    var _ = print("1번 = \(showDetailView)")
+                    Task {
+                        if await questionStore.isCheckingAnswer(user: authStore.user!) {
+                            showDetailView.toggle()
+                        } else {
+                            isShowingEmojiSheet.toggle()
+                        }
+                    }//Task
+                } label: {
+                    QuestionBoxView()
+                }
+                .navigationDestination(isPresented: $showDetailView) {
+                    if let index = answerStores.questions.firstIndex{$0.id == questionStore.questions.id} {
+                        if answerStores.questions.count == answerStores.answers.count { // 질문을 가져온 후 대답을 가져오는데 그 도중에 화면이 생겨서 에러가 생김..그렇기때문에 if문으로 설정
+                            AnswerDetailView(question: answerStores.questions[index], answer: answerStores.answers[index])
+                        }
+                    }
+                }
+                
+            }
+            .padding([.bottom], 60)
+            .onAppear {
                 Task {
-                    if await questionStore.isCheckingAnswer(user: authStore.user!) {
-                        showDetailView.toggle()
-                    } else {
-                        isShowingEmojiSheet.toggle()
-                    }
-                }//Task
-            } label: {
-                QuestionBoxView()
-            }
-            .navigationDestination(isPresented: $showDetailView) {
-                if let index = answerStores.questions.firstIndex{$0.id == questionStore.questions.id} {
-                    if answerStores.questions.count == answerStores.answers.count { // 질문을 가져온 후 대답을 가져오는데 그 도중에 화면이 생겨서 에러가 생김..그렇기때문에 if문으로 설정
-                        AnswerDetailView(question: answerStores.questions[index], answer: answerStores.answers[index])
+                    if let user = authStore.user {
+                        await questionStore.fetchQuestions(user: user)
+                        await answerStores.readQuestionAndAnswer(user)
                     }
                 }
             }
             
-        }
-        .padding([.bottom], 60)
-        .onAppear {
-            Task {
-                if let user = authStore.user {
-                    await questionStore.fetchQuestions(user: user)
-                    await answerStores.readQuestionAndAnswer(user)
-                }
+            .sheet(isPresented: $isShowingEmojiSheet) {
+                CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet)
+                    .onDisappear {
+                        if isShowingEmojiSheet == false {
+                            isShowingQuestionSheet = true
+                        }
+                    } // 실행하고나서 이 코드를 실행해라!, 화면이 닫힐 때
+                    .presentationDetents([.fraction(0.54)])
+            } // 이모지 선택
+            .fullScreenCover(isPresented: $isShowingQuestionSheet) {
+                AnswerView(todayEmoji: $todayEmoji, question: questionStore.questions)
             }
+            
         }
-        
-        .sheet(isPresented: $isShowingEmojiSheet) {
-            CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet)
-                .onDisappear {
-                    if isShowingEmojiSheet == false {
-                        isShowingQuestionSheet = true
-                    }
-                } // 실행하고나서 이 코드를 실행해라!, 화면이 닫힐 때
-                .presentationDetents([.fraction(0.54)])
-        } // 이모지 선택
-        .fullScreenCover(isPresented: $isShowingQuestionSheet) {
-            AnswerView(todayEmoji: $todayEmoji, question: questionStore.questions)
-        }
-        
     }
 }
 
