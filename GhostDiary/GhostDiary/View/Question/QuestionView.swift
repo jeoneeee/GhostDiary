@@ -46,14 +46,6 @@ struct QuestionView: View {
                 
             }
             .padding([.bottom], 60)
-            .onAppear {
-                Task {
-                    if let user = authStore.user {
-                        await questionStore.fetchQuestions(user: user)
-                        await answerStores.readQuestionAndAnswer(user)
-                    }
-                }
-            }
             
             .sheet(isPresented: $isShowingEmojiSheet) {
                 CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet)
