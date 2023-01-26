@@ -25,6 +25,7 @@
 		2827C5D92976D70C00185917 /* HistoryListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C5D82976D70C00185917 /* HistoryListCellView.swift */; };
 		283BE9D6295FE6E600D4C6B1 /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */; };
 		283BE9D8295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BE9D7295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift */; };
+		2854A11529828E3800283E40 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854A11429828E3800283E40 /* LoadingView.swift */; };
 		2854D13C29811F6B00A2CCF4 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854D13B29811F6B00A2CCF4 /* EmailLoginView.swift */; };
 		285EAE79296178DD00A24E18 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EAE78296178DD00A24E18 /* CustomDatePicker.swift */; };
 		285EAE7B2961792900A24E18 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EAE7A2961792900A24E18 /* CalendarDate.swift */; };
@@ -77,6 +78,7 @@
 		2827C5D82976D70C00185917 /* HistoryListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCellView.swift; sourceTree = "<group>"; };
 		283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		283BE9D7295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCustomTabBar.swift; sourceTree = "<group>"; };
+		2854A11429828E3800283E40 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2854D13B29811F6B00A2CCF4 /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
 		285EAE78296178DD00A24E18 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		285EAE7A2961792900A24E18 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				287605FF2949FB7700406FB5 /* TimeLine */,
 				287605F82949FAF700406FB5 /* Question */,
 				287605F52949FAD900406FB5 /* Login */,
+				2854A11429828E3800283E40 /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				1A364BFE29706D8A0099C1D2 /* Ex+Color.swift in Sources */,
 				1A30D86D295C8BF1002F5E73 /* Answer.swift in Sources */,
 				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
+				2854A11529828E3800283E40 /* LoadingView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
 				1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */,
 				2854D13C29811F6B00A2CCF4 /* EmailLoginView.swift in Sources */,
