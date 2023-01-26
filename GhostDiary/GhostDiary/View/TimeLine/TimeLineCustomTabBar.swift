@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct TimeLineCustomTabBar: View {
-    @Binding var selection: Int
+    @Binding var selection: TimeLineCategory
     
     var body: some View {
         HStack {
             Button(action: {
-                selection = 1
+                selection = .calendar
             }, label: {
                 VStack(alignment: .center, spacing: 0) {
                     Image(systemName: "calendar")
-                        .foregroundColor(selection == 1 ? .black : .secondary)
-                        .fontWeight(selection == 1 ? .bold : .regular)
+                        .foregroundColor(selection == .calendar ? .black : .secondary)
+                        .fontWeight(selection == .calendar ? .bold : .regular)
                 }
             })
             
             Button(action: {
-                selection = 2
+                selection = .list
             }, label: {
                 VStack(alignment: .center, spacing: 0) {
                     Image(systemName: "list.bullet")
-                        .foregroundColor(selection == 2 ? .black : .secondary)
-                        .fontWeight(selection == 2 ? .bold : .regular)
+                        .foregroundColor(selection == .list ? .black : .secondary)
+                        .fontWeight(selection == .list ? .bold : .regular)
                 }
             })
         }
@@ -37,7 +37,8 @@ struct TimeLineCustomTabBar: View {
 }
 
 struct TimeLineCustomTabBar_Previews: PreviewProvider {
-    @State static var tabSelection: Int = 0
+    @State static var tabSelection: TimeLineCategory = .calendar
+    
     static var previews: some View {
         TimeLineCustomTabBar(selection: $tabSelection)
     }

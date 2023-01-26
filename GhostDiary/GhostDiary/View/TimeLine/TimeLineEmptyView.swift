@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TimeLineEmptyView: View {
-    
     var body: some View {
         VStack {
             Text("아직 작성된 답변이 없어요. 질문에 대답하여 자신을 기억하세요.")
@@ -16,7 +15,6 @@ struct TimeLineEmptyView: View {
         }
         .padding()
     }
-    
 }
 
 struct TimeLineEmptyView_Previews: PreviewProvider {

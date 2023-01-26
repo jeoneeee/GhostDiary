@@ -9,27 +9,23 @@ import SwiftUI
 
 struct TimeLineView: View {
     @EnvironmentObject var answersStores: AnswerStore
-    @State private var tabSelection: Int = 1
+    @State private var category: TimeLineCategory = .calendar
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .trailing) {
                 if answersStores.answers.count > 0 {
                     Spacer()
-                    TimeLineCustomTabBar(selection: $tabSelection)
+                    TimeLineCustomTabBar(selection: $category)
                         .padding()
                     
-                    switch tabSelection {
-                    case 1:
+                    switch category {
+                    case .calendar:
                         CalendarView()
-                    case 2:
+                    case .list:
                         HistoryListView()
-                            .navigationBarBackButtonHidden(true)
-                    default:
-                        CalendarView()
                     }
                 } else {
-                    //TODO: - Empty뷰 추가
                     TimeLineEmptyView()
                 }
             }
