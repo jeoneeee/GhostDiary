@@ -142,19 +142,6 @@ struct LoginButton: ViewModifier {
     }
 }
 
-//TODO: - LoadingView 파일 위치 이동
-struct LoadingView: View {
-    var body: some View {
-        ZStack {
-            Color(.systemBackground)
-                .ignoresSafeArea()
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: Color("Color1")))
-                .scaleEffect(3)
-        }
-    }
-}
-
 struct LoginView_Previews: PreviewProvider {
     @State static var isLogin: Bool = false
     @State static var isLoading: Bool = false

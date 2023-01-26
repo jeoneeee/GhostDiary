@@ -13,15 +13,18 @@ struct HistoryListView: View {
     
     var body: some View {
         ScrollView(showsIndicators: true) {
+            Divider()
             ForEach(answerStores.answers.indices, id: \.self) { idx in
-                NavigationLink {
-                    AnswerDetailView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
-                } label: {
-                    HistoryListCellView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
+                NavigationLink(value: idx) {
+                    HistoryListCellView(question: answerStores.questions[idx], answer:
+                                            answerStores.answers[idx])
                 }
                 Divider()
-                Spacer(minLength: UIScreen.screenHeight / 20)
             }
+            .padding(.horizontal)
+        }
+        .navigationDestination(for: Int.self) { index in
+            AnswerDetailView(question: answerStores.questions[index], answer: answerStores.answers[index])
         }
     }
 }

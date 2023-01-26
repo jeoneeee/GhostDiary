@@ -8,22 +8,29 @@
 import SwiftUI
 
 struct TimeLineView: View {
-    @State private var tabSelection: Int = 1
+    @EnvironmentObject var answersStores: AnswerStore
+    @State private var category: TimeLineCategory = .calendar
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .trailing) {
-                Spacer()
-                TimeLineCustomTabBar(selection: $tabSelection)
-                    .padding()
-                
-                TabView(selection: $tabSelection) {
-                    CalendarView()
-                        .tag(1)
-                    HistoryListView()
-                        .tag(2)
+                if answersStores.answers.count > 0 {
+                    Spacer()
+                    TimeLineCustomTabBar(selection: $category)
+                        .padding()
+                    
+                    switch category {
+                    case .calendar:
+                        CalendarView()
+                    case .list:
+                        HistoryListView()
+                    }
+                } else {
+                    TimeLineEmptyView()
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
             }
+            .navigationTitle("Ghost Diary")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -31,5 +38,6 @@ struct TimeLineView: View {
 struct TimeLineView_Previews: PreviewProvider {
     static var previews: some View {
         TimeLineView()
+            .environmentObject(AnswerStore())
     }
 }

@@ -12,13 +12,13 @@ struct HistoryListCellView: View {
     let answer: Answer
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             HStack {
                 Text("#\(question.number)")
                     .foregroundColor(Color("Color7"))
                     .frame(width: 20, alignment: .leading)
                 Text(question.query)
-                    .foregroundColor(Color("Color5"))
+                    .foregroundColor(.black)
                 Spacer()
             }
             .modifier(BodyTextModifier())

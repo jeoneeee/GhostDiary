@@ -9,39 +9,58 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var authStores: AuthStore
+    @EnvironmentObject var answerStores: AnswerStore
+    @EnvironmentObject var questionStores: QuestionStore
+    
     @Binding var isLogin: Bool
+    @State private var isLoading: Bool = true
     
     var body: some View {
-        NavigationStack {
-            TabView {
-                QuestionView()
-                    .tabItem {
-                        Label("글쓰기", systemImage: "square.and.pencil")
+        if isLoading {
+            LoadingView()
+                .onAppear {
+                    isLogin = true
+                    
+                    Task {
+                        if let user = authStores.user {
+                            await questionStores.fetchQuestions(user: user)
+                            await answerStores.readQuestionAndAnswer(user)
+                            isLoading = false
+                        }
                     }
-                TimeLineView()
-                    .tabItem {
-                        Label("타임라인", systemImage: "calendar")
+                }
+        } else {
+            //NavigationStack {
+                TabView {
+                    QuestionView()
+                        .tabItem {
+                            Label("글쓰기", systemImage: "square.and.pencil")
+                        }
+                    TimeLineView()
+                        .tabItem {
+                            Label("타임라인", systemImage: "calendar")
+                        }
+                    AnalysisView()
+                        .tabItem {
+                            Label("분석보고서", systemImage: "chart.bar.fill")
+                        }
+                //}
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            answerStores.questions.removeAll()
+                            answerStores.answers.removeAll()
+                            
+                            authStores.signOut()
+                            isLogin = false
+                            authStores.loginStatus = .defatult
+                            authStores.googleSignOut()
+                        }, label: {
+                            Text("로그 아웃")
+                        })
                     }
-                AnalysisView()
-                    .tabItem {
-                        Label("분석보고서", systemImage: "chart.bar.fill")
-                    }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        authStores.signOut()
-                        isLogin = false
-                        authStores.loginStatus = .defatult
-                        authStores.googleSignOut()
-                    }, label: {
-                        Text("로그 아웃")
-                    })
                 }
             }
-        }
-        .onAppear {
-            isLogin = true
         }
     }
 }
@@ -51,5 +70,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(isLogin: $isLogin)
             .environmentObject(AuthStore())
+            .environmentObject(QuestionStore())
+            .environmentObject(AnswerStore())
     }
 }

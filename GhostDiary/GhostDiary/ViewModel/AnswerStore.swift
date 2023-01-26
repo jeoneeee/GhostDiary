@@ -58,7 +58,7 @@ class AnswerStore: ObservableObject {
                 print("question: \(question)")
                 
                 if questions.contains(where: {$0.id == question.id}) {
-                    return
+                    break
                 }
                 
                 let confirmed = await confirmIsAnswered(user.id, questionId: question.id)
