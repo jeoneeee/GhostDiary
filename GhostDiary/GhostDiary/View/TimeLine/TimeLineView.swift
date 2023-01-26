@@ -16,13 +16,14 @@ struct TimeLineView: View {
                 TimeLineCustomTabBar(selection: $tabSelection)
                     .padding()
                 
-                TabView(selection: $tabSelection) {
+                switch tabSelection {
+                case 1:
                     CalendarView()
-                        .tag(1)
+                case 2:
                     HistoryListView()
-                        .tag(2)
+                default:
+                    CalendarView()
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
             }
         }
     }
