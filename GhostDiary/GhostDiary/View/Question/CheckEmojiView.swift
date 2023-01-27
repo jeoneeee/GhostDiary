@@ -11,6 +11,7 @@ struct CheckEmojiView: View {
     @Binding var todayEmoji: String
     @Binding var isShowingEmojiSheet: Bool
     @Binding var isShowingQuestionSheet: Bool
+    @Binding var isCheckingEmoji: Bool
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let emojiarr = ["angry", "cute", "proud", "sad", "tired", "umm"]
@@ -28,6 +29,7 @@ struct CheckEmojiView: View {
                 ForEach(emojiarr, id: \.self) { index in
                     Button {
                         todayEmoji = index
+                        isCheckingEmoji = false
                     } label: {
                         
                         if index == todayEmoji{
@@ -57,10 +59,11 @@ struct CheckEmojiView: View {
                 .modifier(TitleTextModifier())
                 .padding(.vertical, 10)
                 .padding(.horizontal, 55)
-                .background(Color("Color3"))
+                .background(isCheckingEmoji ? Color("Color9") : Color("Color3"))
                 .cornerRadius(17)
                 .foregroundColor(.black)
         }
+        .disabled(isCheckingEmoji)
         .padding(.vertical, 30)
         
     }
