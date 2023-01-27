@@ -12,6 +12,7 @@ struct QuestionView: View {
     @State var isShowingQuestionSheet: Bool = false
     @State var todayEmoji: String = ""
     @State var showDetailView = false
+    @State var isCheckingEmoji = true
     
     @EnvironmentObject var questionStore: QuestionStore
     @EnvironmentObject var authStore: AuthStore
@@ -48,16 +49,16 @@ struct QuestionView: View {
             .padding([.bottom], 60)
             
             .sheet(isPresented: $isShowingEmojiSheet) {
-                CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet)
+                CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet, isCheckingEmoji: $isCheckingEmoji)
                     .onDisappear {
-                        if isShowingEmojiSheet == false {
+                        if isCheckingEmoji == false {
                             isShowingQuestionSheet = true
                         }
                     } // 실행하고나서 이 코드를 실행해라!, 화면이 닫힐 때
                     .presentationDetents([.fraction(0.54)])
             } // 이모지 선택
             .fullScreenCover(isPresented: $isShowingQuestionSheet) {
-                AnswerView(todayEmoji: $todayEmoji, question: questionStore.questions)
+                AnswerView(todayEmoji: $todayEmoji, isCheckingEmoji: $isCheckingEmoji, question: questionStore.questions)
             }
             
         }
