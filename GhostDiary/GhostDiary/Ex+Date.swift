@@ -31,4 +31,22 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    // MARK: - 입력받은 date에서 월을 가져오는 메소드
+    func getMonth() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM"
+        dateFormatter.timeZone = TimeZone(identifier: "ko_KR")
+        
+        return dateFormatter.string(from: self)
+    }
+    
+    // MARK: - 입력받은 date에서 년도수를 가져오는 메소드
+    func getYear() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        dateFormatter.timeZone = TimeZone(identifier: "ko_KR")
+        
+        return dateFormatter.string(from: self)
+    }
 }
