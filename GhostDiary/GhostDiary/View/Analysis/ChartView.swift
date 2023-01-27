@@ -10,7 +10,7 @@ import Charts
 
 struct ChartView: View {
     let emoji = ["angry", "cute", "proud", "sad", "tired", "umm"]
-    let text = ["1", "2", "3", "4", "5", "6"]
+    let text = ["화남", "기쁨", "뿌듯", "슬픔", "지침", "무난"]
     @State var steps = Array(repeating: 0, count: 6)
     @EnvironmentObject var answerStore: AnswerStore
     @EnvironmentObject var authStore: AuthStore
@@ -58,7 +58,7 @@ struct ChartView: View {
                     }
                 }
                 .chartForegroundStyleScale([
-                    "1": Color("Color8"), "2": Color("Color3"), "3": Color("Color4"), "4": Color("Color1"), "5": Color("Color6"), "6": Color("Color7")
+                    "화남": Color("Color8"), "기쁨": Color("Color3"), "뿌듯": Color("Color4"), "슬픔": Color("Color1"), "지침": Color("Color6"), "무난": Color("Color7")
                 ])
                 .frame(height: 400)                
             }
