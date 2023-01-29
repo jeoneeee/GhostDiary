@@ -16,9 +16,9 @@ struct GhostImageView: View {
     var body: some View {
         VStack {
             HStack {
-                Image("ghost1")
+                Image("ghost7")
                     .resizable()
-                    .frame(width: 100, height: 110)
+                    .frame(width: 100, height: 100)
                     .offset(x: rotation1)
 //                    .scaleEffect(x: rotation1 == -100 ? 1:-1, y: 1, anchor: .center)
                     .onAppear {
@@ -34,7 +34,7 @@ struct GhostImageView: View {
             HStack {
                 Image("ghost5")
                     .resizable()
-                    .frame(width: 100, height: 110)
+                    .frame(width: 100, height: 100)
                     .offset(x: rotation3, y: rotation3)
                     .onAppear {
                         withAnimation(.linear(duration: 1)
@@ -46,7 +46,7 @@ struct GhostImageView: View {
             
             HStack {
                 Spacer()
-                Image("ghost2")
+                Image("ghost6")
                     .resizable()
                     .frame(width: 110, height: 110)
                     .offset(x: rotation2)
