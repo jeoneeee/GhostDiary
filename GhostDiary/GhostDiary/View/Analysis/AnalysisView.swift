@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct AnalysisView: View {
-    @State private var year = 2023
-    @State private var month = 1
+    @State private var year = Int(Date().getYear())!
+    @State private var month = Int(Date().getMonth())!
     @EnvironmentObject var answerStore: AnswerStore
     @EnvironmentObject var authStore: AuthStore
+    
     
     var body: some View {
         VStack {
@@ -47,14 +48,11 @@ struct AnalysisView: View {
                         .foregroundColor(.black)
                 }
             } // HStack
-            ChartView()
-        }
-        .onAppear {
-            Task {
-                if let user = authStore.user {
-                    await answerStore.readQuestionAndAnswer(user)
-                }
-            }
+            .padding(.top, 30)
+            Spacer()
+            ChartView(year: $year, month: $month)
+                .frame(width: UIScreen.screenWidth * 0.85, height: UIScreen.screenHeight * 0.4)
+            Spacer()
         }
     }
 }
