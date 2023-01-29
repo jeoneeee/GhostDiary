@@ -14,38 +14,47 @@ struct ChartView: View {
     @State var steps = Array(repeating: 0, count: 6)
     @EnvironmentObject var answerStore: AnswerStore
     @EnvironmentObject var authStore: AuthStore
+    @Binding var year: Int
+    @Binding var month: Int
+    
+    var currentAnswer: [Answer] {
+        return answerStore.answers.filter {Int($0.timestamp.getYear())! == year && Int($0.timestamp.getMonth())! == month}
+    }
+    
     var angryCount: Int {
-        let angryArray = answerStore.answers.filter{$0.expression == "angry"}
+        let angryArray = currentAnswer.filter{$0.expression == "angry"}
         return angryArray.count
     }
     var cuteCount: Int {
-        let cuteArray = answerStore.answers.filter{$0.expression == "cute"}
+        let cuteArray = currentAnswer.filter{$0.expression == "cute"}
         return cuteArray.count
     }
     var proudCount: Int {
-        let proudArray = answerStore.answers.filter{$0.expression == "proud"}
+        let proudArray = currentAnswer.filter{$0.expression == "proud"}
         return proudArray.count
     }
     var sadCount: Int {
-        let sadArray = answerStore.answers.filter{$0.expression == "sad"}
+        let sadArray = currentAnswer.filter{$0.expression == "sad"}
         return sadArray.count
     }
     var tiredCount: Int {
-        let tiredArray = answerStore.answers.filter{$0.expression == "tired"}
+        let tiredArray = currentAnswer.filter{$0.expression == "tired"}
         return tiredArray.count
     }
     var ummCount: Int {
-        let ummArray = answerStore.answers.filter{$0.expression == "umm"}
+        let ummArray = currentAnswer.filter{$0.expression == "umm"}
         return ummArray.count
     }
     
     var body: some View {
             VStack {
+                var _ = print("\(year)년 \(month)의 Answers: \(currentAnswer)")
+                
                 Chart {
                     ForEach(emoji.indices, id: \.self) { index in
                         BarMark(x: .value("Emoji", text[index]), y: .value("Steps", steps[index]))
                             .foregroundStyle(by: .value("Texts", text[index]))
-                            .annotation(position: .top) {
+                            .annotation {
                                 VStack {
                                     Text("\(steps[index])")
                                         .modifier(CaptionTextModifier())
@@ -60,9 +69,11 @@ struct ChartView: View {
                 .chartForegroundStyleScale([
                     "화남": Color("Color8"), "기쁨": Color("Color3"), "뿌듯": Color("Color4"), "슬픔": Color("Color1"), "지침": Color("Color6"), "무난": Color("Color7")
                 ])
-                .frame(height: 400)                
             }
             .onAppear {
+                steps = [angryCount,cuteCount,proudCount,sadCount,tiredCount,ummCount]
+            }
+            .onChange(of: month) { _ in
                 steps = [angryCount,cuteCount,proudCount,sadCount,tiredCount,ummCount]
             }
     }
