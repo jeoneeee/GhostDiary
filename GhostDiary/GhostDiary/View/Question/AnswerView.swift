@@ -58,7 +58,6 @@ struct AnswerView: View {
                 .padding([.leading, .trailing])
                 
                 Button {
-                    todayEmoji = ""
                     isCheckingEmoji = true
                     dismiss()
                     Task {
