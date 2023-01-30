@@ -16,9 +16,9 @@ struct HistoryListCellView: View {
             HStack {
                 Text("#\(question.number)")
                     .foregroundColor(Color("Color7"))
-                    .frame(width: 20, alignment: .leading)
                 Text(question.query)
                     .foregroundColor(.black)
+                    .padding([.leading], 8)
                 Spacer()
             }
             .modifier(BodyTextModifier())
