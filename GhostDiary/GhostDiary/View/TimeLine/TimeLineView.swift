@@ -37,17 +37,20 @@ struct TimeLineView: View {
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        answerStores.questions.removeAll()
-                        answerStores.answers.removeAll()
+                    Menu {
+                        Button("로그아웃") {
+                            answerStores.questions.removeAll()
+                            answerStores.answers.removeAll()
 
-                        authStores.signOut()
-                        isLogin = false
-                        authStores.loginStatus = .defatult
-                        authStores.googleSignOut()
-                    }, label: {
-                        Text("로그 아웃")
-                    })
+                            authStores.signOut()
+                            isLogin = false
+                            authStores.loginStatus = .defatult
+                            authStores.googleSignOut()
+                        }
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.body)
+                    }
                 }
             }
         }

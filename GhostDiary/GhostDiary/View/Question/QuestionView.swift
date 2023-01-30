@@ -64,21 +64,24 @@ struct QuestionView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        answerStores.questions.removeAll()
-                        answerStores.answers.removeAll()
+                    Menu {
+                        Button("로그아웃") {
+                            answerStores.questions.removeAll()
+                            answerStores.answers.removeAll()
 
-                        authStore.signOut()
-                        isLogin = false
-                        authStore.loginStatus = .defatult
-                        authStore.googleSignOut()
-                    }, label: {
-                        Text("로그 아웃")
-                    })
+                            authStore.signOut()
+                            isLogin = false
+                            authStore.loginStatus = .defatult
+                            authStore.googleSignOut()
+                        }
+
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.body)
+                    }
                 }
             }
         }
-        
     }
 }
 
