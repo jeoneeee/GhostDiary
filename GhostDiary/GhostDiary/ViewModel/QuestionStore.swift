@@ -16,6 +16,8 @@ class QuestionStore: ObservableObject {
     
     let database = Firestore.firestore()
     
+    let questionSize: Int = 54 // 현재 데이터 베이스에 저장된 질문의 개수
+    
     
     //데이터베이스에 저장된 정보들을 불러옴
     func fetchQuestions(user: User) async {
@@ -41,7 +43,7 @@ class QuestionStore: ObservableObject {
                 do { // user애 questionNum 값에 1을 더해 업데이트
                     try await database.collection("users").document(user.id)
                         .updateData([
-                            "questionNum": String(Int(user.questionNum)! + 1)
+                            "questionNum": String(min(Int(user.questionNum)! + 1, questionSize))
                         ])
                 } catch {
                     print("user question number update error : \(error.localizedDescription)")
