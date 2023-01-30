@@ -12,7 +12,7 @@ import Firebase
 
 @MainActor
 class QuestionStore: ObservableObject {
-    @Published var questions: Question = Question(id: "", number: "", query: "")
+    @Published var questions: Question = Question(id: "", number: 1, query: "")
     
     let database = Firestore.firestore()
     
@@ -34,7 +34,7 @@ class QuestionStore: ObservableObject {
                 // 내용이 한개지만 배열 값으로 저장되어서 배열 첫번째 값을 불러온다.
                 for document in querysnapshot.documents {
                     let id: String = document["id"] as? String ?? ""
-                    let number: String = document["number"] as? String ?? ""
+                    let number: Int = document["number"] as? Int ?? 1
                     let query: String = document["query"] as? String ?? ""
 
                     self.questions = Question(id: id, number: number, query: query)
@@ -62,7 +62,7 @@ class QuestionStore: ObservableObject {
 
                 for document in querysnapshot.documents {
                     let id: String = document["id"] as? String ?? ""
-                    let number: String = document["number"] as? String ?? ""
+                    let number: Int = document["number"] as? Int ?? 1
                     let query: String = document["query"] as? String ?? ""
 
                     self.questions = Question(id: id, number: number, query: query)

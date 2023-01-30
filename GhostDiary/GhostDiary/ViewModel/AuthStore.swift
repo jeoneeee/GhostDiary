@@ -173,7 +173,7 @@ extension AuthStore {
                 try await db.document(user.id).setData([
                     "id": user.id,
                     "email": user.email,
-                    "questionNum": "1",
+                    "questionNum": 1,
                     "timestamp": user.timestamp
                 ])
             }

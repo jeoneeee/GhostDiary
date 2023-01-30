@@ -128,7 +128,7 @@ extension AppleAuthCoordinator: ASAuthorizationControllerDelegate {
             try await database.document(user.uid).setData([
                 "id": user.uid,
                 "email": user.email ?? "Not Exsit Email",
-                "questionNum": "1",
+                "questionNum": 1,
                 "timestamp": user.metadata.creationDate ?? Date()
             ])
         } catch {
