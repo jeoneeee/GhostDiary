@@ -32,38 +32,39 @@ struct HomeView: View {
         } else {
             //NavigationStack {
                 TabView {
-                    QuestionView()
+                    QuestionView(isLogin: $isLogin)
                         .tabItem {
                             Label("글쓰기", systemImage: "square.and.pencil")
                         }
-                    TimeLineView()
+                    TimeLineView(isLogin: $isLogin)
                         .tabItem {
                             Label("타임라인", systemImage: "calendar")
                         }
-                    AnalysisView()
+                    AnalysisView(isLogin: $isLogin)
                         .tabItem {
                             Label("분석보고서", systemImage: "chart.bar.fill")
                         }
                 //}
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            answerStores.questions.removeAll()
-                            answerStores.answers.removeAll()
-                            
-                            authStores.signOut()
-                            isLogin = false
-                            authStores.loginStatus = .defatult
-                            authStores.googleSignOut()
-                        }, label: {
-                            Text("로그 아웃")
-                        })
-                    }
-                }
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        Button(action: {
+//                            answerStores.questions.removeAll()
+//                            answerStores.answers.removeAll()
+//
+//                            authStores.signOut()
+//                            isLogin = false
+//                            authStores.loginStatus = .defatult
+//                            authStores.googleSignOut()
+//                        }, label: {
+//                            Text("로그 아웃")
+//                        })
+//                    }
+//                }
             }
         }
     }
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     @State static var isLogin: Bool = false

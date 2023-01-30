@@ -74,7 +74,8 @@ struct CheckEmojiView: View {
 
 
 struct CheckEmoji_Previews: PreviewProvider {
+    @State static private var isLogin: Bool = false
     static var previews: some View {
-        QuestionView()
+        QuestionView(isLogin: $isLogin)
     }
 }

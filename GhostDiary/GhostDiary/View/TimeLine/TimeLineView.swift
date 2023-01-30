@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct TimeLineView: View {
-    @EnvironmentObject var answersStores: AnswerStore
+    @EnvironmentObject var answerStores: AnswerStore
+    @EnvironmentObject var authStores: AuthStore
+    
     @State private var category: TimeLineCategory = .calendar
+    @Binding var isLogin: Bool
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .trailing) {
-                if answersStores.answers.count > 0 {
+                if answerStores.answers.count > 0 {
                     Spacer()
                     TimeLineCustomTabBar(selection: $category)
                         .padding()
@@ -31,13 +34,31 @@ struct TimeLineView: View {
             }
             .navigationTitle("Ghost Diary")
             .navigationBarTitleDisplayMode(.inline)
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        answerStores.questions.removeAll()
+                        answerStores.answers.removeAll()
+
+                        authStores.signOut()
+                        isLogin = false
+                        authStores.loginStatus = .defatult
+                        authStores.googleSignOut()
+                    }, label: {
+                        Text("로그 아웃")
+                    })
+                }
+            }
         }
     }
 }
 
 struct TimeLineView_Previews: PreviewProvider {
+    @State static private var isLogin: Bool = false
+    
     static var previews: some View {
-        TimeLineView()
+        TimeLineView(isLogin: $isLogin)
             .environmentObject(AnswerStore())
     }
 }

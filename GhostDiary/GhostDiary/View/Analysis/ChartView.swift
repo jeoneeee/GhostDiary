@@ -80,8 +80,9 @@ struct ChartView: View {
 }
 
 struct ChartView_Previews: PreviewProvider {
+    @State static private var isLogin: Bool = false
     static var previews: some View {
-        AnalysisView()
+        AnalysisView(isLogin: $isLogin)
             .environmentObject(AuthStore())
             .environmentObject(AnswerStore())
     }

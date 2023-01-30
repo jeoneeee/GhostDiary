@@ -14,6 +14,8 @@ struct QuestionView: View {
     @State var showDetailView = false
     @State var isCheckingEmoji = true
     
+    @Binding var isLogin: Bool
+    
     @EnvironmentObject var questionStore: QuestionStore
     @EnvironmentObject var authStore: AuthStore
     @EnvironmentObject var answerStores: AnswerStore
@@ -60,13 +62,30 @@ struct QuestionView: View {
             .fullScreenCover(isPresented: $isShowingQuestionSheet) {
                 AnswerView(todayEmoji: $todayEmoji, isCheckingEmoji: $isCheckingEmoji, question: questionStore.questions)
             }
-            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        answerStores.questions.removeAll()
+                        answerStores.answers.removeAll()
+
+                        authStore.signOut()
+                        isLogin = false
+                        authStore.loginStatus = .defatult
+                        authStore.googleSignOut()
+                    }, label: {
+                        Text("로그 아웃")
+                    })
+                }
+            }
         }
+        
     }
 }
 
 struct QuestionView_Previews: PreviewProvider {
+    @State static private var isLogin: Bool = false
+    
     static var previews: some View {
-        QuestionView()
+        QuestionView(isLogin: $isLogin)
     }
 }
