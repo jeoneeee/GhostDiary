@@ -25,6 +25,7 @@ struct QuestionView: View {
             VStack {
                 Spacer()
                 GhostImageView()
+
                 Spacer()
                 
                 Button {
@@ -62,25 +63,24 @@ struct QuestionView: View {
             .fullScreenCover(isPresented: $isShowingQuestionSheet) {
                 AnswerView(todayEmoji: $todayEmoji, isCheckingEmoji: $isCheckingEmoji, question: questionStore.questions)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Button("로그아웃") {
-                            answerStores.questions.removeAll()
-                            answerStores.answers.removeAll()
-
-                            authStore.signOut()
-                            isLogin = false
-                            authStore.loginStatus = .defatult
-                            authStore.googleSignOut()
-                        }
-
-                    } label: {
-                        Image(systemName: "gearshape")
-                            .font(.body)
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Menu {
+//                        Button("로그아웃") {
+//                            answerStores.questions.removeAll()
+//                            answerStores.answers.removeAll()
+//
+//                            authStore.signOut()
+//                            isLogin = false
+//                            authStore.loginStatus = .defatult
+//                            authStore.googleSignOut()
+//                        }
+//                    } label: {
+//                        Image(systemName: "gearshape")
+//                            .font(.body)
+//                    }
+//                }
+//            }
         }
     }
 }
