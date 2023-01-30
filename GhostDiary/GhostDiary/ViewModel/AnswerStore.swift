@@ -48,14 +48,14 @@ class AnswerStore: ObservableObject {
                 let data = document.data()
                 
                 let id = data["id"] as? String ?? ""
-                let number = data["number"] as? String ?? ""
+                let number = data["number"] as? Int ?? 1
                 let query = data["query"] as? String ?? ""
                 
                 let question = Question(id: id,
                                         number: number,
                                         query: query)
                 
-                print("question: \(question)")
+                //print("question: \(question)")
                 
                 if questions.contains(where: {$0.id == question.id}) {
                     break

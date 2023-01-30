@@ -49,7 +49,7 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
-    @Published var user: User? = User(id: "", email: "", questionNum: "", timestamp: Date()) // default
+    @Published var user: User? = User(id: "", email: "", questionNum: 1, timestamp: Date()) // default
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
@@ -79,7 +79,7 @@ class AuthStore: ObservableObject {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             self.loginStatus = .registered
-            await setUser(authResult.user.uid, email: email, questionNum: "1",createdAt: authResult.user.metadata.creationDate ?? Date())
+            await setUser(authResult.user.uid, email: email, questionNum: 1,createdAt: authResult.user.metadata.creationDate ?? Date())
             
             await addUsers()
             return true
@@ -154,7 +154,7 @@ class AuthStore: ObservableObject {
 ///
 /// 수정해야 함 -> loginTime을 이전에 로그인한 시간으로 authResult.user.metadata.lastSignInDate
 extension AuthStore {
-    func setUser(_ uid: String, email: String, questionNum: String ,createdAt: Date) async {
+    func setUser(_ uid: String, email: String, questionNum: Int ,createdAt: Date) async {
         self.user = User(id: uid,
                          email: email,
                          questionNum: questionNum,
@@ -173,7 +173,7 @@ extension AuthStore {
                 try await db.document(user.id).setData([
                     "id": user.id,
                     "email": user.email,
-                    "questionNum": "1",
+                    "questionNum": 1,
                     "timestamp": user.timestamp
                 ])
             }
@@ -208,7 +208,7 @@ extension AuthStore {
                     
                     let id = data["id"] as? String ?? ""
                     let email = data["email"] as? String ?? ""
-                    let questionNum = data["questionNum"] as? String ?? "1"
+                    let questionNum = data["questionNum"] as? Int ?? 1
                     
                     let lastLoginTime = data["lastLoginTime"] as? Timestamp ?? Timestamp()
                     let loginTimedate = lastLoginTime.dateValue()
@@ -275,7 +275,7 @@ extension AuthStore {
                         }
                         await setUser(currentUser.user.uid,
                                       email: currentUser.user.email ?? "",
-                                      questionNum: "1",
+                                      questionNum: 1,
                                       createdAt: currentUser.user.metadata.creationDate ?? Date())
                         await addUsers()
                         return

@@ -28,7 +28,7 @@ struct HistoryListCellView: View {
 
 struct HistoryListCellView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryListCellView(question: Question(id: "", number: "1", query: "당신이 가장 좋아하는 음식은 무엇인가요"),
+        HistoryListCellView(question: Question(id: "", number: 1, query: "당신이 가장 좋아하는 음식은 무엇인가요"),
                             answer: Answer(id: "", uid: "", expression: "", content: "", timestamp: Date()))
     }
 }

@@ -62,7 +62,7 @@ struct AnswerDetailView: View {
 
 struct AnswerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerDetailView(question: Question(id: "", number: "", query: ""),
+        AnswerDetailView(question: Question(id: "", number: 1, query: ""),
                          answer: Answer(id: "", uid: "", expression: "", content: "", timestamp: Date()))
     }
 }
