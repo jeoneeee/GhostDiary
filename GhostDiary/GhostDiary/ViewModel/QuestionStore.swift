@@ -28,7 +28,7 @@ class QuestionStore: ObservableObject {
             // questionNum + 1
             do {
                 let querysnapshot = try await database.collection("Questions")
-                    .whereField("number", isEqualTo: String(Int(user.questionNum)! + 1)) // Questions에서 "number" 가 user.questionNom + 1 인 값을 가져온다
+                    .whereField("number", isEqualTo: user.questionNum + 1) // Questions에서 "number" 가 user.questionNom + 1 인 값을 가져온다
                     .getDocuments()
                 
                 // 내용이 한개지만 배열 값으로 저장되어서 배열 첫번째 값을 불러온다.
@@ -43,7 +43,7 @@ class QuestionStore: ObservableObject {
                 do { // user애 questionNum 값에 1을 더해 업데이트
                     try await database.collection("users").document(user.id)
                         .updateData([
-                            "questionNum": String(min(Int(user.questionNum)! + 1, questionSize))
+                            "questionNum": min((user.questionNum + 1), questionSize)
                         ])
                 } catch {
                     print("user question number update error : \(error.localizedDescription)")
