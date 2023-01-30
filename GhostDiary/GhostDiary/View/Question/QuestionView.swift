@@ -14,6 +14,8 @@ struct QuestionView: View {
     @State var showDetailView = false
     @State var isCheckingEmoji = true
     
+    @Binding var isLogin: Bool
+    
     @EnvironmentObject var questionStore: QuestionStore
     @EnvironmentObject var authStore: AuthStore
     @EnvironmentObject var answerStores: AnswerStore
@@ -23,6 +25,7 @@ struct QuestionView: View {
             VStack {
                 Spacer()
                 GhostImageView()
+
                 Spacer()
                 
                 Button {
@@ -60,13 +63,32 @@ struct QuestionView: View {
             .fullScreenCover(isPresented: $isShowingQuestionSheet) {
                 AnswerView(todayEmoji: $todayEmoji, isCheckingEmoji: $isCheckingEmoji, question: questionStore.questions)
             }
-            
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Menu {
+//                        Button("로그아웃") {
+//                            answerStores.questions.removeAll()
+//                            answerStores.answers.removeAll()
+//
+//                            authStore.signOut()
+//                            isLogin = false
+//                            authStore.loginStatus = .defatult
+//                            authStore.googleSignOut()
+//                        }
+//                    } label: {
+//                        Image(systemName: "gearshape")
+//                            .font(.body)
+//                    }
+//                }
+//            }
         }
     }
 }
 
 struct QuestionView_Previews: PreviewProvider {
+    @State static private var isLogin: Bool = false
+    
     static var previews: some View {
-        QuestionView()
+        QuestionView(isLogin: $isLogin)
     }
 }
