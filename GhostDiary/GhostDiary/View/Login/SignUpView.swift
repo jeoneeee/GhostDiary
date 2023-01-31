@@ -179,30 +179,6 @@ struct SignUpView: View {
     }
 }
 
-struct LoginTextFieldModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .textInputAutocapitalization(.never)
-            .padding()
-            .overlay {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(Color("Color5"), lineWidth: 3)
-            }
-            .padding([.leading,.trailing])
-    }
-}
-
-struct ValidateText: ViewModifier {
-    var color: Color
-    
-    func body(content: Content) -> some View {
-        content
-            .foregroundColor(color)
-            .font(.caption)
-            .padding([.leading])
-    }
-}
-
 struct SignUpView_Previews: PreviewProvider {
     @State static var isSignUp: Bool = false
     static var previews: some View {

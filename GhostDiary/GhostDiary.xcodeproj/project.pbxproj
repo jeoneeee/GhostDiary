@@ -19,6 +19,8 @@
 		1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97F209297428EC0033C7E7 /* AnswerStore.swift */; };
 		1AA006E4297C08FD00D5EF67 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA006E3297C08FD00D5EF67 /* ChartView.swift */; };
 		28158CE52958703B002C832F /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28158CE42958703B002C832F /* AnswerView.swift */; };
+		2822CE2A29893AC100316139 /* ButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822CE2929893AC100316139 /* ButtonModifiers.swift */; };
+		2822CE2C29893AEE00316139 /* TextFieldModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822CE2B29893AEE00316139 /* TextFieldModifiers.swift */; };
 		2826CE8629796FF700124147 /* Ex+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826CE8529796FF700124147 /* Ex+UIScreen.swift */; };
 		2826CEA9297987A400124147 /* AppleAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */; };
 		2827C5D72976CE5B00185917 /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C5D62976CE5B00185917 /* Ex+Date.swift */; };
@@ -73,6 +75,8 @@
 		1A97F209297428EC0033C7E7 /* AnswerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStore.swift; sourceTree = "<group>"; };
 		1AA006E3297C08FD00D5EF67 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		28158CE42958703B002C832F /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		2822CE2929893AC100316139 /* ButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifiers.swift; sourceTree = "<group>"; };
+		2822CE2B29893AEE00316139 /* TextFieldModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifiers.swift; sourceTree = "<group>"; };
 		2826CE8529796FF700124147 /* Ex+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIScreen.swift"; sourceTree = "<group>"; };
 		2826CEA72979867800124147 /* GhostDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GhostDiary.entitlements; sourceTree = "<group>"; };
 		2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthCoordinator.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				1A364BEC29704B460099C1D2 /* TextModifiers.swift */,
+				2822CE2929893AC100316139 /* ButtonModifiers.swift */,
+				2822CE2B29893AEE00316139 /* TextFieldModifiers.swift */,
 			);
 			name = Modifiers;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 			files = (
 				2827C5D72976CE5B00185917 /* Ex+Date.swift in Sources */,
 				2826CE8629796FF700124147 /* Ex+UIScreen.swift in Sources */,
+				2822CE2A29893AC100316139 /* ButtonModifiers.swift in Sources */,
 				287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */,
 				1AA006E4297C08FD00D5EF67 /* ChartView.swift in Sources */,
 				287606032949FBC200406FB5 /* HistoryListView.swift in Sources */,
@@ -409,6 +416,7 @@
 				1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */,
 				2854D13C29811F6B00A2CCF4 /* EmailLoginView.swift in Sources */,
 				1A364BF0297053A90099C1D2 /* Ex+String.swift in Sources */,
+				2822CE2C29893AEE00316139 /* TextFieldModifiers.swift in Sources */,
 				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,
 				2854A11729828F7400283E40 /* TimeLineCategory.swift in Sources */,
 				2876060E2949FC7E00406FB5 /* Question.swift in Sources */,

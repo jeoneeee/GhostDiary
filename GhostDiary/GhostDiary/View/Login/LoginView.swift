@@ -130,18 +130,6 @@ struct LoginView: View {
     }
 }
 
-struct LoginButton: ViewModifier {
-    var backgroudColor: Color
-    
-    func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: UIScreen.main.bounds.width)
-            .foregroundColor(.white)
-            .background(backgroudColor)
-            .cornerRadius(12)
-    }
-}
-
 struct LoginView_Previews: PreviewProvider {
     @State static var isLogin: Bool = false
     @State static var isLoading: Bool = false
