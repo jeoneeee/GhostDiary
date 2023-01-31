@@ -15,11 +15,11 @@ struct EmailLoginView: View {
     @Binding var isLogin: Bool
     @Binding var isLoading: Bool
     
-    @State var email: String = ""
-    @State var password: String = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
     
-    @State var isPasswordHidden: Bool = false
-    @State var loginMessage: String = ""
+    @State private var isPasswordHidden: Bool = false
+    @State private var loginMessage: String = ""
     
     /// 로그인 버튼 활성화 여부를 나타내는 Boolean Value
     /// email이나 password가 empty가 아닌경우 활성화 된다.

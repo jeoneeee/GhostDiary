@@ -15,14 +15,10 @@ struct AnswerDetailView: View {
         VStack {
             HStack {
                 Text(answer.timestamp.getDay())
-                
-                // Text("2023-01-13")
                     .modifier(BodyTextModifier())
                     .foregroundColor(.gray)
                 
                 Image(answer.expression)
-                
-                // Image("cute")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 34, height: 34)
@@ -34,8 +30,6 @@ struct AnswerDetailView: View {
             .padding(.top, 40)
             
             Text(question.query)
-            
-            // Text("금요일 저녁에는 어떤것을 하시나요?")
                 .modifier(TitleTextModifier())
             
             Rectangle()
@@ -44,18 +38,11 @@ struct AnswerDetailView: View {
                 .padding(.horizontal, 20)
             
             Text(answer.content)
-            
-//            Text("저는 금요일에 마라탕을 먹고 침대에 누워있는 \n삶을 살고싶어요. \n그리고는 침대에 누워서 밀린 유튜브를 하나씩..")
                 .modifier(BodyTextModifier())
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 25)
             
             Spacer()
-            
-            
-
-
-            
         }
     }
 }

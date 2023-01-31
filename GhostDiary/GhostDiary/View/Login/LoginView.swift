@@ -19,10 +19,8 @@ struct LoginView: View {
     
     @Binding var isLogin: Bool
     @Binding var isLoading: Bool
-    
-    @State var isSingUp: Bool = false
+    @State private var isSingUp: Bool = false
     @State private var isEmailLogin: Bool = false
-    
     
     var socialLoginButton: some View {
         VStack {
@@ -127,18 +125,6 @@ struct LoginView: View {
     func appleLogin() {
         appleLoginCoordinator = AppleAuthCoordinator(window: window)
         appleLoginCoordinator?.startAppleLogin()
-    }
-}
-
-struct LoginButton: ViewModifier {
-    var backgroudColor: Color
-    
-    func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: UIScreen.main.bounds.width)
-            .foregroundColor(.white)
-            .background(backgroudColor)
-            .cornerRadius(12)
     }
 }
 

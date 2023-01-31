@@ -56,7 +56,7 @@ class AuthStore: ObservableObject {
         self.handel = Auth.auth().addStateDidChangeListener { auth, user in
             if let user {
                 print("유저 변화 감지 시작 - startListeners")
-                print("uid: \(user.uid), email: \(user.email ?? "UnKnown"), date: \(user.metadata.creationDate)")
+                print("uid: \(user.uid), email: \(user.email ?? "UnKnown"), date: \(String(describing: user.metadata.creationDate))")
                 
                 switch self.loginStatus {
                 case .registered:
@@ -160,7 +160,7 @@ extension AuthStore {
                          questionNum: questionNum,
                          timestamp: createdAt)
         
-        print("set User: \(self.user)")
+        print("set User: \(String(describing: self.user))")
     }
 }
 
@@ -212,9 +212,6 @@ extension AuthStore {
                     
                     let lastLoginTime = data["lastLoginTime"] as? Timestamp ?? Timestamp()
                     let loginTimedate = lastLoginTime.dateValue()
-                    
-                    let timestamp = data["timestamp"] as? Timestamp ?? Timestamp()
-                    let timestampDate = timestamp.dateValue()
                     
                     await setUser(id,
                                   email: email,

@@ -24,9 +24,7 @@ struct GhostImageView: View {
                     .onAppear {
                         withAnimation(.linear(duration: 1)
                             .speed(0.2).repeatForever(autoreverses: true)) {
-                                
                                 rotation1 = 90
-                                
                             }
                     }
             }
@@ -53,12 +51,9 @@ struct GhostImageView: View {
                     .onAppear {
                         withAnimation(.linear(duration: 1)
                             .speed(0.2).repeatForever(autoreverses: true)) {
-                                
                                 rotation2 = -190
-                                
                             }
                     }
-
             }
             .padding(.trailing, 50)
             HStack {
@@ -75,7 +70,7 @@ struct GhostImageView: View {
             }
         }
         .padding(.leading, 50)
-    } //VStack
+    }
 }
 
 

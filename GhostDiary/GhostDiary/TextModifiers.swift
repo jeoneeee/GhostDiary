@@ -31,3 +31,15 @@ struct CaptionTextModifier: ViewModifier {
             .font(.custom("나눔손글씨 느릿느릿체", size: 22))
     }
 }
+
+
+struct ValidateText: ViewModifier {
+    var color: Color
+    
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(color)
+            .font(.caption)
+            .padding([.leading])
+    }
+}

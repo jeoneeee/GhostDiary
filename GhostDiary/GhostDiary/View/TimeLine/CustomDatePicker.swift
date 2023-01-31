@@ -9,15 +9,12 @@ import SwiftUI
 
 struct CustomDatePicker: View {
     @EnvironmentObject var authStores: AuthStore
-    @StateObject var timelineStores = TimeLineStore()
-    @Binding var currentDate: Date
-    
     @EnvironmentObject var answerStores: AnswerStore
     
-    @State var currentMonth: Int = 0
+    @State private var currentMonth: Int = 0
+    @Binding var currentDate: Date
     
     var calendarStore = CalendarStore()
-    
     let days: [String] = ["일", "월", "화", "수", "목", "금", "토"]
     
     var today: Int {
@@ -50,7 +47,7 @@ struct CustomDatePicker: View {
                     Image(systemName: "chevron.right")
                         .font(.title2)
                 }
-                
+        
                 Spacer()
             }
             .foregroundColor(.black)
@@ -78,7 +75,6 @@ struct CustomDatePicker: View {
         // 날짜 변경
         .onChange(of: currentMonth) { newValue in
             currentDate = calendarStore.getCurrentMonth(currentMonth)
-            //currentDate = getCurrentMonth()
         }
     }
     

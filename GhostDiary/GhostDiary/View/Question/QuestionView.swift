@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @State var isShowingEmojiSheet: Bool = false
-    @State var isShowingQuestionSheet: Bool = false
-    @State var todayEmoji: String = ""
-    @State var showDetailView = false
-    @State var isCheckingEmoji = true
+    @State private var isShowingEmojiSheet: Bool = false
+    @State private var isShowingQuestionSheet: Bool = false
+    @State private var todayEmoji: String = ""
+    @State private var showDetailView = false
+    @State private var isCheckingEmoji = true
     
     @Binding var isLogin: Bool
     
