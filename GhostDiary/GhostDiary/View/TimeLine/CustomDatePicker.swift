@@ -14,7 +14,7 @@ struct CustomDatePicker: View {
     
     @EnvironmentObject var answerStores: AnswerStore
     
-    @State var currentMonth: Int = 0
+    @State private var currentMonth: Int = 0
     
     var calendarStore = CalendarStore()
     

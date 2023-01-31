@@ -19,10 +19,8 @@ struct LoginView: View {
     
     @Binding var isLogin: Bool
     @Binding var isLoading: Bool
-    
-    @State var isSingUp: Bool = false
+    @State private var isSingUp: Bool = false
     @State private var isEmailLogin: Bool = false
-    
     
     var socialLoginButton: some View {
         VStack {
