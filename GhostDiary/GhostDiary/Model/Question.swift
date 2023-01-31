@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct Question: Codable, Identifiable {
     var id: String
     var number: Int // 질문 번호

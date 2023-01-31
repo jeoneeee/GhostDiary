@@ -115,18 +115,16 @@ extension AppleAuthCoordinator: ASAuthorizationControllerDelegate {
             
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 guard error == nil else {
-                    print("애플 로그인 오류 발생: \(error?.localizedDescription)")
+                    print("애플 로그인 오류 발생: \(String(describing: error?.localizedDescription))")
                     return
                 }
-                print("애플 로그인 성공: \(authResult?.user.uid)")
-                
+                print("애플 로그인 성공: \(String(describing: authResult?.user.uid))")
                 
                 Task {
                     if await self.checkSignUp(authResult!.user) == .signUp {
                         await self.addUsers(authResult!.user)
                     }
                 }
-                /// FireBase DB 연동
             }
         }
     }

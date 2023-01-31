@@ -59,7 +59,6 @@
 		28F677282949ECFF00935959 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677272949ECFF00935959 /* FirebaseFirestore */; };
 		28F6772A2949ECFF00935959 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677292949ECFF00935959 /* FirebaseFirestoreSwift */; };
 		28F6772C2949ED0900935959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28F6772B2949ED0900935959 /* GoogleService-Info.plist */; };
-		28F89176296C4ABA00D79C42 /* TimeLineStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F89175296C4ABA00D79C42 /* TimeLineStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,7 +110,6 @@
 		28F677192949EB4000935959 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		28F6772B2949ED0900935959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28F6772D2949EDA900935959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		28F89175296C4ABA00D79C42 /* TimeLineStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +199,6 @@
 				287606072949FC4F00406FB5 /* AuthStore.swift */,
 				1A97F209297428EC0033C7E7 /* AnswerStore.swift */,
 				287606092949FC5C00406FB5 /* QuestionStore.swift */,
-				28F89175296C4ABA00D79C42 /* TimeLineStore.swift */,
 				2892CA0A29782224008DBAF8 /* CalendarStore.swift */,
 				2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */,
 			);
@@ -404,7 +401,6 @@
 				287605F72949FAED00406FB5 /* LoginView.swift in Sources */,
 				2827C5D92976D70C00185917 /* HistoryListCellView.swift in Sources */,
 				287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */,
-				28F89176296C4ABA00D79C42 /* TimeLineStore.swift in Sources */,
 				28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */,
 				2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */,
 				1A364BFE29706D8A0099C1D2 /* Ex+Color.swift in Sources */,

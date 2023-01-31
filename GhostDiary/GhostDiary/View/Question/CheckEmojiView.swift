@@ -16,9 +16,7 @@ struct CheckEmojiView: View {
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let emojiarr = ["angry", "cute", "proud", "sad", "tired", "umm"]
     
-    
     var body: some View {
-        
         VStack(spacing: 20) {
             Text("오늘은 어떤 하루였나요?")
                 .modifier(TitleTextModifier())
@@ -50,8 +48,6 @@ struct CheckEmojiView: View {
             .padding(.horizontal, 20)
         }
             
-        
-        
         Button {
             isShowingEmojiSheet = false
         } label: {
@@ -65,11 +61,7 @@ struct CheckEmojiView: View {
         }
         .disabled(isCheckingEmoji)
         .padding(.vertical, 30)
-        
     }
-    
-    
-    
 }
 
 

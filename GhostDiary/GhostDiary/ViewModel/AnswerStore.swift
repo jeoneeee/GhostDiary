@@ -30,7 +30,6 @@ class AnswerStore: ObservableObject {
         }
     }
     
-    
     // MARK: - 사용자가 작성한 질문과 답변을 가져오는 메소드
     /// - Parameter user: 로그인한 사용자의 user정보를 가지고 있습니다
     ///
@@ -54,8 +53,6 @@ class AnswerStore: ObservableObject {
                 let question = Question(id: id,
                                         number: number,
                                         query: query)
-                
-                //print("question: \(question)")
                 
                 if questions.contains(where: {$0.id == question.id}) {
                     break

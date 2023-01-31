@@ -135,7 +135,6 @@ struct SignUpView: View {
     }
     
     var body: some View {
-        //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
         VStack(alignment: .leading) {
             emailView
             

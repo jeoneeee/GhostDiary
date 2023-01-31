@@ -15,10 +15,9 @@ struct AnswerView: View {
     @FocusState private var isInFocusText: Bool
     @EnvironmentObject var answerStore: AnswerStore
     @EnvironmentObject var authStore: AuthStore
+    
     var question: Question
-
-
- 
+    
     var body: some View {
         NavigationStack {
             VStack {
