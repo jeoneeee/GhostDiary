@@ -36,7 +36,7 @@ struct AnalysisView: View {
                     
                     Text("\(String(year))년 \(month)월")
                         .modifier(TitleTextModifier())
-                        .padding(.horizontal, 60)
+                        .padding(.horizontal, 15)
                     if !(year == Int(Date().getYear())! && Int(Date().getMonth())! == month) {
                         Button {
                             if month < 12 {

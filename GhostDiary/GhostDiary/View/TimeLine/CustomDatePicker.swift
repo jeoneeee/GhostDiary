@@ -27,8 +27,6 @@ struct CustomDatePicker: View {
     var body: some View {
         VStack(spacing: 30) {
             HStack {
-                Spacer()
-                
                 Button {
                     currentMonth -= 1
                 } label: {
@@ -36,10 +34,13 @@ struct CustomDatePicker: View {
                         .font(.title2)
                 }
                 
-                Text("\(calendarStore.extraData(currentDate)[0])년")
-                    .modifier(TitleTextModifier())
-                Text("\(calendarStore.extraData(currentDate)[1])")
-                    .modifier(TitleTextModifier())
+                HStack {
+                    Text("\(calendarStore.extraData(currentDate)[0])년")
+                        .modifier(TitleTextModifier())
+                    Text("\(calendarStore.extraData(currentDate)[1])")
+                        .modifier(TitleTextModifier())
+                }
+                .padding(.horizontal, 15)
                 
                 Button {
                     currentMonth += 1
@@ -47,8 +48,6 @@ struct CustomDatePicker: View {
                     Image(systemName: "chevron.right")
                         .font(.title2)
                 }
-        
-                Spacer()
             }
             .foregroundColor(.black)
             .padding(.horizontal)
