@@ -38,6 +38,10 @@ class AnswerStore: ObservableObject {
     /// 질문에 해당하는 답변을 얻습니다
     func readQuestionAndAnswer(_ user: User) async {
         do {
+            DispatchQueue.main.async {
+                self.questions.removeAll()
+                self.answers.removeAll()
+            }
             let questionSnapshot = try await database
                 .whereField("number", isLessThanOrEqualTo: user.questionNum)
                 .order(by: "number", descending: true)

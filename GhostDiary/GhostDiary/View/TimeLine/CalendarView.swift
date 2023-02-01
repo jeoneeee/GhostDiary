@@ -18,13 +18,6 @@ struct CalendarView: View {
             
             Spacer()
         }
-        .onAppear {
-            Task {
-                if let user = authStores.user {
-                    await answerStores.readQuestionAndAnswer(user)
-                }
-            }
-        }
     }
 }
 
