@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "스크린샷_ai-painter.png",
+      "filename" : "ghost7.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "스크린샷_ai-painter@2x.png",
+      "filename" : "ghost7@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "스크린샷_ai-painter@3x.png",
+      "filename" : "ghost7@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

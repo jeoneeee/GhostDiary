@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "스크린샷 2023-01-25 오후 1.04.53.png",
+      "filename" : "googleButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "googleButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "googleButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
