@@ -49,27 +49,35 @@ struct ChartView: View {
     var body: some View {
             VStack {
                 var _ = print("\(year)년 \(month)의 Answers: \(currentAnswer)")
-                
-                Chart {
-                    ForEach(emoji.indices, id: \.self) { index in
-                        BarMark(x: .value("Emoji", text[index]), y: .value("Steps", steps[index]))
-                            .foregroundStyle(by: .value("Texts", text[index]))
-                            .annotation {
-                                VStack {
-                                    Text("\(steps[index])")
-                                        .modifier(CaptionTextModifier())
-                                    Image(emoji[index])
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 30)
+                if steps == Array(repeating: 0, count: 6) {
+                    Image(systemName: "rectangle.and.pencil.and.ellipsis")
+                        .resizable()
+                        .frame(width: UIScreen.screenWidth*0.2, height: UIScreen.screenHeight*0.1)
+                        .padding(.bottom, 20)
+                    Text("기록된 감정이 없어요.")
+                        .modifier(TitleTextModifier())
+                } else {
+                    Chart {
+                        ForEach(emoji.indices, id: \.self) { index in
+                            BarMark(x: .value("Emoji", text[index]), y: .value("Steps", steps[index]))
+                                .foregroundStyle(by: .value("Texts", text[index]))
+                                .annotation {
+                                    VStack {
+                                        Text("\(steps[index])")
+                                            .modifier(CaptionTextModifier())
+                                        Image(emoji[index])
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: UIScreen.screenWidth*0.08)
+                                    }
                                 }
-                            }
+                        }
                     }
+                    .chartForegroundStyleScale([
+                        "화남": Color("Color8"), "기쁨": Color("Color3"), "뿌듯": Color("Color4"), "슬픔": Color("Color1"), "지침": Color("Color6"), "무난": Color("Color7")
+                    ])
                 }
-                .chartForegroundStyleScale([
-                    "화남": Color("Color8"), "기쁨": Color("Color3"), "뿌듯": Color("Color4"), "슬픔": Color("Color1"), "지침": Color("Color6"), "무난": Color("Color7")
-                ])
-            }
+            }//VStack
             .onAppear {
                 steps = [angryCount,cuteCount,proudCount,sadCount,tiredCount,ummCount]
             }
