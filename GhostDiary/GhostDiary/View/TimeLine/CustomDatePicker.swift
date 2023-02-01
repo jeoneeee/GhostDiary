@@ -25,6 +25,16 @@ struct CustomDatePicker: View {
         return Int(currentToday) ?? -1
     }
     
+    /// 달력의 다음달로 이동하는 버튼의 hide 여부를 나타내는 Bool값
+    /// true값을 반환하면 현재날짜와 같은 연도의 같은달이므로 hide시킨다.
+    var isHideRightArrow: Bool {
+        if Date().getYear() == currentDate.getYear() && Date().getMonth() == currentDate.getMonth() {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 30) {
             HStack {
@@ -49,6 +59,7 @@ struct CustomDatePicker: View {
                     Image(systemName: "chevron.right")
                         .font(.title2)
                 }
+                .opacity(isHideRightArrow ? 0 : 1)
             }
             .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
             .padding(.horizontal)
