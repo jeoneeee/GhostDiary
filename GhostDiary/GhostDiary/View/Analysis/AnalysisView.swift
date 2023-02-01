@@ -37,18 +37,33 @@ struct AnalysisView: View {
                     Text("\(String(year))년 \(month)월")
                         .modifier(TitleTextModifier())
                         .padding(.horizontal, 60)
-                    
-                    Button {
-                        if month < 12 {
-                            month += 1
-                        } else {
-                            year += 1
-                            month = 1
+                    if !(year == Int(Date().getYear())! && Int(Date().getMonth())! == month) {
+                        Button {
+                            if month < 12 {
+                                month += 1
+                            } else {
+                                year += 1
+                                month = 1
+                            }
+                        } label: {
+                            Image(systemName:"chevron.right")
+                                .font(.title2)
+                                .foregroundColor(.black)
                         }
-                    } label: {
-                        Image(systemName:"chevron.right")
-                            .font(.title2)
-                            .foregroundColor(.black)
+                    } else {
+                        Button {
+                            if month < 12 {
+                                month += 1
+                            } else {
+                                year += 1
+                                month = 1
+                            }
+                        } label: {
+                            Image(systemName:"chevron.right")
+                                .font(.title2)
+                                .foregroundColor(Color("bgColor"))
+                        }
+                        .disabled(true)
                     }
                 } // HStack
                 .padding(.top, 30)

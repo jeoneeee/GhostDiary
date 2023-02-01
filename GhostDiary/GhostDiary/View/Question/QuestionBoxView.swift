@@ -11,7 +11,7 @@ struct QuestionBoxView: View {
     @EnvironmentObject var questionStore: QuestionStore
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 5) {
             Text("Q. \(questionStore.questions.number)")
                 .bold()
                 .modifier(TitleTextModifier())
@@ -19,7 +19,10 @@ struct QuestionBoxView: View {
             Text(questionStore.questions.query)
                 .modifier(TitleTextModifier())
                 .foregroundColor(.black)
+    
         }
+        .padding(.leading, 20)
+        .frame(width: 320, alignment: .leading)
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color("Color1"))

@@ -29,18 +29,18 @@ struct GhostImageView: View {
                     }
             }
             
-            HStack {
-                Image("ghost5")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .offset(x: rotation3, y: rotation3)
-                    .onAppear {
-                        withAnimation(.linear(duration: 1)
-                            .speed(0.5).repeatForever(autoreverses: true)) {
-                                rotation3 = 90
-                            }
-                    }
-            }
+//            HStack {
+//                Image("ghost5")
+//                    .resizable()
+//                    .frame(width: 100, height: 100)
+//                    .offset(x: rotation3, y: rotation3)
+//                    .onAppear {
+//                        withAnimation(.linear(duration: 1)
+//                            .speed(0.5).repeatForever(autoreverses: true)) {
+//                                rotation3 = 90
+//                            }
+//                    }
+//            }
             
             HStack {
                 Spacer()
