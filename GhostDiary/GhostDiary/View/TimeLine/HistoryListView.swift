@@ -10,18 +10,26 @@ import SwiftUI
 struct HistoryListView: View {
     @EnvironmentObject var authStores: AuthStore
     @EnvironmentObject var answerStores: AnswerStore
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ScrollView(showsIndicators: true) {
+            Rectangle()
+                .foregroundColor(colorScheme == .dark ? Color(.gray) : Color(uiColor: UIColor.systemGray4))
+                .frame(height: 1)
             ForEach(answerStores.answers.indices, id: \.self) { idx in
-                NavigationLink {
-                    AnswerDetailView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
-                } label: {
-                    HistoryListCellView(question: answerStores.questions[idx], answer: answerStores.answers[idx])
+                NavigationLink(value: idx) {
+                    HistoryListCellView(question: answerStores.questions[idx], answer:
+                                            answerStores.answers[idx])
                 }
-                Divider()
-                Spacer(minLength: UIScreen.screenHeight / 20)
+                Rectangle()
+                    .foregroundColor(colorScheme == .dark ? Color(.gray) : Color(uiColor: UIColor.systemGray4))
+                    .frame(height: 1)
             }
+            .padding(.horizontal)
+        }
+        .navigationDestination(for: Int.self) { index in
+            AnswerDetailView(question: answerStores.questions[index], answer: answerStores.answers[index])
         }
     }
 }

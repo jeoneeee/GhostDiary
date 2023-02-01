@@ -19,12 +19,18 @@
 		1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97F209297428EC0033C7E7 /* AnswerStore.swift */; };
 		1AA006E4297C08FD00D5EF67 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA006E3297C08FD00D5EF67 /* ChartView.swift */; };
 		28158CE52958703B002C832F /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28158CE42958703B002C832F /* AnswerView.swift */; };
+		2822CE2A29893AC100316139 /* ButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822CE2929893AC100316139 /* ButtonModifiers.swift */; };
+		2822CE2C29893AEE00316139 /* TextFieldModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822CE2B29893AEE00316139 /* TextFieldModifiers.swift */; };
 		2826CE8629796FF700124147 /* Ex+UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826CE8529796FF700124147 /* Ex+UIScreen.swift */; };
 		2826CEA9297987A400124147 /* AppleAuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */; };
 		2827C5D72976CE5B00185917 /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C5D62976CE5B00185917 /* Ex+Date.swift */; };
 		2827C5D92976D70C00185917 /* HistoryListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C5D82976D70C00185917 /* HistoryListCellView.swift */; };
 		283BE9D6295FE6E600D4C6B1 /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */; };
 		283BE9D8295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BE9D7295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift */; };
+		2854A11529828E3800283E40 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854A11429828E3800283E40 /* LoadingView.swift */; };
+		2854A11729828F7400283E40 /* TimeLineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854A11629828F7400283E40 /* TimeLineCategory.swift */; };
+		2854A1192982928C00283E40 /* TimeLineEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854A1182982928C00283E40 /* TimeLineEmptyView.swift */; };
+		2854D13C29811F6B00A2CCF4 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2854D13B29811F6B00A2CCF4 /* EmailLoginView.swift */; };
 		285EAE79296178DD00A24E18 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EAE78296178DD00A24E18 /* CustomDatePicker.swift */; };
 		285EAE7B2961792900A24E18 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EAE7A2961792900A24E18 /* CalendarDate.swift */; };
 		287605F72949FAED00406FB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287605F62949FAED00406FB5 /* LoginView.swift */; };
@@ -53,7 +59,6 @@
 		28F677282949ECFF00935959 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677272949ECFF00935959 /* FirebaseFirestore */; };
 		28F6772A2949ECFF00935959 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28F677292949ECFF00935959 /* FirebaseFirestoreSwift */; };
 		28F6772C2949ED0900935959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28F6772B2949ED0900935959 /* GoogleService-Info.plist */; };
-		28F89176296C4ABA00D79C42 /* TimeLineStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F89175296C4ABA00D79C42 /* TimeLineStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +74,8 @@
 		1A97F209297428EC0033C7E7 /* AnswerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStore.swift; sourceTree = "<group>"; };
 		1AA006E3297C08FD00D5EF67 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		28158CE42958703B002C832F /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		2822CE2929893AC100316139 /* ButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifiers.swift; sourceTree = "<group>"; };
+		2822CE2B29893AEE00316139 /* TextFieldModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifiers.swift; sourceTree = "<group>"; };
 		2826CE8529796FF700124147 /* Ex+UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIScreen.swift"; sourceTree = "<group>"; };
 		2826CEA72979867800124147 /* GhostDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GhostDiary.entitlements; sourceTree = "<group>"; };
 		2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthCoordinator.swift; sourceTree = "<group>"; };
@@ -76,6 +83,10 @@
 		2827C5D82976D70C00185917 /* HistoryListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCellView.swift; sourceTree = "<group>"; };
 		283BE9D5295FE6E600D4C6B1 /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		283BE9D7295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCustomTabBar.swift; sourceTree = "<group>"; };
+		2854A11429828E3800283E40 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		2854A11629828F7400283E40 /* TimeLineCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCategory.swift; sourceTree = "<group>"; };
+		2854A1182982928C00283E40 /* TimeLineEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineEmptyView.swift; sourceTree = "<group>"; };
+		2854D13B29811F6B00A2CCF4 /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
 		285EAE78296178DD00A24E18 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		285EAE7A2961792900A24E18 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		287605F62949FAED00406FB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -99,7 +110,6 @@
 		28F677192949EB4000935959 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		28F6772B2949ED0900935959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28F6772D2949EDA900935959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		28F89175296C4ABA00D79C42 /* TimeLineStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				1A364BEC29704B460099C1D2 /* TextModifiers.swift */,
+				2822CE2929893AC100316139 /* ButtonModifiers.swift */,
+				2822CE2B29893AEE00316139 /* TextFieldModifiers.swift */,
 			);
 			name = Modifiers;
 			sourceTree = "<group>";
@@ -164,6 +176,7 @@
 				287605FF2949FB7700406FB5 /* TimeLine */,
 				287605F82949FAF700406FB5 /* Question */,
 				287605F52949FAD900406FB5 /* Login */,
+				2854A11429828E3800283E40 /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +188,7 @@
 				2876060D2949FC7E00406FB5 /* Question.swift */,
 				1A30D86C295C8BF1002F5E73 /* Answer.swift */,
 				285EAE7A2961792900A24E18 /* CalendarDate.swift */,
+				2854A11629828F7400283E40 /* TimeLineCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,7 +199,6 @@
 				287606072949FC4F00406FB5 /* AuthStore.swift */,
 				1A97F209297428EC0033C7E7 /* AnswerStore.swift */,
 				287606092949FC5C00406FB5 /* QuestionStore.swift */,
-				28F89175296C4ABA00D79C42 /* TimeLineStore.swift */,
 				2892CA0A29782224008DBAF8 /* CalendarStore.swift */,
 				2826CEA8297987A400124147 /* AppleAuthCoordinator.swift */,
 			);
@@ -197,6 +210,7 @@
 			children = (
 				287605F62949FAED00406FB5 /* LoginView.swift */,
 				287605FD2949FB7300406FB5 /* SignUpView.swift */,
+				2854D13B29811F6B00A2CCF4 /* EmailLoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -224,6 +238,7 @@
 				283BE9D7295FEF1900D4C6B1 /* TimeLineCustomTabBar.swift */,
 				285EAE78296178DD00A24E18 /* CustomDatePicker.swift */,
 				2827C5D82976D70C00185917 /* HistoryListCellView.swift */,
+				2854A1182982928C00283E40 /* TimeLineEmptyView.swift */,
 			);
 			path = TimeLine;
 			sourceTree = "<group>";
@@ -376,6 +391,7 @@
 			files = (
 				2827C5D72976CE5B00185917 /* Ex+Date.swift in Sources */,
 				2826CE8629796FF700124147 /* Ex+UIScreen.swift in Sources */,
+				2822CE2A29893AC100316139 /* ButtonModifiers.swift in Sources */,
 				287605FC2949FB6800406FB5 /* QuestionView.swift in Sources */,
 				1AA006E4297C08FD00D5EF67 /* ChartView.swift in Sources */,
 				287606032949FBC200406FB5 /* HistoryListView.swift in Sources */,
@@ -385,16 +401,20 @@
 				287605F72949FAED00406FB5 /* LoginView.swift in Sources */,
 				2827C5D92976D70C00185917 /* HistoryListCellView.swift in Sources */,
 				287605FE2949FB7300406FB5 /* SignUpView.swift in Sources */,
-				28F89176296C4ABA00D79C42 /* TimeLineStore.swift in Sources */,
 				28A81AB1294E16DF00E0FEE1 /* Authorization.swift in Sources */,
 				2876060A2949FC5C00406FB5 /* QuestionStore.swift in Sources */,
 				1A364BFE29706D8A0099C1D2 /* Ex+Color.swift in Sources */,
 				1A30D86D295C8BF1002F5E73 /* Answer.swift in Sources */,
 				287605FA2949FB5900406FB5 /* HomeView.swift in Sources */,
+				2854A11529828E3800283E40 /* LoadingView.swift in Sources */,
 				28F677152949EB3F00935959 /* ContentView.swift in Sources */,
+				2854A1192982928C00283E40 /* TimeLineEmptyView.swift in Sources */,
 				1A97F20A297428EC0033C7E7 /* AnswerStore.swift in Sources */,
+				2854D13C29811F6B00A2CCF4 /* EmailLoginView.swift in Sources */,
 				1A364BF0297053A90099C1D2 /* Ex+String.swift in Sources */,
+				2822CE2C29893AEE00316139 /* TextFieldModifiers.swift in Sources */,
 				1A6BC9AB294F3F1D00D9B84E /* GhostImageView.swift in Sources */,
+				2854A11729828F7400283E40 /* TimeLineCategory.swift in Sources */,
 				2876060E2949FC7E00406FB5 /* Question.swift in Sources */,
 				1A396FA8295889E1007C1423 /* CheckEmojiView.swift in Sources */,
 				285EAE7B2961792900A24E18 /* CalendarDate.swift in Sources */,

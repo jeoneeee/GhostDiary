@@ -9,16 +9,19 @@ import SwiftUI
 
 struct SignUpView: View {
     @EnvironmentObject var authStores: AuthStore
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
-    @Binding var isSignUp: Bool
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var checkPassword: String = ""
     
     @State private var isValidatedEmail: Bool = false
-    @State private var isDuplicatedEmail: DuplicatedEmail = .notdupleciated
+    @State private var isDuplicatedEmail: DuplicatedEmail = .duplicated
     @State private var isValidatedPassword: Bool = false
     @State private var isEqulPassword: Bool = false
+    
+    @State private var isPressEmailButton: Bool = false
     
     var disableRegister: Bool {
         if isValidatedEmail == true,
@@ -29,11 +32,13 @@ struct SignUpView: View {
         return true
     }
     
+    /// 현재 텍스트필드에 입력된 이메일이 가입되어 있는지 확인하는 연산 프로퍼티
+    /// true값을 반환하면 이메일이 중복되었다는 뜻이며, false는 중복되지 않았다는 뜻이다.
     var isEmailExsit: Bool {
         switch isDuplicatedEmail {
         case .duplicated:
             return true
-        case .notdupleciated:
+        case .notduplicated:
             return false
         }
     }
@@ -41,7 +46,8 @@ struct SignUpView: View {
     private var emailView: some View {
         VStack(alignment: .leading) {
             Text("이메일")
-                .font(.title3)
+                .modifier(BodyTextModifier())
+                //.font(.title3)
                 .padding([.leading])
             HStack {
                 TextField("example@naver.com ", text: $email)
@@ -50,16 +56,19 @@ struct SignUpView: View {
                         isValidatedEmail = AuthCheck.validateEmail(email: email) ? true : false
                     }
                 Button(action: {
+                    isPressEmailButton = true
                     Task {
                         isDuplicatedEmail = await authStores.checkduplicationEmail(email: email)
                     }
                 }, label: {
                     Text("중복 확인")
+                        .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.gray))
                         .padding(10)
                         .overlay {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .stroke(Color(UIColor.systemGray4), lineWidth: 2)
+                                .stroke(colorScheme == .dark ? Color(.white) : Color(.gray), lineWidth: 2)
                         }
+                        .modifier(BodyTextModifier())
                         .foregroundColor(.secondary)
                 })
             }
@@ -74,10 +83,12 @@ struct SignUpView: View {
                         .modifier(ValidateText(color: .red))
                         .opacity((!email.isEmpty && !isValidatedEmail) ? 1 : 0)
                 }
+                
                 Spacer()
+                
                 Text("이미 가입된 이메일 입니다")
                     .modifier(ValidateText(color: .red))
-                    .opacity(isEmailExsit ? 1 : 0)
+                    .opacity(isEmailExsit && isPressEmailButton ? 1 : 0)
             }
         }
     }
@@ -85,15 +96,15 @@ struct SignUpView: View {
     private var passwordView: some View {
         VStack(alignment: .leading) {
             Text("비밀번호")
-                .font(.title3)
+                .modifier(BodyTextModifier())
+                //.font(.title3)
                 .padding([.leading, .top])
             
-            TextField("비밀번호를 입력하세요. ", text: $password)
+            SecureField("비밀번호를 입력하세요. ", text: $password)
                 .modifier(LoginTextFieldModifier())
                 .onChange(of: password) { password in
                     isValidatedPassword = AuthCheck.validatePassword(password: password) ? true : false
                 }
-                .disabled(isEmailExsit)
             ZStack(alignment: .leading) {
                 Text("영문자,숫자,특수문자 8~20자리를 조합해 주세요.")
                     .modifier(ValidateText(color: .red))
@@ -109,95 +120,77 @@ struct SignUpView: View {
     private var psswordCheckView: some View {
         VStack(alignment: .leading) {
             Text("비밀번호 확인")
-                .font(.title3)
+                .modifier(BodyTextModifier())
                 .padding([.leading, .top])
-            TextField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
+            SecureField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
                 .modifier(LoginTextFieldModifier())
                 .onChange(of: checkPassword) { checkPassword in
                     isEqulPassword = (password == checkPassword) ? true : false
                 }
-                .disabled(isEmailExsit)
+            
             if isEqulPassword && !checkPassword.isEmpty{
                 Text("비밀번호가 일치합니다.")
                     .modifier(ValidateText(color: .green))
+                    .modifier(CaptionTextModifier())
             } else if !checkPassword.isEmpty {
                 Text("비밀번호가 일치하지 않습니다.")
                     .modifier(ValidateText(color: .red))
+                    .modifier(CaptionTextModifier())
             }
         }
         .opacity(isEmailExsit ? 0.5 : 1)
     }
     
     var body: some View {
-        //FIXME: - 비밀번호 텍스트필드 SecureField로 수정 필요
-        NavigationStack {
-            VStack(alignment: .leading) {
-                //Spacer()
-                emailView
+        VStack(alignment: .leading) {
+            emailView
+            
+            if !isEmailExsit {
                 passwordView
                 psswordCheckView
-                
-                Spacer()
-                
-                Button(action: {
-                    Task {
-                        guard await authStores.register(email: email, password: password) else {
-                            return
-                        }
-                    }
-                },label: {
-                    Text("등록 완료")
-                        .padding()
-                })
-                .modifier(LoginButton())
-                .disabled(disableRegister)
-                .opacity(disableRegister ? 0.5 : 1)
             }
-            .padding()
-            .textInputAutocapitalization(.never)
-            .formStyle(.automatic)
             
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        isSignUp.toggle()
-                    }, label: {
-                        Text("취소")
-                    })
+            Spacer()
+            
+            Button(action: {
+                Task {
+                    guard await authStores.register(email: email, password: password) else {
+                        return
+                    }
+                }
+            },label: {
+                Text("회원가입 완료")
+                    .padding()
+                    .modifier(BodyTextModifier())
+                    .foregroundColor(.black)
+            })
+            .modifier(disableRegister ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
+            .disabled(disableRegister)
+        }
+        .padding()
+        .textInputAutocapitalization(.never)
+        .formStyle(.automatic)
+        
+        .navigationTitle("회원가입")
+        .navigationBarBackButtonHidden(true)
+    
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
                 }
             }
         }
     }
 }
 
-struct LoginTextFieldModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .textInputAutocapitalization(.never)
-            .padding()
-            .overlay {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(Color("Color5"), lineWidth: 3)
-            }
-            .padding([.leading,.trailing])
-    }
-}
-
-struct ValidateText: ViewModifier {
-    var color: Color
-    
-    func body(content: Content) -> some View {
-        content
-            .foregroundColor(color)
-            .font(.caption)
-            .padding([.leading])
-    }
-}
-
 struct SignUpView_Previews: PreviewProvider {
     @State static var isSignUp: Bool = false
     static var previews: some View {
-        SignUpView(isSignUp: $isSignUp)
+        SignUpView()
             .environmentObject(AuthStore())
     }
 }

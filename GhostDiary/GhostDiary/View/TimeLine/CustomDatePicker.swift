@@ -9,15 +9,13 @@ import SwiftUI
 
 struct CustomDatePicker: View {
     @EnvironmentObject var authStores: AuthStore
-    @StateObject var timelineStores = TimeLineStore()
+    @EnvironmentObject var answerStores: AnswerStore
+    @Environment(\.colorScheme) var colorScheme
+    
+    @State private var currentMonth: Int = 0
     @Binding var currentDate: Date
     
-    @EnvironmentObject var answerStores: AnswerStore
-    
-    @State var currentMonth: Int = 0
-    
     var calendarStore = CalendarStore()
-    
     let days: [String] = ["일", "월", "화", "수", "목", "금", "토"]
     
     var today: Int {
@@ -30,8 +28,6 @@ struct CustomDatePicker: View {
     var body: some View {
         VStack(spacing: 30) {
             HStack {
-                Spacer()
-                
                 Button {
                     currentMonth -= 1
                 } label: {
@@ -39,10 +35,13 @@ struct CustomDatePicker: View {
                         .font(.title2)
                 }
                 
-                Text("\(calendarStore.extraData(currentDate)[0])년")
-                    .modifier(TitleTextModifier())
-                Text("\(calendarStore.extraData(currentDate)[1])")
-                    .modifier(TitleTextModifier())
+                HStack {
+                    Text("\(calendarStore.extraData(currentDate)[0])년")
+                        .modifier(TitleTextModifier())
+                    Text("\(calendarStore.extraData(currentDate)[1])")
+                        .modifier(TitleTextModifier())
+                }
+                .padding(.horizontal, 15)
                 
                 Button {
                     currentMonth += 1
@@ -50,10 +49,8 @@ struct CustomDatePicker: View {
                     Image(systemName: "chevron.right")
                         .font(.title2)
                 }
-                
-                Spacer()
             }
-            .foregroundColor(.black)
+            .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
             .padding(.horizontal)
             
             // 요일 뷰
@@ -78,7 +75,6 @@ struct CustomDatePicker: View {
         // 날짜 변경
         .onChange(of: currentMonth) { newValue in
             currentDate = calendarStore.getCurrentMonth(currentMonth)
-            //currentDate = getCurrentMonth()
         }
     }
     

@@ -8,28 +8,60 @@
 import SwiftUI
 
 struct TimeLineView: View {
-    @State private var tabSelection: Int = 1
+    @EnvironmentObject var answerStores: AnswerStore
+    @EnvironmentObject var authStores: AuthStore
+    
+    @State private var category: TimeLineCategory = .calendar
+    @Binding var isLogin: Bool
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .trailing) {
-                Spacer()
-                TimeLineCustomTabBar(selection: $tabSelection)
-                    .padding()
-                
-                TabView(selection: $tabSelection) {
-                    CalendarView()
-                        .tag(1)
-                    HistoryListView()
-                        .tag(2)
+                if answerStores.answers.count > 0 {
+                    Spacer()
+                    TimeLineCustomTabBar(selection: $category)
+                        .padding()
+                    
+                    switch category {
+                    case .calendar:
+                        CalendarView()
+                    case .list:
+                        HistoryListView()
+                    }
+                } else {
+                    TimeLineEmptyView()
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
+            }
+//            .navigationTitle("Ghost Diary")
+//            .navigationBarTitleDisplayMode(.inline)
+//            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button("로그아웃") {
+                            answerStores.questions.removeAll()
+                            answerStores.answers.removeAll()
+
+                            authStores.signOut()
+                            isLogin = false
+                            authStores.loginStatus = .defatult
+                            authStores.googleSignOut()
+                        }
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.body)
+                    }
+                }
             }
         }
     }
 }
 
 struct TimeLineView_Previews: PreviewProvider {
+    @State static private var isLogin: Bool = false
+    
     static var previews: some View {
-        TimeLineView()
+        TimeLineView(isLogin: $isLogin)
+            .environmentObject(AnswerStore())
     }
 }

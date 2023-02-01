@@ -11,6 +11,11 @@ import FirebaseFirestore
 import AuthenticationServices
 import CryptoKit
 
+enum AppleLoginStatus {
+    case signUp
+    case logined
+}
+
 class AppleAuthCoordinator: NSObject {
     var currentNonce: String?
     let window: UIWindow?
@@ -110,14 +115,16 @@ extension AppleAuthCoordinator: ASAuthorizationControllerDelegate {
             
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 guard error == nil else {
-                    print("애플 로그인 오류 발생: \(error?.localizedDescription)")
+                    print("애플 로그인 오류 발생: \(String(describing: error?.localizedDescription))")
                     return
                 }
-                print("애플 로그인 성공: \(authResult?.user.uid)")
+                print("애플 로그인 성공: \(String(describing: authResult?.user.uid))")
+                
                 Task {
-                    await self.addUsers(authResult!.user)
+                    if await self.checkSignUp(authResult!.user) == .signUp {
+                        await self.addUsers(authResult!.user)
+                    }
                 }
-                /// FireBase DB 연동
             }
         }
     }
@@ -128,12 +135,23 @@ extension AppleAuthCoordinator: ASAuthorizationControllerDelegate {
             try await database.document(user.uid).setData([
                 "id": user.uid,
                 "email": user.email ?? "Not Exsit Email",
-                "questionNum": "1",
+                "questionNum": 1,
                 "timestamp": user.metadata.creationDate ?? Date()
             ])
         } catch {
-            print("DB Add User Error: \(error)")
+            print("애플 로그인 DB Add User Error: \(error.localizedDescription)")
         }
+    }
+    
+    /// 이전에 유저가 애플 로그인을 했는지 확이하는 메소드로 AppleLoginStatus 타입을 반환한다.
+    func checkSignUp(_ user: FirebaseAuth.User) async -> AppleLoginStatus {
+        do {
+            let querySnapshot = try await database.document(user.uid).getDocument()
+            return (querySnapshot.exists) ? .logined : .signUp
+        } catch {
+            print("애플 로그인 상태 확인 에러: \(error.localizedDescription)")
+        }
+        return .logined
     }
 }
 

@@ -10,14 +10,14 @@ import SwiftUI
 struct AnswerView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var todayEmoji: String
+    @Binding var isCheckingEmoji: Bool
     @State private var text: String = ""
     @FocusState private var isInFocusText: Bool
     @EnvironmentObject var answerStore: AnswerStore
     @EnvironmentObject var authStore: AuthStore
+    
     var question: Question
-
-
- 
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -57,27 +57,34 @@ struct AnswerView: View {
                 .padding([.leading, .trailing])
                 
                 Button {
+                    isCheckingEmoji = true
                     dismiss()
                     Task {
                         let answer = Answer(id: UUID().uuidString, uid: authStore.user?.id ?? "", expression: todayEmoji, content: text, timestamp: Date())
-                        await answerStore.createAnswer(question.id, answer: answer)
+                        if let user = authStore.user {
+                            await answerStore.createAnswer(question.id, answer: answer)
+                            await answerStore.readQuestionAndAnswer(user)
+                        }
                     }
                 } label: {
                     Text("확인")
                         .modifier(BodyTextModifier())
                         .padding(.vertical, 10)
                         .padding(.horizontal, 55)
-                        .background(Color("Color5"))
+                        .background(text.count > 0 ? Color("Color5") : Color("Color9"))
                         .cornerRadius(17)
                         .foregroundColor(.black)
                 }
                 .padding(.vertical, 30)
+                .disabled(text.count > 0 ? false : true)
 
                 
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button {
+                        todayEmoji = ""
+                        isCheckingEmoji = true
                         dismiss()
                     } label: {
                         Text("취소")
@@ -89,11 +96,11 @@ struct AnswerView: View {
     }
 }
 
-struct AnswerView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerView(todayEmoji: .constant("umm"), question: Question(id: "123", number: "1", query: "gd"))
-            .environmentObject(AnswerStore())
-            .environmentObject(QuestionStore())
- 
-    }
-}
+//struct AnswerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AnswerView(todayEmoji: .constant("umm"), question: Question(id: "123", number: "1", query: "gd"))
+//            .environmentObject(AnswerStore())
+//            .environmentObject(QuestionStore())
+// 
+//    }
+//}

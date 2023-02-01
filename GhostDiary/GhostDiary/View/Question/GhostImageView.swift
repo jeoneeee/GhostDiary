@@ -16,49 +16,44 @@ struct GhostImageView: View {
     var body: some View {
         VStack {
             HStack {
-                Image("ghost1")
+                Image("ghost7")
                     .resizable()
-                    .frame(width: 100, height: 110)
+                    .frame(width: 100, height: 100)
                     .offset(x: rotation1)
 //                    .scaleEffect(x: rotation1 == -100 ? 1:-1, y: 1, anchor: .center)
                     .onAppear {
                         withAnimation(.linear(duration: 1)
                             .speed(0.2).repeatForever(autoreverses: true)) {
-                                
                                 rotation1 = 90
-                                
                             }
                     }
             }
             
-            HStack {
-                Image("ghost5")
-                    .resizable()
-                    .frame(width: 100, height: 110)
-                    .offset(x: rotation3, y: rotation3)
-                    .onAppear {
-                        withAnimation(.linear(duration: 1)
-                            .speed(0.5).repeatForever(autoreverses: true)) {
-                                rotation3 = 90
-                            }
-                    }
-            }
+//            HStack {
+//                Image("ghost5")
+//                    .resizable()
+//                    .frame(width: 100, height: 100)
+//                    .offset(x: rotation3, y: rotation3)
+//                    .onAppear {
+//                        withAnimation(.linear(duration: 1)
+//                            .speed(0.5).repeatForever(autoreverses: true)) {
+//                                rotation3 = 90
+//                            }
+//                    }
+//            }
             
             HStack {
                 Spacer()
-                Image("ghost2")
+                Image("ghost6")
                     .resizable()
                     .frame(width: 110, height: 110)
                     .offset(x: rotation2)
                     .onAppear {
                         withAnimation(.linear(duration: 1)
                             .speed(0.2).repeatForever(autoreverses: true)) {
-                                
                                 rotation2 = -190
-                                
                             }
                     }
-
             }
             .padding(.trailing, 50)
             HStack {
@@ -75,7 +70,7 @@ struct GhostImageView: View {
             }
         }
         .padding(.leading, 50)
-    } //VStack
+    }
 }
 
 

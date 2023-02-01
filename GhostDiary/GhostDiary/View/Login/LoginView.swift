@@ -12,106 +12,111 @@ import AuthenticationServices
 
 struct LoginView: View {
     @EnvironmentObject var authStores: AuthStore
+    @Environment(\.colorScheme) var colorScheme
     
     @Environment(\.window) var window: UIWindow?
     @State private var appleLoginCoordinator: AppleAuthCoordinator?
     
     @Binding var isLogin: Bool
     @Binding var isLoading: Bool
+    @State private var isSingUp: Bool = false
+    @State private var isEmailLogin: Bool = false
     
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var isSingUp: Bool = false
-    
-    @State var isPasswordHidden: Bool = false
-    @State var loginMessage: String = ""
-    
-    var body: some View {
+    var socialLoginButton: some View {
         VStack {
-            Spacer()
-            
-            HStack {
-                Image(systemName: "person.fill")
-                    .foregroundColor(.secondary)
-                
-                TextField(text: $email) {
-                    Label("이메일", systemImage: "lock.fill")
+            Button {
+                handleSignInButton()
+            } label: {
+                HStack {
+                    Spacer()
+                    Image("googleButton")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.white)
+                        .frame(width: 30, height: 30)
+                    Text("Google로 계속하기")
+                        //.modifier(CaptionTextModifier())
+                        .foregroundColor(.black)
+                        .bold()
+                    Spacer()
                 }
+                .frame(width: UIScreen.screenWidth - 75, height: 44)
+                .border(.gray)
             }
-            .modifier(LoginTextFieldModifier())
-            .padding(.bottom)
+            .background(.white)
+
             
-            HStack {
-                ZStack {
-                    HStack {
-                        Image(systemName: "lock.fill")
-                            .foregroundColor(.secondary)
-                        if isPasswordHidden {
-                            TextField("비밀번호", text: $password)
-                        } else {
-                            SecureField("비밀번호", text: $password)
-                        }
-                    }
-                    .modifier(LoginTextFieldModifier())
-                }
-                .overlay(alignment: .topTrailing) {
-                    Button(action: {
-                        isPasswordHidden.toggle()
-                    }, label: {
-                        Image(systemName: isPasswordHidden ? "eye.fill" : "eye.slash.fill")
-                            .foregroundColor(.secondary)
-                    })
-                    .offset(x: -20, y: 20)
-                }
-            }
-            
-            Text(loginMessage)
-                .foregroundColor(.secondary)
-            
-            Spacer()
-            
-            Button(action: {
-                Task {
-                    isLoading.toggle()
-                    let loginCode = await authStores.signIn(email: email, password: password)
-                    if loginCode == .success {
-                        isLogin.toggle()
-                    }
-                    isLoading.toggle()
-                    loginMessage = authStores.getErrorMessage(loginCode: loginCode)
-                }
-            }, label: {
-                Text("로그인")
-                    .padding()
-            })
-            .modifier(LoginButton())
-            
-            Button(action: {
-                isSingUp.toggle()
-            }, label: {
-                Text("회원가입")
-                    .padding()
-            })
-            .modifier(LoginButton())
-            Spacer()
-            
-            GoogleSignInButton(action: handleSignInButton)
-                .frame(width: 280, height: 60)
-            
-            // FIXME: - Custom Apple Login Button 작업 필요
             Button {
                 appleLogin()
             } label: {
-                Text("애플로 로그인")
+                HStack(alignment: .center) {
+                    Spacer()
+                    Image("appleLoginButton")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.white)
+                        .frame(width: 50, height: 44)
+                    Text("Apple로 계속하기")
+                        //.modifier(CaptionTextModifier())
+                        .foregroundColor(.black)
+                        .bold()
+                    Spacer()
+                }
+                .frame(width: UIScreen.screenWidth - 75, height: 44)
+                .border(.gray)
+            }
+            .background(.white)
+        }
+    }
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                Spacer()
+                
+                Text("Ghost Diary")
+                    .font(.custom("나눔손글씨 느릿느릿체", size: 60))
+                    .foregroundColor(Color("Color4"))
+                    .bold()
+                Text("나를 찾아주는 100개의 질문에 답을 해보세요.")
+                    .modifier(BodyTextModifier())
+                    .padding()
+                
+                Spacer()
+                
+                socialLoginButton
+                
+                Rectangle()
+                    .foregroundColor(colorScheme == .dark ? Color(.white) : Color(uiColor: UIColor.systemGray5))
+                    .frame(height: 1)
+                    .padding(20)
+                
+                HStack {
+                    Spacer()
+                    NavigationLink(destination: EmailLoginView(isLogin: $isLogin, isLoading: $isLoading)) {
+                        Text("이메일로 로그인")
+                            .modifier(CaptionTextModifier())
+                    }
+                    Spacer()
+                    
+                    NavigationLink(destination: SignUpView()) {
+                        Text("이메일로 회원가입")
+                            .modifier(CaptionTextModifier())
+                    }
+                    Spacer()
+                }
+                .foregroundColor(.secondary)
+                
+                Spacer()
             }
         }
-        .padding()
         
-        .fullScreenCover(isPresented: $isSingUp) {
-            SignUpView(isSignUp: $isSingUp)
-                .environmentObject(authStores)
+        .navigationDestination(isPresented: $isEmailLogin) {
+            EmailLoginView(isLogin: $isLogin, isLoading: $isLoading)
         }
-        
+        .navigationDestination(isPresented: $isSingUp) {
+            SignUpView()
+        }
         .onAppear {
             authStores.startListeners()
         }
@@ -127,29 +132,6 @@ struct LoginView: View {
     func appleLogin() {
         appleLoginCoordinator = AppleAuthCoordinator(window: window)
         appleLoginCoordinator?.startAppleLogin()
-    }
-}
-
-struct LoginButton: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: UIScreen.main.bounds.width)
-            .foregroundColor(.white)
-            .background(Color("Color3"))
-            .cornerRadius(40)
-    }
-}
-
-//TODO: - LoadingView 파일 위치 이동
-struct LoadingView: View {
-    var body: some View {
-        ZStack {
-            Color(.systemBackground)
-                .ignoresSafeArea()
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: Color("Color1")))
-                .scaleEffect(3)
-        }
     }
 }
 

@@ -36,7 +36,7 @@ enum LoginStatus {
 
 enum DuplicatedEmail {
     case duplicated
-    case notdupleciated
+    case notduplicated
 }
 
 @MainActor
@@ -49,14 +49,14 @@ class AuthStore: ObservableObject {
     }()
     
     @Published var loginStatus: LoginStatus = .defatult
-    @Published var user: User? = User(id: "", email: "", questionNum: "", timestamp: Date()) // default
+    @Published var user: User? = User(id: "", email: "", questionNum: 1, timestamp: Date()) // default
     
     /// 이전에 로그인을 했다면 클로저의 user 매개변수에 마지막에 로그인했던 유저의 정보가 담겨져있음
     func startListeners() {
         self.handel = Auth.auth().addStateDidChangeListener { auth, user in
             if let user {
                 print("유저 변화 감지 시작 - startListeners")
-                print("uid: \(user.uid), email: \(user.email ?? "UnKnown"), date: \(user.metadata.creationDate)")
+                print("uid: \(user.uid), email: \(user.email ?? "UnKnown"), date: \(String(describing: user.metadata.creationDate))")
                 
                 switch self.loginStatus {
                 case .registered:
@@ -79,7 +79,7 @@ class AuthStore: ObservableObject {
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             self.loginStatus = .registered
-            await setUser(authResult.user.uid, email: email, questionNum: "1",createdAt: authResult.user.metadata.creationDate ?? Date())
+            await setUser(authResult.user.uid, email: email, questionNum: 1,createdAt: authResult.user.metadata.creationDate ?? Date())
             
             await addUsers()
             return true
@@ -92,7 +92,7 @@ class AuthStore: ObservableObject {
     func checkduplicationEmail(email: String) async -> DuplicatedEmail {
         do {
             let emailStrings = try await Auth.auth().fetchSignInMethods(forEmail:  email)
-            return (emailStrings.isEmpty) ? .notdupleciated : .duplicated
+            return (emailStrings.isEmpty) ? .notduplicated : .duplicated
         } catch {
             print("중복 이메일 확인 에러: \(error.localizedDescription)")
         }
@@ -154,13 +154,13 @@ class AuthStore: ObservableObject {
 ///
 /// 수정해야 함 -> loginTime을 이전에 로그인한 시간으로 authResult.user.metadata.lastSignInDate
 extension AuthStore {
-    func setUser(_ uid: String, email: String, questionNum: String ,createdAt: Date) async {
+    func setUser(_ uid: String, email: String, questionNum: Int ,createdAt: Date) async {
         self.user = User(id: uid,
                          email: email,
                          questionNum: questionNum,
                          timestamp: createdAt)
         
-        print("set User: \(self.user)")
+        print("set User: \(String(describing: self.user))")
     }
 }
 
@@ -173,7 +173,7 @@ extension AuthStore {
                 try await db.document(user.id).setData([
                     "id": user.id,
                     "email": user.email,
-                    "questionNum": "1",
+                    "questionNum": 1,
                     "timestamp": user.timestamp
                 ])
             }
@@ -208,13 +208,10 @@ extension AuthStore {
                     
                     let id = data["id"] as? String ?? ""
                     let email = data["email"] as? String ?? ""
-                    let questionNum = data["questionNum"] as? String ?? "1"
+                    let questionNum = data["questionNum"] as? Int ?? 1
                     
                     let lastLoginTime = data["lastLoginTime"] as? Timestamp ?? Timestamp()
                     let loginTimedate = lastLoginTime.dateValue()
-                    
-                    let timestamp = data["timestamp"] as? Timestamp ?? Timestamp()
-                    let timestampDate = timestamp.dateValue()
                     
                     await setUser(id,
                                   email: email,
@@ -275,7 +272,7 @@ extension AuthStore {
                         }
                         await setUser(currentUser.user.uid,
                                       email: currentUser.user.email ?? "",
-                                      questionNum: "1",
+                                      questionNum: 1,
                                       createdAt: currentUser.user.metadata.creationDate ?? Date())
                         await addUsers()
                         return
