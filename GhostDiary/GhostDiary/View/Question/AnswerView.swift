@@ -61,7 +61,10 @@ struct AnswerView: View {
                     dismiss()
                     Task {
                         let answer = Answer(id: UUID().uuidString, uid: authStore.user?.id ?? "", expression: todayEmoji, content: text, timestamp: Date())
-                        await answerStore.createAnswer(question.id, answer: answer)
+                        if let user = authStore.user {
+                            await answerStore.createAnswer(question.id, answer: answer)
+                            await answerStore.readQuestionAndAnswer(user)
+                        }
                     }
                 } label: {
                     Text("확인")
