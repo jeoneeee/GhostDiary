@@ -13,6 +13,8 @@ struct AnalysisView: View {
     
     @EnvironmentObject var answerStores: AnswerStore
     @EnvironmentObject var authStores: AuthStore
+    @Environment(\.colorScheme) var colorScheme
+    
     @Binding var isLogin: Bool
     
     
@@ -31,7 +33,7 @@ struct AnalysisView: View {
                     } label: {
                         Image(systemName:"chevron.left")
                             .font(.title2)
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
                     }
                     
                     Text("\(String(year))년 \(month)월")
@@ -48,7 +50,7 @@ struct AnalysisView: View {
                         } label: {
                             Image(systemName:"chevron.right")
                                 .font(.title2)
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
                         }
                     } else {
                         Button {
@@ -61,7 +63,7 @@ struct AnalysisView: View {
                         } label: {
                             Image(systemName:"chevron.right")
                                 .font(.title2)
-                                .foregroundColor(Color("bgColor"))
+                                .foregroundColor(colorScheme == .dark ? Color(.black) : Color(.white))
                         }
                         .disabled(true)
                     }

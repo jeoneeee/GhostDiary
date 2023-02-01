@@ -50,7 +50,6 @@ struct QuestionView: View {
                 
             }
             .padding([.bottom], 60)
-            
             .sheet(isPresented: $isShowingEmojiSheet) {
                 CheckEmojiView(todayEmoji: $todayEmoji, isShowingEmojiSheet: $isShowingEmojiSheet, isShowingQuestionSheet: $isShowingQuestionSheet, isCheckingEmoji: $isCheckingEmoji)
                     .onDisappear {

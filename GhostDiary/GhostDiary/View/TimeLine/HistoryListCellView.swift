@@ -10,6 +10,7 @@ import SwiftUI
 struct HistoryListCellView: View {
     let question: Question
     let answer: Answer
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(alignment: .center) {
@@ -17,7 +18,7 @@ struct HistoryListCellView: View {
                 Text("#\(question.number)")
                     .foregroundColor(Color("Color7"))
                 Text(question.query)
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
                     .padding([.leading], 8)
                 Spacer()
             }

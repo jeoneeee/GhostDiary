@@ -12,6 +12,7 @@ struct CheckEmojiView: View {
     @Binding var isShowingEmojiSheet: Bool
     @Binding var isShowingQuestionSheet: Bool
     @Binding var isCheckingEmoji: Bool
+    @Environment(\.colorScheme) var colorScheme
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let emojiarr = ["angry", "cute", "proud", "sad", "tired", "umm"]
@@ -34,7 +35,7 @@ struct CheckEmojiView: View {
                             Image("\(index)")
                                 .resizable()
                                 .frame(width: 80, height: 80)
-                                .shadow(radius: 5)
+                                .shadow(color: colorScheme == .dark ? Color(.gray) : Color(.black), radius: 5)
                         }else{
                             Image("\(index)")
                                 .resizable()

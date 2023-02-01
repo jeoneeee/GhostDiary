@@ -43,6 +43,8 @@ struct LoginView: View {
                 .frame(width: UIScreen.screenWidth - 75, height: 44)
                 .border(.gray)
             }
+            .background(.white)
+
             
             Button {
                 appleLogin()
@@ -63,8 +65,8 @@ struct LoginView: View {
                 .frame(width: UIScreen.screenWidth - 75, height: 44)
                 .border(.gray)
             }
+            .background(.white)
         }
-        .background(.white)
     }
     
     var body: some View {
@@ -72,16 +74,22 @@ struct LoginView: View {
             VStack {
                 Spacer()
                 
+                Text("Ghost Diary")
+                    .font(.custom("나눔손글씨 느릿느릿체", size: 60))
+                    .foregroundColor(Color("Color4"))
+                    .bold()
                 Text("나를 찾아주는 100개의 질문에 답을 해보세요.")
-                    .modifier(TitleTextModifier())
+                    .modifier(BodyTextModifier())
                     .padding()
                 
                 Spacer()
                 
                 socialLoginButton
                 
-                Divider()
-                    .padding()
+                Rectangle()
+                    .foregroundColor(colorScheme == .dark ? Color(.white) : Color(uiColor: UIColor.systemGray5))
+                    .frame(height: 1)
+                    .padding(20)
                 
                 HStack {
                     Spacer()
@@ -101,8 +109,6 @@ struct LoginView: View {
                 
                 Spacer()
             }
-            .navigationTitle("Ghost Diary")
-            .navigationBarTitleDisplayMode(.inline)
         }
         
         .navigationDestination(isPresented: $isEmailLogin) {

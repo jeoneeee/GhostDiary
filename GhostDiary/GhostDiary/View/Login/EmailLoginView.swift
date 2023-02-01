@@ -11,6 +11,7 @@ import SwiftUI
 struct EmailLoginView: View {
     @EnvironmentObject var authStores: AuthStore
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     @Binding var isLogin: Bool
     @Binding var isLoading: Bool
@@ -84,6 +85,7 @@ struct EmailLoginView: View {
                 Text("로그인")
                     .padding()
                     .modifier(BodyTextModifier())
+                    .foregroundColor(.black)
             })
             .disabled(!isPossibleLogin)
             .modifier(!isPossibleLogin ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
@@ -100,7 +102,7 @@ struct EmailLoginView: View {
                     dismiss()
                 } label: {
                     Image(systemName: "arrow.backward")
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
                 }
             }
         }

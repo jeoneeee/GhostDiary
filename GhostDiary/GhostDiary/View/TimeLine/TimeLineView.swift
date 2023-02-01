@@ -32,9 +32,9 @@ struct TimeLineView: View {
                     TimeLineEmptyView()
                 }
             }
-            .navigationTitle("Ghost Diary")
-            .navigationBarTitleDisplayMode(.inline)
-            
+//            .navigationTitle("Ghost Diary")
+//            .navigationBarTitleDisplayMode(.inline)
+//            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {

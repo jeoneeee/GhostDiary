@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomDatePicker: View {
     @EnvironmentObject var authStores: AuthStore
     @EnvironmentObject var answerStores: AnswerStore
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var currentMonth: Int = 0
     @Binding var currentDate: Date
@@ -49,7 +50,7 @@ struct CustomDatePicker: View {
                         .font(.title2)
                 }
             }
-            .foregroundColor(.black)
+            .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
             .padding(.horizontal)
             
             // 요일 뷰

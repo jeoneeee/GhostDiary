@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimeLineCustomTabBar: View {
     @Binding var selection: TimeLineCategory
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack {
@@ -17,7 +18,7 @@ struct TimeLineCustomTabBar: View {
             }, label: {
                 VStack(alignment: .center, spacing: 0) {
                     Image(systemName: "calendar")
-                        .foregroundColor(selection == .calendar ? .black : .secondary)
+                        .foregroundColor(selection == .calendar ? colorScheme == .dark ? Color(.white) : Color(.black) : .secondary)
                         .fontWeight(selection == .calendar ? .bold : .regular)
                 }
             })
@@ -27,12 +28,11 @@ struct TimeLineCustomTabBar: View {
             }, label: {
                 VStack(alignment: .center, spacing: 0) {
                     Image(systemName: "list.bullet")
-                        .foregroundColor(selection == .list ? .black : .secondary)
+                        .foregroundColor(selection == .list ? colorScheme == .dark ? Color(.white) : Color(.black) : .secondary)
                         .fontWeight(selection == .list ? .bold : .regular)
                 }
             })
         }
-        .foregroundColor(.secondary)
     }
 }
 

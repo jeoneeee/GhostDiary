@@ -10,6 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     @EnvironmentObject var authStores: AuthStore
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -61,10 +62,11 @@ struct SignUpView: View {
                     }
                 }, label: {
                     Text("중복 확인")
+                        .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.gray))
                         .padding(10)
                         .overlay {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .stroke(Color(UIColor.systemGray4), lineWidth: 2)
+                                .stroke(colorScheme == .dark ? Color(.white) : Color(.gray), lineWidth: 2)
                         }
                         .modifier(BodyTextModifier())
                         .foregroundColor(.secondary)
@@ -160,6 +162,7 @@ struct SignUpView: View {
                 Text("회원가입 완료")
                     .padding()
                     .modifier(BodyTextModifier())
+                    .foregroundColor(.black)
             })
             .modifier(disableRegister ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
             .disabled(disableRegister)
@@ -177,7 +180,7 @@ struct SignUpView: View {
                     dismiss()
                 } label: {
                     Image(systemName: "arrow.backward")
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
                 }
             }
         }
