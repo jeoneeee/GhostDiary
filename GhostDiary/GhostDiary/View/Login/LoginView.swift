@@ -35,6 +35,7 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .frame(width: 30, height: 30)
                     Text("Google로 계속하기")
+                        //.modifier(CaptionTextModifier())
                         .foregroundColor(.black)
                         .bold()
                     Spacer()
@@ -54,6 +55,7 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .frame(width: 50, height: 44)
                     Text("Apple로 계속하기")
+                        //.modifier(CaptionTextModifier())
                         .foregroundColor(.black)
                         .bold()
                     Spacer()
@@ -71,8 +73,8 @@ struct LoginView: View {
                 Spacer()
                 
                 Text("나를 찾아주는 100개의 질문에 답을 해보세요.")
-                    .font(.title)
-                    .bold()
+                    .modifier(TitleTextModifier())
+                    .padding()
                 
                 Spacer()
                 
@@ -85,18 +87,17 @@ struct LoginView: View {
                     Spacer()
                     NavigationLink(destination: EmailLoginView(isLogin: $isLogin, isLoading: $isLoading)) {
                         Text("이메일로 로그인")
+                            .modifier(CaptionTextModifier())
                     }
                     Spacer()
                     
                     NavigationLink(destination: SignUpView()) {
                         Text("이메일로 회원가입")
+                            .modifier(CaptionTextModifier())
                     }
                     Spacer()
                 }
-                .font(.caption)
                 .foregroundColor(.secondary)
-                
-                .foregroundColor(.black)
                 
                 Spacer()
             }

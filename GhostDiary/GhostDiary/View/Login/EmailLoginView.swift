@@ -48,6 +48,7 @@ struct EmailLoginView: View {
                             .foregroundColor(.secondary)
                         if isPasswordHidden {
                             TextField("비밀번호", text: $password)
+                                .modifier(CaptionTextModifier())
                         } else {
                             SecureField("비밀번호", text: $password)
                         }
@@ -82,6 +83,7 @@ struct EmailLoginView: View {
             }, label: {
                 Text("로그인")
                     .padding()
+                    .modifier(BodyTextModifier())
             })
             .disabled(!isPossibleLogin)
             .modifier(!isPossibleLogin ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))

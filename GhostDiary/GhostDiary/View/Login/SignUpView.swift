@@ -45,7 +45,8 @@ struct SignUpView: View {
     private var emailView: some View {
         VStack(alignment: .leading) {
             Text("이메일")
-                .font(.title3)
+                .modifier(BodyTextModifier())
+                //.font(.title3)
                 .padding([.leading])
             HStack {
                 TextField("example@naver.com ", text: $email)
@@ -65,6 +66,7 @@ struct SignUpView: View {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .stroke(Color(UIColor.systemGray4), lineWidth: 2)
                         }
+                        .modifier(BodyTextModifier())
                         .foregroundColor(.secondary)
                 })
             }
@@ -92,7 +94,8 @@ struct SignUpView: View {
     private var passwordView: some View {
         VStack(alignment: .leading) {
             Text("비밀번호")
-                .font(.title3)
+                .modifier(BodyTextModifier())
+                //.font(.title3)
                 .padding([.leading, .top])
             
             SecureField("비밀번호를 입력하세요. ", text: $password)
@@ -115,7 +118,7 @@ struct SignUpView: View {
     private var psswordCheckView: some View {
         VStack(alignment: .leading) {
             Text("비밀번호 확인")
-                .font(.title3)
+                .modifier(BodyTextModifier())
                 .padding([.leading, .top])
             SecureField("비밀번호를 한번 더 입력하세요. ", text: $checkPassword)
                 .modifier(LoginTextFieldModifier())
@@ -126,9 +129,11 @@ struct SignUpView: View {
             if isEqulPassword && !checkPassword.isEmpty{
                 Text("비밀번호가 일치합니다.")
                     .modifier(ValidateText(color: .green))
+                    .modifier(CaptionTextModifier())
             } else if !checkPassword.isEmpty {
                 Text("비밀번호가 일치하지 않습니다.")
                     .modifier(ValidateText(color: .red))
+                    .modifier(CaptionTextModifier())
             }
         }
         .opacity(isEmailExsit ? 0.5 : 1)
@@ -154,6 +159,7 @@ struct SignUpView: View {
             },label: {
                 Text("회원가입 완료")
                     .padding()
+                    .modifier(BodyTextModifier())
             })
             .modifier(disableRegister ? LoginButton(backgroudColor: Color(.systemGray3)) : LoginButton(backgroudColor: Color("Color5")))
             .disabled(disableRegister)
