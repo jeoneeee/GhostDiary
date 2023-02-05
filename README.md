@@ -1,10 +1,4 @@
-# Ghost Diary [<img src = "https://user-images.githubusercontent.com/48436020/209287013-c72817ac-2680-4c3f-a047-901dcf5b1ce2.png" width="25">]([https://nimble-umbra-cac.notion.site/fe2d63b67f724324abe426e77785de4b](https://nimble-umbra-cac.notion.site/7752163db0aa43ad94ae2aebccee936b))
-![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
-![Swift](https://img.shields.io/badge/SwiftUI-0052CC?style=for-the-badge&logo=swift&logoColor=white)
-![Xcode](https://img.shields.io/badge/Xcode-007ACC?style=for-the-badge&logo=Xcode&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
-![Apple](https://img.shields.io/badge/Apple-%23000000.svg?style=for-the-badge&logo=apple&logoColor=white)
-![Google](https://img.shields.io/badge/google-4285F4?style=for-the-badge&logo=google&logoColor=white)
+# 👻 Ghost Diary 
 
 <br>
 <br>
@@ -56,9 +50,10 @@
 <summary>라이트모드</summary>
 <div markdown="1">
 
-|<img src="https://user-images.githubusercontent.com/105197393/202216192-7ebe2ddb-ae04-4869-aa46-bfa8d0cd0f63.png" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/202216493-a86cba2d-5c25-4b8c-aa07-e922cb172774.png" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/202216750-6466c326-73f4-4a0d-88ba-0f9755b6479a.png" width=80%>|
-|:---:|:---:|:---:|
-|온보딩|홈 화면|검색 화면|
+
+|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819304-0d641b65-9a46-4c1b-9a4d-e4fd3d6ca615.gif" width=80%>|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819371-c1d48ab9-ccd3-4850-b429-138f2af1a42a.gif" width=80%>|
+|:---:|:---:|:---:|:---:|
+|회원가입|홈|캘린더|차트|
   
 </div>
 </details>
@@ -66,9 +61,9 @@
 <summary>다크모드</summary>
 <div markdown="2">
   
-|<img src="https://user-images.githubusercontent.com/105197393/202216192-7ebe2ddb-ae04-4869-aa46-bfa8d0cd0f63.png" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/202216493-a86cba2d-5c25-4b8c-aa07-e922cb172774.png" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/202216750-6466c326-73f4-4a0d-88ba-0f9755b6479a.png" width=80%>|
-|:---:|:---:|:---:|
-|온보딩|홈 화면|검색 화면|
+|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819448-95490a54-69ee-44f5-98ea-bbf3b1c6c55d.gif" width=80%>|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819467-49cc9877-89f8-453c-bff2-634fc29f6cbd.gif" width=80%>|
+|:---:|:---:|:---:|:---:|
+|회원가입|홈|캘린더|차트|
 
 </div>
 </details>
