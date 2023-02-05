@@ -147,6 +147,8 @@ feat/26-tab2/recipe
 │         
 +------🗂 Modifiers       // modifier 모음
 │         
++------🗂 Utilities       // 앱 전반에 사용되는 코드
+│         
 + 🗂 Sources
 |
 +------🗂 Model      // Json을 받기 위한 Hashable, Codable, Identifiable 프로토콜을 체택한 struct 관리
@@ -169,6 +171,7 @@ feat/26-tab2/recipe
 - Firebase Firestore
 - Firebase Auth
 - Charts
+- Custom Calendar
 
 <br>
 
@@ -189,4 +192,4 @@ feat/26-tab2/recipe
 
 ### 후기
 - 이지연 : 
-- 이학진 : 
+- 이학진 :
