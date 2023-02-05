@@ -50,8 +50,7 @@
 <summary>라이트모드</summary>
 <div markdown="1">
 
-
-|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819304-0d641b65-9a46-4c1b-9a4d-e4fd3d6ca615.gif" width=80%>|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819371-c1d48ab9-ccd3-4850-b429-138f2af1a42a.gif" width=80%>|
+|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819631-211346f3-6391-4573-aabd-6c80ad233b87.gif" width=80%>|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819371-c1d48ab9-ccd3-4850-b429-138f2af1a42a.gif" width=80%>|
 |:---:|:---:|:---:|:---:|
 |회원가입|홈|캘린더|차트|
   
