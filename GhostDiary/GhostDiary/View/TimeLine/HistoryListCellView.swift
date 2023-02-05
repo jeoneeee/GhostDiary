@@ -13,17 +13,19 @@ struct HistoryListCellView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .leading) {
             HStack {
                 Text("#\(question.number)")
                     .foregroundColor(Color("Color7"))
                 Text(question.query)
+                    .multilineTextAlignment(.leading)
                     .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
                     .padding([.leading], 8)
                 Spacer()
             }
             .modifier(BodyTextModifier())
         }
+        .frame(width:UIScreen.screenWidth*0.9, alignment: .leading)
     }
 }
 

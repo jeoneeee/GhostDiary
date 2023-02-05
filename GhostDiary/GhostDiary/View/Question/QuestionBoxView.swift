@@ -16,6 +16,7 @@ struct QuestionBoxView: View {
             Text("Q. \(questionStore.questions.number)")
                 .bold()
             Text(questionStore.questions.query)
+                .multilineTextAlignment(.leading)
         }
         .modifier(TitleTextModifier())
         .foregroundColor(colorScheme == .dark ? Color(.white) : Color(.black))
