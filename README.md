@@ -50,9 +50,10 @@
 <summary>라이트모드</summary>
 <div markdown="1">
 
-|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819631-211346f3-6391-4573-aabd-6c80ad233b87.gif" width=80%>|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819371-c1d48ab9-ccd3-4850-b429-138f2af1a42a.gif" width=80%>|
-|:---:|:---:|:---:|:---:|
-|회원가입|홈|캘린더|차트|
+
+|<img src="https://user-images.githubusercontent.com/52197436/216819807-df2fd793-4ce5-448e-b9ed-f0a4ee0507c5.gif" width=80%>|<img src="https://user-images.githubusercontent.com/52197436/216820106-88229c0c-b497-48ac-9d8f-eb54051e603b.gif" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819631-211346f3-6391-4573-aabd-6c80ad233b87.gif" width=80%>|<img src="https://user-images.githubusercontent.com/52197436/216820081-598ca618-da44-40d8-ae7e-60e973dd91bc.gif" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819371-c1d48ab9-ccd3-4850-b429-138f2af1a42a.gif" width=80%>|
+|:---:|:---:|:---:|:---:|:---:|
+|회원가입|로그인|홈|캘린더|차트|
   
 </div>
 </details>
@@ -60,9 +61,9 @@
 <summary>다크모드</summary>
 <div markdown="2">
   
-|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819448-95490a54-69ee-44f5-98ea-bbf3b1c6c55d.gif" width=80%>|<img src="" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819467-49cc9877-89f8-453c-bff2-634fc29f6cbd.gif" width=80%>|
-|:---:|:---:|:---:|:---:|
-|회원가입|홈|캘린더|차트|
+|<img src="https://user-images.githubusercontent.com/52197436/216820194-aef0f07a-af9a-4c10-8cf4-ab5567497993.gif" width=80%>|<img src="https://user-images.githubusercontent.com/52197436/216820198-dee232d0-da4a-4127-b2e9-7fb74ef7ed17.gif" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819448-95490a54-69ee-44f5-98ea-bbf3b1c6c55d.gif" width=80%>|<img src="https://user-images.githubusercontent.com/52197436/216820201-6e517f91-f1ef-4a6a-8588-132e700e2275.gif" width=80%>|<img src="https://user-images.githubusercontent.com/105197393/216819467-49cc9877-89f8-453c-bff2-634fc29f6cbd.gif" width=80%>|
+|:---:|:---:|:---:|:---:|:---:|
+|회원가입|로그인|홈|캘린더|차트|
 
 </div>
 </details>
